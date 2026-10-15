@@ -7,7 +7,7 @@ Repository setup from DISC-001 v0.1 is the authorized increment. Discovery is pr
 - Not started: data ingestion, corpus preparation, gateway, LLM integration, policy implementation and application tests.
 - Not performed: application demo, performance evaluation, independent review, cloud deployment or customer acceptance.
 - Hosting/model/provider: unselected.
-- GitHub repository: private `Douglas-Moore-Engineering/ai-command-gateway`, created 2026-10-15; initial documentation publication authorized.
+- GitHub repository: private `Douglas-Moore-Engineering/ai-command-gateway`, created 2026-10-15; 41 initial files published and verified against the local package.
 - CI/branch protection/security scans: not configured or verified. Local documentation validation is available; remote CI configuration remains future work.
 - Diagrams and detailed architecture: deferred to the scoped architecture increment; no reviewed design baseline exists.
 
