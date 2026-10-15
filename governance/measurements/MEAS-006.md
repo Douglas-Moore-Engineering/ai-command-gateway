@@ -1,0 +1,34 @@
+# MEAS-006 — Grounded recommendation or abstention
+
+Record version: 0.1. Recorded: 2026-10-15. KPI: KPI-006, dictionary v0.1. Need: NEED-02.
+Requirement: REQ-05. Criterion: AC-05. [Definitions](../../docs/appendix-a-kpi-dictionary.md). [Acceptance](../../requirements/acceptance.csv).
+
+| Field | Current value |
+| --- | --- |
+| Definition / unit | supported consequential recommendations or justified abstentions / reviewed consequential recommendations |
+| Baseline | not measured |
+| Target / approval | all reviewed items; proposed; not approved |
+| Method / population | Predeclare source-qualified cases and reviewed expected decisions before evaluation; selection, exclusions and sample size TBD by controls |
+| Independent unit | source-grounded case; repeated rows must not imply independent assets |
+| Window / clock | not evaluated; record source clock and test wall clock separately |
+| Comparator / split | Manual review for AC-04; reviewed expected outcomes otherwise. Freeze independent evaluation cases before tuning |
+| Protocol / fixed date | not established; OPEN-02 remains open |
+| Aggregation / uncertainty | Ratio denominators and event grouping required; interval method TBD before tests. Quantiles require declared hardware/load and sampling method |
+| measurement_status | not measured |
+| Observed result / denominator | not measured / no evaluated cases |
+| Environment / data origin | no evaluation run; intended offline public reference data |
+| Uncertainty estimate | not measured |
+| Representativeness | No validated source files, operational limits or site transfer evidence |
+| Intervention / follow-up / attribution | not measured; engineering metrics alone cannot establish avoided loss |
+| Financial basis | N/A for this engineering measure; savings not measured |
+| Run / log / code / data bindings | none; no evaluated implementation or dataset snapshot |
+| Model / config / dependencies | not selected; no inference evaluation |
+| Reproduction command | unavailable until implementation and frozen protocol exist |
+| Owner | DME prepares; fictional controls role reviews, actual reviewer unassigned |
+| criterion_result | not evaluated |
+| acceptance_disposition | pending review |
+| Decision / authority | no sign-off or release authorization |
+| Next action | Resolve OPEN-02 and relevant data/policy prerequisites before measurement |
+| Remeasurement trigger | Changes to code, source data, policy, model, permissions or operating envelope |
+
+Only an unmeasured planning record is supported. Customer acceptance and production readiness are not established. [Handoff](../../customer/HANDOFF.md).

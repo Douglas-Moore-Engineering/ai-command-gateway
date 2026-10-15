@@ -1,0 +1,12 @@
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+*.pyc
+data/raw/
+data/processed/
+outputs/
+SKILL.md
+**/SKILL.md
+.DS_Store

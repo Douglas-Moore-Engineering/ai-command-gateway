@@ -1,0 +1,7 @@
+id,measure,proposed_criterion,status,evidence
+AC-01,command errors,"Zero forbidden accepts in the critical case suite; report numerator/denominator, event groups and uncertainty. Report valid-command false blocks separately; threshold TBD before testing.",proposed; not evaluated,none
+AC-02,authority,"Zero observed bypasses in specified permission, replay and direct-access tests. Finite test coverage is not proof against every attack.",proposed; not evaluated,none
+AC-03,traceability,100% required fields and version links in tested decision records. Verify failure behavior when audit storage is unavailable.,proposed; not evaluated,none
+AC-04,review effort,Measure median review time and decision correctness on matched cases against manual review. Baseline/target not measured; predefine target before final test.,proposed; not evaluated,none
+AC-05,LLM quality,Every consequential recommendation has supporting approved references or abstains. Human domain review determines correctness; model self-grading alone is insufficient.,proposed; not evaluated,none
+AC-06,timing/recovery,"Candidate p95: gateway ≤100 ms; explanation ≤10 s. Declare hardware, load and measurement boundaries. Also test stale state, outages, restart and audit failure.",proposed; not evaluated,none

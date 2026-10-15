@@ -1,0 +1,9 @@
+id,owner,closure_evidence_and_timing,status
+OPEN-01,"operations, finance",Baseline review-time study and cost basis before ROI/business-case claims.,open
+OPEN-02,"controls, operations",Reviewed expected decisions and predeclared thresholds before evaluation freeze.,open
+OPEN-03,DME data lead,"Inspected files, rights, provenance, units, cadence, timestamp joins and event-based splits before data acceptance.",open
+OPEN-04,controls owner,"Version-matched equipment limits, sign conventions, modes, interlocks and action list before rule freeze; unavailable items remain out of executable scope.",open
+OPEN-05,"security, platform","Provider/data-flow, access, retention and secrets review before external processing or site access.",open
+OPEN-06,"sponsor, commercial","Scope, ownership, support and exit terms before delivery commitment.",open
+OPEN-07,"controls, platform","Timing, freshness, concurrency and recovery requirements before integration qualification.",open
+OPEN-08,"DME, sponsor",Low/base/high lifecycle estimate and affordability decision before implementation commitment.,open

@@ -1,0 +1,8 @@
+need,requirement,acceptance,planned_component,implementation,measurement,decision
+NEED-01,REQ-01,AC-01,deterministic gateway,not implemented,MEAS-001; MEAS-002,pending
+NEED-01,REQ-02,AC-02,identity and execution isolation,not implemented,MEAS-003,pending
+NEED-01,REQ-03,AC-02,approval and revalidation,not implemented,MEAS-003,pending
+NEED-01,REQ-04,AC-03,decision audit,not implemented,MEAS-004,pending
+NEED-02,REQ-05,AC-05,retrieval and abstention,not implemented,MEAS-006,pending
+NEED-01,REQ-06,AC-06,availability and failure handling,not implemented,MEAS-007,pending
+NEED-02,REQ-05,AC-04,operator review,not implemented,MEAS-005,pending
