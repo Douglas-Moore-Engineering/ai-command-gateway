@@ -1,5 +1,9 @@
 # Results and evidence - v0.4
 
+## Cited explanation and readable-answer verification — 2026-10-16
+
+The opt-in provider can now return paraphrased sentences with locally reconstructed citations, while exact evidence claims remain separately available. [Recorded examples](answer-examples.md) show actual offline output and a clearly labeled simulated provider response. [Current verification](../governance/cited-explanation-verification-2026-10-16.json) binds tests, environment, prompt/source hashes and examples. This is integration evidence, not a live LLM quality result, semantic-entailment proof or domain acceptance. Existing MEAS-006/AC-05 dispositions remain open.
+
 ## Current state: Azure retirement verified
 
 The user requested keeping the established subscription ending `f609` while deleting its other Azure resources. Final read-only ARM verification at **2026-10-16 05:13:03 UTC** confirmed the subscription remains `Enabled`, with **zero active resources, zero resource groups, zero project-principal role assignments and zero management locks**. Both existing subscription Owner assignments were preserved. The project foundation, Container Apps managed resources and Network Watcher groups were deleted, including the registry image, uploaded copies of the five datasets, manual job and Azure results. The [retirement record](../governance/azure-retirement-v0.4.json) binds the deletion and final verification evidence.

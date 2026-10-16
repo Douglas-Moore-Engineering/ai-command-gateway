@@ -26,6 +26,7 @@ Engineers inspect source quality and retrieve cited observations. Reviewers insp
 | Approval and mock execution | Request/policy binding, expiry, revalidation, persistent replay rejection | Local actor labels; single-host SQLite transactions |
 | Audit | Proposal, sources, model/policy versions, state time, actor, decision and mock outcome | Local durable records; not a tamper-proof evidence service |
 | Historical replay | Recorded S1 battery targets reach the unqualified-policy gate | No ground-truth accuracy measurement or invented unit conversion |
+| Readable answers | Plain-text observations, optional cited model explanations and saved output | [Examples](docs/answer-examples.md); bounded contract checks, semantic accuracy unqualified |
 | Optional model integration | Explicit OpenAI Responses call, request preview, exact-claim validation and offline fallback | Simulated-response tests only; no live integration, model-quality or operational acceptance claim |
 | Historical Azure batch pilot | Exact image and five inputs transferred; demo/dataset executions, nine identity checks, expected failure and artifact checks passed before retirement | Cloud resource retirement verified; local evidence remains; no domain or production acceptance |
 
@@ -33,6 +34,7 @@ Engineers inspect source quality and retrieve cited observations. Reviewers insp
 
 | Result | Context and evidence | Limit |
 | --- | --- | --- |
+| Cited explanation integration | [Current verification](governance/cited-explanation-verification-2026-10-16.json) | Simulated provider; model quality and domain acceptance unmeasured |
 | Current maintenance verification | [Dated verification record](governance/repository-maintenance-2026-10-16.json) | Local software and fixtures; remote CI is tracked separately |
 | Historical local suite: 590 passed, 44 subtests, one skip | [Pilot record](governance/azure-pilot-v0.4.json) | Earlier Windows environment; not a new run |
 | Historical Azure demo and dataset executions; nine identity checks | [Pilot record](governance/azure-pilot-v0.4.json), [results](docs/results.md) | Bounded sandbox evidence; no production acceptance |
@@ -62,7 +64,9 @@ python -m venv .venv
 
 The Azure SDK dependencies support mocked boundary tests; installing them does not connect Azure. The verification runner uses the committed aggregate fixture, runs the full suite and checks retrieval, abstention, mock behavior and an OpenAI dry-run. It does not inspect the original datasets. Historical development used Windows CPython 3.10.11; current verification environments are identified in the dated record and CI workflow. Container dependencies remain separately locked.
 
-For source profiling, qualification, catalog queries and replay, use the [demo guide](docs/demo.md). The [optional provider instructions](docs/demo.md#optional-openai-advice) explain the explicit live-call boundary. Default advice is offline; the application does not load `.env` automatically. Previewing uses `--provider openai --dry-run` and neither reads credentials nor calls a model.
+For source profiling, qualification, catalog queries and replay, use the [demo guide](docs/demo.md). For readable offline examples, run `python scripts/show_answer_examples.py` or open [the recorded answers](docs/answer-examples.md). With a configured provider and catalog, `advise --provider openai --explain --question "How many rows are in process_dataset.parquet?" --output outputs/answers/answer.txt` displays and saves cited prose. No live model evaluation is claimed; explanation accuracy needs review.
+
+The [optional provider instructions](docs/demo.md#optional-openai-advice) explain the explicit live-call boundary. Default advice is offline; the application does not load `.env` automatically. Previewing uses `--provider openai --dry-run` and neither reads credentials nor calls a model.
 
 ## Where are the engineering details?
 

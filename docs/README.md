@@ -22,3 +22,5 @@ v0.4 adds an optional guarded OpenAI adapter and the deployed private Azure foun
 - [Release boundaries](../governance/release_gates.md), [open items](../customer/open-items.csv), [cost model](../customer/COST-001.md)
 - [Discovery](../customer/DISC-001-v0.1.md), [handoff](../customer/HANDOFF.md), [operating instructions](../runbooks/README.md)
 - [Historical repository setup verification](../governance/repository-verification.md)
+
+- [Readable answer examples](answer-examples.md), [cited explanation decision](../architecture/adr/ADR-005-cited-explanations.md) and [verification](../governance/cited-explanation-verification-2026-10-16.json).

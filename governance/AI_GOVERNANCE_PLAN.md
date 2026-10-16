@@ -1,5 +1,9 @@
 # AI governance plan — current screen, 2026-10-16
 
+## Cited explanation change — 2026-10-16
+
+User-authorized local work adds opt-in cited model prose, plain-text output and saved answers. [ADR-005](../architecture/adr/ADR-005-cited-explanations.md) records the change and bounded checks; [verification](cited-explanation-verification-2026-10-16.json) records actual evidence. Exact evidence, offline defaults, mock-only authority and Azure retirement remain intact. This increment has no live-provider or domain-quality result and no new release/gate approval. Lifecycle/control-coverage JSON projections are absent; no executable checker PASS is claimed. Manual review checks the existing scope, trace, unchanged authority boundary, fallback and regression evidence. Future production exposure remains blocked by the existing unresolved conditions; next permitted work is offline review or a separately scoped live-provider evaluation. Douglas Moore remains the maintainer; independent domain reviewer is unassigned.
+
 Status: provisional screen, not an approved governance baseline. Real owner/preparer: Douglas Moore. Fictional engagement roles provide no real approval authority. The current repository supports offline source observations, synthetic policy validation and mock execution. The optional provider adapter exists but no live inference is evidenced. Azure is retired; maintenance does not reconnect it.
 
 ## Current exposure and evidence

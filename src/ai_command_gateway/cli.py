@@ -63,6 +63,9 @@ def parser():
     advice.add_argument("--limit", type=int, default=3)
     advice.add_argument("--provider", choices=("offline", "openai"), default="offline",
                         help="Explicitly opt in to the hosted adapter; default stays offline")
+    advice.add_argument('--explain', action='store_true', help='Ask the explicitly selected provider for cited prose; defaults to plain-text display')
+    advice.add_argument('--format', choices=('json', 'text'), help='Display format; JSON by default, text with --explain')
+    advice.add_argument('--output', type=Path, help='Also save the displayed answer to this local file')
     advice.add_argument("--dry-run", action="store_true", help="Preview the OpenAI request without sending it")
     advice.add_argument("--model", help="OpenAI model ID; default gpt-6.1-sol")
     advice.add_argument("--timeout", type=float, help="Provider socket timeout in seconds (1-60); default 30")
@@ -151,6 +154,7 @@ def main(argv=None):
             emit(report)
             return 0
         if args.command == "advise":
+            from .answer_display import emit_answer
             if args.provider == "openai":
                 from .model_advisor import advise_with_model
                 from .openai_transport import OpenAIConfig
@@ -158,8 +162,8 @@ def main(argv=None):
                     "model": args.model, "timeout_seconds": args.timeout,
                     "max_output_tokens": args.max_output_tokens}.items() if value is not None}
                 report = advise_with_model(args.question, args.catalog, source_id=args.source,
-                                           limit=args.limit, config=OpenAIConfig(**options), dry_run=args.dry_run)
-                emit(report)
+                                           limit=args.limit, config=OpenAIConfig(**options), dry_run=args.dry_run, explain=args.explain)
+                emit_answer(report, args)
                 response = report["response"]
                 if report["model"]["status"] == "rejected" or response.get("reason_code") in {
                         "catalog_unverified", "invalid_question", "invalid_filter"}:
@@ -167,11 +171,11 @@ def main(argv=None):
                 if report["model"]["status"] == "fallback":
                     return 3
                 return 0 if response.get("response_type") == "observation" else 2
-            if args.dry_run or any(value is not None for value in (args.model, args.timeout, args.max_output_tokens)):
+            if args.explain or args.dry_run or any(value is not None for value in (args.model, args.timeout, args.max_output_tokens)):
                 raise ValueError("Provider options require --provider openai")
             from .advisor import advise
             report = advise(args.question, args.catalog, source_id=args.source, limit=args.limit)
-            emit(report)
+            emit_answer(report, args)
             if report.get("reason_code") in {"catalog_unverified", "invalid_question", "invalid_filter"}:
                 return 1
             return 0 if report.get("response_type") == "observation" else 2
