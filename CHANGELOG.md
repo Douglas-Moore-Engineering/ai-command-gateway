@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-16 — Cited explanations
+
+- Added opt-in provider explanations with local citations, bounded validation and explicit semantic-review limits.
+- Added plain-text answers, saved output and reproducible offline/simulated examples.
+- Preserved exact-evidence mode, offline defaults, mock-only execution and historical cloud evidence.
+
 ## Azure retirement - 2026-10-16 (verified)
 
 The user requested retaining the established Azure subscription ending `f609` and deleting its other resources. Final read-only ARM verification at **05:13:03 UTC** confirmed the subscription remains `Enabled`, with zero active resources, zero resource groups, zero project-principal role assignments and zero management locks; both existing subscription Owner assignments were preserved. The three inventoried groups were deleted: project foundation, Container Apps managed resources and Network Watcher, including the cloud image, five uploaded inputs, manual job and cloud results. This supersedes the earlier retain-foundation decision after operator cleanup. The [retirement record](governance/azure-retirement-v0.4.json) preserves the verification and provider-recovery limits.

@@ -2,6 +2,8 @@
 
 Status: implemented for the v0.4 local reference system; live integration and model quality remain unverified. Date: 2026-10-15. Trace: REQ-02, REQ-05 and REQ-06; AC-02, AC-05 and AC-06 remain proposed. This advances the runtime candidate in [ADR-002](ADR-002-cited-observations.md) after the user requested continuation.
 
+The optional prose extension is recorded separately in [ADR-005](ADR-005-cited-explanations.md). The exact-claim path below remains available without `--explain`.
+
 ## Context and decision
 
 The local catalog supplies research observations with unresolved engineering meaning. It cannot support operating advice or a physical safety conclusion. The user asked which runtime to target and then requested continuation. Implement an optional OpenAI Responses adapter targeting `gpt-6.1-sol`, while preserving offline retrieval and the independent mock gateway.

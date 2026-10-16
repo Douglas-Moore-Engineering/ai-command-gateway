@@ -1,5 +1,9 @@
 # Lifecycle checklist — current status, 2026-10-16
 
+## Cited explanation increment — 2026-10-16
+
+User-authorized local work adds opt-in cited model prose, plain-text output and saved answers. [ADR-005](../architecture/adr/ADR-005-cited-explanations.md) records the change and bounded checks; [verification](cited-explanation-verification-2026-10-16.json) records actual evidence. Exact evidence, offline defaults, mock-only authority and Azure retirement remain intact. This increment has no live-provider or domain-quality result and no new release/gate approval. Lifecycle/control-coverage JSON projections are absent; no executable checker PASS is claimed. Manual review checks the existing scope, trace, unchanged authority boundary, fallback and regression evidence. Future production exposure remains blocked by the existing unresolved conditions; next permitted work is offline review or a separately scoped live-provider evaluation. Douglas Moore remains the maintainer; independent domain reviewer is unassigned.
+
 Fictional engagement; DISC-001 v0.1 remains the discovery baseline. This current overlay supersedes the historical status paragraphs below. The maintainer's bounded sandbox and maintenance instructions do not constitute customer acceptance or independent assurance.
 
 | Work | Current state | Evidence and remaining boundary |

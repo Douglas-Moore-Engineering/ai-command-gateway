@@ -1,5 +1,9 @@
 # Project status - 2026-10-16 / v0.4
 
+## Cited explanations — local implementation
+
+User-authorized explanation support now adds `--explain`, plain-text display and saved answers. [Recorded answers](docs/answer-examples.md), [ADR-005](architecture/adr/ADR-005-cited-explanations.md) and [verification](governance/cited-explanation-verification-2026-10-16.json) distinguish actual software execution from simulated provider output. Semantic accuracy and live-provider quality remain unmeasured. No cloud resources or model connections were activated by this increment.
+
 ## Current state: Azure retirement verified
 
 The user requested keeping the Azure subscription and deleting its other resources. Final read-only ARM verification at **2026-10-16 05:13:03 UTC** confirmed that the established subscription ending `f609` remains `Enabled`, with **zero active resources, zero resource groups, zero project-principal role assignments and zero management locks**. Both existing subscription Owner assignments were preserved. The three inventoried groups containing the project foundation, Container Apps managed resources and Network Watcher were deleted. This supersedes the earlier decision to retain the foundation, registry image, uploaded inputs, job and cloud results after temporary-operator cleanup. Evidence is recorded in the [retirement record](governance/azure-retirement-v0.4.json).

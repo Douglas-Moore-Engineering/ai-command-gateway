@@ -1,6 +1,6 @@
 # Application demonstration
 
-Run from the repository root after the [README setup](../README.md#run-locally). The default commands use no provider credential or equipment connection. Hosted inference requires the explicit option described below.
+Run from the repository root after the [README setup](../README.md#how-do-i-run-the-demo). The default commands use no provider credential or equipment connection. Hosted inference requires the explicit option described below.
 
 ```powershell
 .venv/Scripts/python.exe -m ai_command_gateway demo
@@ -44,6 +44,34 @@ Default advice is an offline observation response with no command proposal or ex
 
 `eval-advice` runs `data/evaluation/advice-cases-v1.json` and writes `outputs/advice-evaluation/advice-evaluation.json`, including catalog/casebook hashes, exact-citation checks, expected-fact coverage and abstentions. Exit 0 means every local case passed; exit 1 means failure. These frozen engineer-authored cases do not constitute independent domain acceptance or an LLM evaluation. Use each command's `--help` for alternate profile, inventory, catalog, casebook and output paths.
 
+## Readable answers and saved output
+
+For a sentence-based answer without a model, use `advise --format text`. To inspect a recorded example now, open [answer examples](answer-examples.md). Reproduce both offline and simulated-provider examples with:
+
+```powershell
+.venv/Scripts/python.exe scripts/show_answer_examples.py
+```
+
+This writes `outputs/answers/offline-answer.txt` and `outputs/answers/simulated-model-answer.txt`. The simulated example uses hand-authored provider output, not live inference.
+
+With an existing catalog, preview the new explanation request without credentials or network:
+
+```powershell
+.venv/Scripts/python.exe -m ai_command_gateway advise --provider openai --explain --dry-run --question "How many rows are in process_dataset.parquet?" --output outputs/answers/preview.txt
+```
+
+For an intentional live LLM answer, configure the provider key as described below, then run:
+
+```powershell
+.venv/Scripts/python.exe -m ai_command_gateway advise --provider openai --explain --question "How many rows are in process_dataset.parquet?" --output outputs/answers/answer.txt
+```
+
+`--explain` requests natural-language sentences with evidence references and defaults to plain-text output. `--format json` includes the explanation under `answer`, alongside unchanged exact evidence claims under `response.claims`. `--output` saves the same text printed to the terminal; it overwrites that named local file. No default output file is silently created. Without `--explain`, legacy JSON and exact-claim behavior remain available. `--format text` works offline too.
+
+The explanation contract checks shape, bounded text, complete selected-evidence coverage, valid citation IDs, numeric-token membership and a conservative operational-language screen. Local code constructs citations; the model cannot supply citation locators. Rechecking the catalog after a provider call prevents stale facts and stale explanations. These checks do **not** prove semantic entailment, correct attribution, units, causal interpretation or model quality. A schema-valid answer can still be wrong. Generated prose is labeled for review, has no command authority and is not engineering guidance. [ADR-005](../architecture/adr/ADR-005-cited-explanations.md) records this deliberate boundary.
+
+Malformed, unsupported or incomplete explanations fall back to labeled exact local observations (exit 3). Provider failures/refusals do the same. Missing/conflicting evidence and operational questions abstain before inference (exit 2, or 1 for invalid/unverifiable input). Catalog changes reject the result and clear the explanation (exit 1). Dry-run is explicitly labeled and never presented as model-written prose.
+
 ## Optional OpenAI advice
 
 Build the catalog first. This command previews the exact request body without reading a credential or making a network call:
@@ -52,7 +80,7 @@ Build the catalog first. This command previews the exact request body without re
 .venv/Scripts/python.exe -m ai_command_gateway advise --provider openai --dry-run --question "How many rows are in packets_dataset.parquet?" --source S1
 ```
 
-The adapter starts with the same local retrieval and abstention checks as default `advise`. A request contains the user's question, the selected observation IDs and exact statements, and the catalog ID/hash, alongside the fixed instructions and output schema. It does not attach raw datasets, the full catalog, local paths, gateway policy, approval records or equipment credentials. Observation statements can include source filenames and field names. Text typed in the question is sent as provided, so inspect the preview before including private information. `--dry-run`, `--model`, `--timeout` and `--max-output-tokens` require explicit `--provider openai`.
+The adapter starts with the same local retrieval and abstention checks as default `advise`. A request contains the user's question, the selected observation IDs and exact statements, and the catalog ID/hash, alongside the fixed instructions and output schema. It does not attach raw datasets, the full catalog, local paths, gateway policy, approval records or equipment credentials. Observation statements can include source filenames and field names. Text typed in the question is sent as provided, so inspect the preview before including private information. `--explain`, `--dry-run`, `--model`, `--timeout` and `--max-output-tokens` require explicit `--provider openai`.
 
 For a deliberate live call, configure `OPENAI_API_KEY` in the process environment through your normal secret-management method, then omit `--dry-run`:
 
@@ -64,7 +92,7 @@ This command sends data to OpenAI and can incur provider charges. The applicatio
 
 `store=false` does not establish Zero Data Retention. Provider abuse-monitoring and prompt-cache retention can still apply; account settings and applicable data controls need separate review for the intended data. [OpenAI data controls](https://developers.openai.com/api/docs/guides/your-data)
 
-The model output is restricted to the complete selected claim set, copied exactly, in any order, or a refusal. The final claims are reconstructed from local objects in the validated model order; text and citations remain local. Paraphrases, omitted claims, added facts, unsupported IDs and invalid responses are rejected; arbitrary model prose is never displayed. A failed provider result returns the original observations with explicit fallback metadata. If evidence changes or fails verification during the request, observations are cleared and the response is rejected. An unsupported local query never reaches the provider. The adapter currently adds no new retrieval coverage or engineering interpretation; ordering usefulness is unmeasured. Structured output constrains format; local checks enforce the stronger evidence contract. [OpenAI structured outputs](https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses)
+Without `--explain`, model output is restricted to the complete selected claim set, copied exactly, in any order, or a refusal. The final claims are reconstructed from local objects in the validated model order; text and citations remain local. Paraphrases, omitted claims, added facts, unsupported IDs and invalid responses are rejected; arbitrary model prose is never displayed. A failed provider result returns the original observations with explicit fallback metadata. If evidence changes or fails verification during the request, observations are cleared and the response is rejected. An unsupported local query never reaches the provider. The adapter currently adds no new retrieval coverage or engineering interpretation; ordering usefulness is unmeasured. Structured output constrains format; local checks enforce the stronger evidence contract. [OpenAI structured outputs](https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses)
 
 Provider mode wraps the unchanged advice contract under `response`, with `model` metadata and a nullable `request_preview`. Metadata includes requested/reported model, status, reason, whether transport was attempted, request SHA-256, response ID and token usage when available. No provider error body or arbitrary error text is returned.
 

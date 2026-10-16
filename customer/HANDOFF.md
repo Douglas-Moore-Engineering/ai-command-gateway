@@ -1,5 +1,9 @@
 # Engineering handoff - v0.4
 
+## Cited explanation increment — 2026-10-16
+
+User-authorized local work adds opt-in cited model prose, plain-text output and saved answers. [ADR-005](../architecture/adr/ADR-005-cited-explanations.md) records the change and bounded checks; [verification](../governance/cited-explanation-verification-2026-10-16.json) records actual evidence. Exact evidence, offline defaults, mock-only authority and Azure retirement remain intact. This increment has no live-provider or domain-quality result and no new release/gate approval. Lifecycle/control-coverage JSON projections are absent; no executable checker PASS is claimed. Manual review checks the existing scope, trace, unchanged authority boundary, fallback and regression evidence. Future production exposure remains blocked by the existing unresolved conditions; next permitted work is offline review or a separately scoped live-provider evaluation. Douglas Moore remains the maintainer; independent domain reviewer is unassigned.
+
 ## Current retirement handoff
 
 Azure retirement verified at `2026-10-16T05:13:03.027368+00:00`: subscription ending `f609` remains Enabled, with zero active resource groups and zero active resources. The user explicitly requested "keep the subscription and delete other resources in azure." The foundation, managed Container Apps network group and original Network Watcher are removed, including the Azure image, dataset and result copies. Local originals, downloaded evidence, image archive, source code and GitHub repository remain. [Retirement evidence](../governance/azure-retirement-v0.4.json) supersedes the retained-resource statements below. The prior pilot remains historical evidence; redeployment requires a new scope and spending decision. Accrued charges may arrive later, and provider recovery retention is distinct from active resource existence.

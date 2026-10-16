@@ -1,5 +1,9 @@
 # Offline implementation baseline
 
+## Cited explanation extension — 2026-10-16
+
+[ADR-005](../architecture/adr/ADR-005-cited-explanations.md) extends the historical exact-copy provider path with opt-in cited prose and plain-text output. It supersedes the blanket prose-rejection statement in the historical v0.4 threat discussion below for this mode only. Citation/token checks and conservative operational-language screening can reject malformed or some unsupported content, but cannot prove entailment, units, causal accuracy or correct interpretation. The renderer labels model prose for review, preserves exact evidence separately and strips terminal controls. Changed catalogs clear both evidence and explanations. No command, approval, tool, policy-edit or equipment authority is delegated. [Verification](../governance/cited-explanation-verification-2026-10-16.json) is simulated integration evidence; semantic/live-provider quality remains unqualified.
+
 Artifact: BASE-001 v0.1, 2026-10-15. Owner/preparer: DME delivery lead. Status: implementation design for the first local increment; domain acceptance and independent assurance remain open. This record supplements the preserved [DISC-001 v0.1](../customer/DISC-001-v0.1.md), rather than changing its historical statements.
 
 ## Mission, scope and authority

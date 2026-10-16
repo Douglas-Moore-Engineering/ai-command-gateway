@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "urn:ai-command-gateway:model-advice:1",
   "title": "Guarded optional model observation round trip",
-  "description": "Selected evidence is sent only after local retrieval succeeds. Accepted model claims are an exact permutation of local observations, reconstructed with local citations. Provider fallback and catalog rejection are explicit. No command authority is delegated.",
+  "description": "Selected evidence is sent only after local retrieval succeeds. Accepted model claims are an exact permutation of local observations, reconstructed with local citations. Provider fallback and catalog rejection are explicit. No command authority is delegated. Optional answer prose has citation/numeric-token checks only; semantic entailment is not evaluated.",
   "type": "object",
   "additionalProperties": false,
   "required": ["schema_version", "mode", "response", "model", "request_preview"],
@@ -24,12 +24,75 @@
         "provider": {"const": "openai"},
         "requested_model": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"},
         "status": {"enum": ["skipped", "dry_run", "validated", "fallback", "rejected"]},
-        "reason_code": {"enum": ["offline_abstention", "dry_run", "model_validated", "model_abstained", "invalid_provider_response", "claim_mismatch", "catalog_changed", "catalog_unverified", "provider_not_configured", "provider_timeout", "provider_http_error", "provider_unavailable", "provider_invalid_response", "provider_request_too_large", "provider_invalid_request"]},
+        "reason_code": {"enum": ["offline_abstention", "dry_run", "model_validated", "model_abstained", "invalid_provider_response", "claim_mismatch", "catalog_changed", "catalog_unverified", "provider_not_configured", "provider_timeout", "provider_http_error", "provider_unavailable", "provider_invalid_response", "provider_request_too_large", "provider_invalid_request", "explanation_rejected"]},
         "attempted": {"type": "boolean", "description": "True for a network attempt or successful injected transport call, not proof of delivery. False for offline abstention, dry-run, or known preflight rejection."},
         "request_sha256": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/sha256"}]},
         "response_id": {"type": ["string", "null"], "pattern": "^resp_[A-Za-z0-9_-]{1,120}$"},
         "response_model": {"type": ["string", "null"], "maxLength": 160},
         "usage": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/usage"}]}
+      }
+    },
+    "answer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "origin",
+        "sentences",
+        "verification",
+        "semantic_entailment"
+      ],
+      "properties": {
+        "origin": {
+          "enum": [
+            "model",
+            "extractive_fallback"
+          ]
+        },
+        "verification": {
+          "enum": [
+            "citation_bindings_and_numeric_tokens_only",
+            "exact_local_observations"
+          ]
+        },
+        "semantic_entailment": {
+          "const": "not_evaluated"
+        },
+        "sentences": {
+          "type": "array",
+          "maxItems": 10,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "text",
+              "evidence_ids",
+              "citations"
+            ],
+            "properties": {
+              "text": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence_ids": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 10,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "citations": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 10,
+                "items": {
+                  "$ref": "advice.schema.json#/$defs/citation"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "preview": {
@@ -66,6 +129,7 @@
     "mode": {"const": "guarded_model_advice"},
     "response": {"$ref": "advice.schema.json"},
     "model": {"$ref": "#/$defs/model"},
+    "answer": {"$ref": "#/$defs/answer"},
     "request_preview": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/preview"}]}
   },
   "allOf": [

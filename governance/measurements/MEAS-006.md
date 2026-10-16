@@ -44,3 +44,7 @@ The offline advisor now returns verified exact observations or abstains. The [12
 ## v0.4 provider boundary evidence
 
 The provider adapter is exercised using injected responses, including exact-claim acceptance, missing credentials, refusal, malformed claims, errors and catalog changes. These tests establish application behavior, not live model correctness or recommendation coverage. The local observation casebook remains unchanged; AC-05 and KPI-006 remain unevaluated.
+
+## Cited explanation increment — 2026-10-16
+
+Opt-in natural-language explanation and readable output are now implemented. [Integration verification](../cited-explanation-verification-2026-10-16.json) checks citation/numeric-token contracts using injected responses, not a live model or an independent consequential-recommendation population. KPI-006 remains not measured, AC-05 not evaluated, acceptance pending review. Semantic entailment, units and interpretation remain unqualified; no engineering-acceptance claim is added.

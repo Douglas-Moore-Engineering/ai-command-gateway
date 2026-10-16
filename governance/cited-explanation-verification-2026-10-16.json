@@ -1,0 +1,235 @@
+{
+  "version": "0.4.0",
+  "recorded_at_utc": "2026-10-16T14:44:22.372872+00:00",
+  "scope": "Opt-in cited prose contract, readable/saved CLI output, unchanged exact evidence and mock-only authority. Local fixtures and simulated provider only.",
+  "python": "3.12.14",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "dependencies": {
+    "pyarrow": "25.0.1",
+    "scipy": "1.15.3",
+    "numpy": "2.2.6",
+    "h5py": "3.16.0",
+    "pytest": "9.1.1"
+  },
+  "optional_dependencies": {
+    "azure-identity": "1.26.0",
+    "azure-storage-blob": "12.31.0",
+    "azure-core": "1.41.0"
+  },
+  "checks": [
+    {
+      "name": "tests",
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "--junitxml=outputs/verification/tests.xml"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "passed": true,
+      "summary": "594 passed, 46 skipped, 44 subtests passed in 6.78s"
+    },
+    {
+      "name": "repository",
+      "command": [
+        "python",
+        "scripts/check_repository.py"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "passed": true,
+      "summary": "PASS: 515 local file links; 6 requirements; 6 criteria; 8 open items; trace IDs; original SHA-256; no internal instruction files.\nScope: repository consistency only; application, remote CI, rendering and acceptance not evaluated."
+    },
+    {
+      "name": "demo",
+      "command": [
+        "python",
+        "-m",
+        "ai_command_gateway",
+        "demo",
+        "--db",
+        "outputs/verification/demo.sqlite3"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "passed": true,
+      "checks": {
+        "synthetic_in_range_allowed": true,
+        "synthetic_out_of_range_blocked": true,
+        "missing_evidence_escalated": true,
+        "approved_mock_executed": true,
+        "approval_replay_blocked": true
+      }
+    }
+  ],
+  "all_checks_passed": true,
+  "source_sha256": {
+    ".azure/infrastructure-plan.json": "ca01c9a849d4ebc40d016c4b5419bd21b77887bb3f868edae1e03925bcf53796",
+    ".azure/insights.json": "2ce54bb4146185bb0cfe5052d3e722794b0e78263e5b698a930dd97696ccd9ad",
+    ".azure/operator-plan.json": "ebe52af002a7be8fab275f16d6f5da2f8cf05f8547401dc85cc1e7cfa972973e",
+    ".dockerignore": "bc69fa3b5cf84cf7518ad6ce030aac08245ed1f6047aa88c0053cbd9e5cbb68a",
+    "Dockerfile": "cb895f7084d9ae43f0bb04edc94c98c9ddbb2c926d7d6d60af2419e900bc96fd",
+    "config/policies/demo-policy.json": "dd9c2de63888499aed149576d02933e8c6efe01f02c259df9d563dba756fe29c",
+    "config/policies/unqualified-policy.json": "c333fac2954a8cfc193b514a1b02a8b49322404c2696f19e08c61303be6c9ed7",
+    "data/contracts/advice.schema.json": "861f95dc29277d9d8ab657b1d477b632bfe67598deabad97c60add8945c80afa",
+    "data/contracts/command-request.schema.json": "404defb181ed6632576b9fb4b5bac272dd549306ef2e989f52c16744e8dd8468",
+    "data/contracts/evidence-catalog.schema.json": "41769ed4e0dc3f3d21f58eee8a5b81f78dbcea676f35b2333d15d9546ef34c6a",
+    "data/contracts/model-advice.schema.json": "5f8945782c87616e6e4091d3c2b9682b9a2eaf6d9462265d65add3db34682594",
+    "data/contracts/qualification.schema.json": "4e0c19ad04babd20348e66b1beb0e8739dfcacf778089b704a10b397c6a9f8e1",
+    "data/contracts/source-profile.schema.json": "69c4a53fc23b0a229d53625793471e405ad74f62f2ce6b95e0c9fa73e603ea41",
+    "data/evaluation/advice-cases-v1.json": "bdd480fa923d5b50a5f0e8f693a8f2ed7937bbcca8479c0875e95644b120b68d",
+    "data/lineage/source-inventory.json": "3f26f0c1a3fd57ef5c58e4f63f535321fe2da504ba797de8bd0e1d6db31dbdde",
+    "infra/job-only.bicep": "0a4bed243af9028d1fdd3b98686f50989f20eec3b9f72535e29b7f0ffce73729",
+    "infra/main.bicep": "0cf30ed140bfae216d1e4921e349d21cd7c0068c3642581778918ab4c02e34dd",
+    "infra/main.parameters.example.json": "49ea72d80568e78a627ea66adc523d4d34bb9efe8c379d07def8c70413636f4e",
+    "infra/modules/environment.bicep": "30cd199db514bbf93e4e5fa5ef68be670aa20a77773c19452c4fcbeead3aa14f",
+    "infra/modules/job.bicep": "88de96d1a26cac7b309a8fdf86742fa846057dbb1270691ebdcb6c937d5241ff",
+    "infra/modules/monitoring.bicep": "1f736cb0ff5dd40e52a0bcd22ea04b8776f312a1aeecd9a8dea22c70bbf8bf6f",
+    "infra/modules/network.bicep": "e899852ff2de17a7ebf5e928e5d6c8b902b02f2a43aecc3c52ccf8044fe4d537",
+    "infra/modules/registry.bicep": "61cfcb8304229dad5682fb02f60052e3bdc279a60f482cb10b8ec853f1e6d5e9",
+    "infra/modules/storage.bicep": "bb6729452dd057d586ec7f1c4f37f032233f9b8fa54beeebad776200ac11e810",
+    "infra/operator-foundation-links.bicep": "74a3168fea4e51065928de4070dc426d6d5edaee412ca55c7e711e06ece2f262",
+    "infra/operator-subscription.bicep": "e0f68cb39e789e1ead91f40aca73d21a1c0a8816f777e358d0f831b081dc9cd8",
+    "infra/operator.bicep": "2c2e500c3665b5bfb5579b7c2111e89df19f043753fcc1bc728c34bcf9097e78",
+    "infra/subscription.bicep": "562fcbc61158c545262e23ec0b9bfabc174899133a37ec3005e1aaab82ca04fb",
+    "infra/validation.json": "cad9b0f6bdc12f4682219db47af63b1281003d10b3e815f7e9ec30572a8cdda1",
+    "pyproject.toml": "4ee8caf5db2d4768cb4c876d4df2d63f119f18f5140e6d14f20f85d564a27ba0",
+    "requirements-azure.in": "6e0196f7635378c37026fc6e2ce635c7159b08c599d325c1d379f15a1b212587",
+    "requirements-azure.lock": "5fadd3b78ee5d7c8497c373e1739270eec131e7c81d2c7092644e263f7b23a6f",
+    "requirements-dev.lock": "8d85e82f5517400fbc0eb05d37a7c7abdf5acd26bb40fea9dc20020567afce60",
+    "requirements-runtime.lock": "ef4a072be1db0ca5dc6249ec970d9ee8286f75756784203d9f546905636c36d2",
+    "scripts/azure_operator_transfer.py": "722d10896de2154a94302ddb61932d37fc8bd92f321bb2b286f371bfdece61ab",
+    "scripts/azure_preflight.ps1": "a76e89a5419eb7b53426b244bb6414f0352a3d186dc73d3df3f6e70ef7a8c469",
+    "scripts/check_repository.py": "fc4b03add60bc1f2ce65540063f137f71d4e3089610d68a4c41fd51212b60bda",
+    "scripts/deploy_azure.ps1": "90ce95b3cd369d4d0d73b1456bbef26ab90de1fe3cd828882bf4e0144371f97d",
+    "scripts/extract_reviewed_oci.py": "e65084ba43cbecd8a449911e0aa38773dba610ce4c9741fbf65ee4a1e1175a45",
+    "scripts/probe_azure_job_identity.py": "2f9143c2cd6222f9cdee88fa1b67aa2b32302c38687add1c5eb70de3ffdd32ef",
+    "scripts/remove_azure_operator.ps1": "a236246f7f911be6b31af2671007e81212b7abff1fd08830a881e2a24a34d95f",
+    "scripts/show_answer_examples.py": "f18c97a24232b8060f3cdcea9d8374ed47b1989c2a6c29caf5e2e881705002e0",
+    "scripts/start_azure_pilot_test.ps1": "f2b78d86c614fd97a51d894519a0a7e7a09db18f960a6289090f480f8ac08bfd",
+    "scripts/test_azure_container.ps1": "c1c539aecc0b4b5e802903cc4a8b35c2b9ebf3c67d167a327b823997d607f588",
+    "scripts/test_azure_pilot_start.ps1": "5b63da41e1525571851fdef2aea11a5bfb364c3a9e39e99ee37837c48bc7fbed",
+    "scripts/test_azure_scripts.ps1": "0300d4e5a76369b85ecc2e2b455e84f588c981105aea9a095f8f2efdfd703539",
+    "scripts/verify_azure_container.py": "5f443b0f4af3ac6c828782a1771afc825c38b5c760c8302d09528d48d9fa54a1",
+    "scripts/verify_azure_foundation.ps1": "71e5210f3dbe88a595c16b088ff693aed617def349129f3efbc516b68b229afa",
+    "scripts/verify_azure_local.py": "0eaee37f2b776db86ea120ae68a7f313983958bd3114ef96e7b1bcf6954b7fb2",
+    "scripts/verify_azure_outputs.py": "67588364c6534fb240396b2a398c2a6bae651a490203e0f656b1f1a5b5943504",
+    "scripts/verify_azure_pilot.ps1": "f3ac0375578cbab3dca51cbb31b2790d4d0d08213f45628791e798c6f9f9b188",
+    "scripts/verify_local.py": "cc0a85d2feac0d0fcf650c55a8ea4d3925a060f315a38394c88640a5265c6c62",
+    "scripts/verify_offline_ci.py": "d36002afc125cb8cc653e29f35d742a90d3195ee97dbb7c993dd1d4ca68c44c2",
+    "src/ai_command_gateway/__init__.py": "e990610ff2a3ad2e9cc3ccbed64b4e4ffc56942984219f7d5f622fa8882521fb",
+    "src/ai_command_gateway/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "src/ai_command_gateway/advice_evaluation.py": "2117ee88381a0945d30009aca002ede5f8cf899beb5626ba7b19a34ba1b995c0",
+    "src/ai_command_gateway/advisor.py": "a53cb85f9ac50db83a8ab51bd6985e22cf137547ad0523b2539803c90db01afc",
+    "src/ai_command_gateway/answer_display.py": "12c62a97f04d0f13abb95043984655dd34075374becaaf33448cb6d931447918",
+    "src/ai_command_gateway/azure_job.py": "745fc779d7d58dad8d1a782c69b0ae602bd2d7469d38ce36c907d758cb9f7134",
+    "src/ai_command_gateway/cli.py": "85735136098b8b86a8c0afb6a7a30afa7c4997b8c6d0de77c5ed031e32753ef8",
+    "src/ai_command_gateway/datasets.py": "12b0445a66e1ac17ce89c4c1af9bf49843b872ab2d2a3885f946e2eff181398f",
+    "src/ai_command_gateway/evidence.py": "056931e423405b84947d0b5eda3388260e97d6d229e11d6877b38ca680ce6f37",
+    "src/ai_command_gateway/gateway.py": "91192bce015e96b2fc8b96801951a146d4452b3fa7184a3a74e98ca39e190930",
+    "src/ai_command_gateway/model_advisor.py": "8958424f8c714944f57fb15c34b15216c14d1bf08868e76e738023ebdfe4b71d",
+    "src/ai_command_gateway/openai_transport.py": "4cd069777dbc62e1b49bc35f6ae80e11f3b060b8c1bd5c38807da31ee98a815d",
+    "src/ai_command_gateway/qualification.py": "36a667076f80b4172d00ceafc9947535ea8280d0fe11d93b545fc87b266e7d5f",
+    "src/ai_command_gateway/replay.py": "9349184e74b656e4b7b2b93989628a51b25323f6fc5ee182f255727aa2f29c2c",
+    "tests/fixtures/evidence-source-profile.json": "f448b590686983fd7c280056fa01e67a0ef0ce3e16476b9246a2857a568676c1",
+    "tests/test_advice_evaluation.py": "559e1636a4bf119f4674364d567ffa4dd1d713d3439193ea57bc47af2a476cd9",
+    "tests/test_advisor.py": "0e15887d412969213b1275001a310e0f09569dbb27d151e082f93a5da2a72301",
+    "tests/test_azure_job.py": "97a3815d1568a15521e9ea19325a1a2fcf4c2134f2242c11e8fdf92e689eb3be",
+    "tests/test_azure_job_identity_probe.py": "36ca9ed7aff6663ec576b060d68d7330cf8bab56cfdddddbfb4e7b4fe6570a01",
+    "tests/test_azure_operator_cleanup.py": "b9cc8ba50e64e9918ca8706366729611695a93c9e4201a6fef27a6f66f5fa7d5",
+    "tests/test_azure_operator_transfer.py": "6f0933cd9ea4d11e87734cbcde85a21564ea769f940db86fe8fe5a484766dc98",
+    "tests/test_azure_outputs.py": "712d45e9dba67e325ca8d352c97bc7f6609b0716f95bf4070a701656d9df07c0",
+    "tests/test_azure_pilot_verification.py": "95a39f8a08350925c439b0c00b975d199e0a8f05951013eb62e8ab4794c853c0",
+    "tests/test_cli.py": "21ed9af720d7080e0841e34d924d5a216f65764db0dbf507772506e540b6661e",
+    "tests/test_cli_advice.py": "1b27553423fe1020482385188d07dcadf488ca92ab497cb83d53ee2311443cf2",
+    "tests/test_cli_model_advice.py": "72aff3ceac5d2831cfa67231629242bc0acf7850004ed4a52ea2d1a01cec8883",
+    "tests/test_datasets.py": "5debaf65c9bb14a4fe49730cb2180fa55070e1f806f8628e4d5e2b1b4df05664",
+    "tests/test_evidence.py": "02c4a6b30c4a28ea0df9a73251dff85d79c7588c5be808fb0aea0bb416d91b51",
+    "tests/test_explanations.py": "f6b2cd4724d52fb3a4ca0b0ba0ac6213256107baa8e0dbfa157f16fe9a6493d8",
+    "tests/test_gateway.py": "7dda484e8a042edd4a9c94fd5e8030f5e0333296dadea99162a659295e479b73",
+    "tests/test_model_advisor.py": "52c3d3093dd262d3d911a42209310ae2b648f969bb59503e16515d27858986e9",
+    "tests/test_openai_transport.py": "c67d8871c4b98a9f6a261964c32b83acef98e2f9644f6ed6caf694cba40a1572",
+    "tests/test_qualification.py": "9d20e2e57588f147a551a4d0fb1752f3f6d37ed32e188afed27c7f873a7eec6f",
+    "tests/test_reviewed_oci_extraction.py": "d45ccbe98616ad7b7dcc694d94effc3cdd18a312de8303ec041d640434f14278",
+    "docs/code-walkthrough.md": "86272a0aea886cfb6469b71620ff5206af8f38fbc9ecc2e8cef7f1cdca2e832f",
+    "docs/implementation-baseline.md": "6cecc47e5673563ad842431ef4961b79ff196dca494a73ef76f243129ec264ad",
+    "architecture/adr/ADR-003-guarded-model-advice.md": "13c4247c283f55ad7ee5fdb74df5e1f7bdf56ab017f2d86a2e3142c92af70954",
+    "architecture/adr/ADR-005-cited-explanations.md": "6962ada93212425c296e10352612b8f7be1088e826ee684303c3e1694885d2ae",
+    "docs/demo.md": "174c7a7fa8ad2f269c2eeb2540a003aeb3bcee89aedd444eecdde94ba5493466",
+    "docs/answer-examples.md": "50b5e989c1364070221e12d4f0de0d458ebd31f818f408497c6ce4f9d5b8cbc4",
+    "docs/results.md": "eca396b66afc0f48e6e8b041fd9e5aca9d4fdd681bd3a9fe9262b730fd0cb60f",
+    "docs/README.md": "ad31e57ecb67d1176c30ff0475c49c0952e72e4da7b77f983756ec8091730d89",
+    "README.md": "8dddb7442855954e0c8756b780da5d2f6299127c85be7dd8e99e2ebc45e894de",
+    "PROJECT_STATUS.md": "e0a12be3c37716d2a28bc6123b28a09cd00ff9a1f167a3f7b32d997cfa1ded52",
+    "CHANGELOG.md": "f5b59b46c7c52a3874b456fcd91488d174181b66288c44dc66dd3ab0a7bdd4dc",
+    "customer/HANDOFF.md": "f38b8953bb63c762d086a37658c22d3a2c2592aac6b636c8653b0ebac96caeda",
+    "governance/LIFECYCLE_CHECKLIST.md": "bfc1d97c684d3563e24fcab722e6aeb03267b81c98363d5366bec9513f1ec4cb",
+    "governance/AI_GOVERNANCE_PLAN.md": "d34bbab3d5bef211ca611a97e05ebdc5af59a06e97dc84625d1e0e86978e579d",
+    "governance/standards-tailoring.md": "6564021b491317020b4389e2457cec2e1688c9e15ad1bb9a2ad8f1558b47a759",
+    "governance/measurements/MEAS-006.md": "6eca4c61619952761803205c367a817fbe5d4a46027f7af851a51d040533f1dd",
+    "requirements/traceability.csv": "782379dc4a4fa58593732b6e9644eeff824406d95b77572814581d7714ad3461"
+  },
+  "schema_version": "1.0.0",
+  "base_commit": "8583715f6bc88adcce79b17c9061bad1e79eae02",
+  "trace": {
+    "need": "NEED-02",
+    "requirements": [
+      "REQ-02",
+      "REQ-05",
+      "REQ-06"
+    ],
+    "measurement": "MEAS-006",
+    "acceptance": "AC-05 remains not evaluated",
+    "decision": "ADR-005",
+    "owner": "Douglas Moore",
+    "independent_reviewer": "unassigned"
+  },
+  "verification_command": "PYTHONPATH=src python scripts/verify_offline_ci.py",
+  "skip_reasons": {
+    "PowerShell is required": 46
+  },
+  "fixture_retrieval": {
+    "case_count": 12,
+    "passed_count": 12,
+    "all_cases_passed": true,
+    "domain_acceptance_evaluated": false,
+    "model_inference_used": false
+  },
+  "examples": {
+    "command": "PYTHONPATH=src python scripts/show_answer_examples.py",
+    "recorded_examples": "docs/answer-examples.md",
+    "files": {
+      "outputs/answers/offline-answer.txt": "7eea2d7b9ea00921c8bc36a7717e2915524b440e271c5688ce15c26a239d32ed",
+      "outputs/answers/simulated-model-answer.txt": "9d18c8e951879380098fe9d4a6927de31e2570eb7cb345ce0ecd44603b2bea07"
+    },
+    "provider": "hand-authored simulated response; no live inference"
+  },
+  "prompt": {
+    "instructions_sha256": "ae1a70a6a201527b8fecb5586a9c9837021b493fc4d4e7d8b3e135aa283e176e",
+    "schema_sha256": "3a2855fe063e61834206b6234a83f447390c3f776a05eb60c6f2496c03731daa"
+  },
+  "evaluation_limits": {
+    "cases": "developer-authored regression cases, used during implementation; not held-out model evaluation",
+    "semantic_entailment": "not evaluated; a real citation and matching numbers can still accompany a false interpretation",
+    "uncertainty": "No model-quality, population reliability or statistical generalization estimate from deterministic software cases",
+    "kpi_non_applicability": "Test counts describe software verification; they do not measure domain KPI-006",
+    "baseline": "Offline exact observations and existing exact-copy adapter retained; no measured quality advantage for model paraphrase",
+    "live_provider": "not exercised",
+    "azure": "remains disconnected; historical image not rebuilt or qualified for new source",
+    "acceptance": "pending independent/domain review; no new production authorization"
+  },
+  "lifecycle_review": {
+    "method": "manual bounded scope/trace/authority/fallback review; no executable checker PASS",
+    "gap": "Canonical lifecycle-state/control-coverage JSON projections absent; production-dependent transitions remain blocked",
+    "reviewer": "engineering self-review, not independent assurance"
+  },
+  "remote_ci": {
+    "status_at_recording": "not yet observed; inspect GitHub Actions for containing commit"
+  },
+  "development_corrections": [
+    "Repository checker caught an unquoted comma in the draft CSV edit; corrected using csv.DictWriter before publication."
+  ],
+  "verification_note": "Full-suite code and test hashes unchanged after final documentation edits; repository check rerun against final documentation and source bindings."
+}
