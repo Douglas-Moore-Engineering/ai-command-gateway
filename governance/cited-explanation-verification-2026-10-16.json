@@ -153,6 +153,8 @@
     "tests/test_openai_transport.py": "c67d8871c4b98a9f6a261964c32b83acef98e2f9644f6ed6caf694cba40a1572",
     "tests/test_qualification.py": "9d20e2e57588f147a551a4d0fb1752f3f6d37ed32e188afed27c7f873a7eec6f",
     "tests/test_reviewed_oci_extraction.py": "d45ccbe98616ad7b7dcc694d94effc3cdd18a312de8303ec041d640434f14278",
+    "docs/code-walkthrough.md": "86272a0aea886cfb6469b71620ff5206af8f38fbc9ecc2e8cef7f1cdca2e832f",
+    "docs/implementation-baseline.md": "6cecc47e5673563ad842431ef4961b79ff196dca494a73ef76f243129ec264ad",
     "architecture/adr/ADR-003-guarded-model-advice.md": "13c4247c283f55ad7ee5fdb74df5e1f7bdf56ab017f2d86a2e3142c92af70954",
     "architecture/adr/ADR-005-cited-explanations.md": "6962ada93212425c296e10352612b8f7be1088e826ee684303c3e1694885d2ae",
     "docs/demo.md": "174c7a7fa8ad2f269c2eeb2540a003aeb3bcee89aedd444eecdde94ba5493466",
