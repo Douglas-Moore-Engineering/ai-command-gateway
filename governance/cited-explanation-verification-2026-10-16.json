@@ -167,7 +167,7 @@
     "governance/AI_GOVERNANCE_PLAN.md": "d34bbab3d5bef211ca611a97e05ebdc5af59a06e97dc84625d1e0e86978e579d",
     "governance/standards-tailoring.md": "6564021b491317020b4389e2457cec2e1688c9e15ad1bb9a2ad8f1558b47a759",
     "governance/measurements/MEAS-006.md": "6eca4c61619952761803205c367a817fbe5d4a46027f7af851a51d040533f1dd",
-    "requirements/traceability.csv": "d65dccbbff81cd952d0b08e4e5aa06229870631cdcbc95319bfe0dfde69ebb52"
+    "requirements/traceability.csv": "782379dc4a4fa58593732b6e9644eeff824406d95b77572814581d7714ad3461"
   },
   "schema_version": "1.0.0",
   "base_commit": "8583715f6bc88adcce79b17c9061bad1e79eae02",
