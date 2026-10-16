@@ -40,7 +40,7 @@
       "expected_exit_code": 0,
       "exit_code": 0,
       "passed": true,
-      "summary": "PASS: 510 local file links; 6 requirements; 6 criteria; 8 open items; trace IDs; original SHA-256; no internal instruction files.\nScope: repository consistency only; application, remote CI, rendering and acceptance not evaluated."
+      "summary": "PASS: 515 local file links; 6 requirements; 6 criteria; 8 open items; trace IDs; original SHA-256; no internal instruction files.\nScope: repository consistency only; application, remote CI, rendering and acceptance not evaluated."
     },
     {
       "name": "demo",
@@ -230,5 +230,6 @@
   },
   "development_corrections": [
     "Repository checker caught an unquoted comma in the draft CSV edit; corrected using csv.DictWriter before publication."
-  ]
+  ],
+  "verification_note": "Full-suite code and test hashes unchanged after final documentation edits; repository check rerun against final documentation and source bindings."
 }
