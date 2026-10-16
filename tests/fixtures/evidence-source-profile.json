@@ -1,0 +1,977 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at_utc": "2026-10-15T18:17:59.426582+00:00",
+  "purpose": "offline_source_observations",
+  "inspection_summary": {
+    "status": "complete",
+    "expected_file_count": 5,
+    "profiled_file_count": 5,
+    "fully_inspected_file_count": 5,
+    "meaning": "completion_of_requested_profile_scope_not_source_qualification"
+  },
+  "qualification": {
+    "status": "unresolved",
+    "physical_validity_labels_available": false,
+    "independent_sources_combined": false,
+    "source_labels_meaning": "research_labels_not_command_safety_ground_truth",
+    "open_items": [
+      "provenance",
+      "redistribution_rights",
+      "units",
+      "sign_conventions",
+      "time_alignment",
+      "experiment_groups",
+      "approved_operating_constraints"
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "S1",
+      "role": "primary_command_context_candidate",
+      "record": "https://doi.org/10.5281/zenodo.15373938"
+    },
+    {
+      "source_id": "S2",
+      "role": "independent_optional_pv_fault_context",
+      "record": "https://doi.org/10.17632/n76t439f65.1"
+    },
+    {
+      "source_id": "S3",
+      "role": "independent_optional_microgrid_context",
+      "record": "https://doi.org/10.34810/DATA2936"
+    }
+  ],
+  "files": [
+    {
+      "source_id": "S1",
+      "filename": "logs_dataset.parquet",
+      "format": "parquet",
+      "inspection_complete": true,
+      "size_bytes": 123121,
+      "sha256": "5ea386a66b4ee5c0c5602f3e70e6c118d6d5e208cabf0d99e9c4110b84e4352d",
+      "md5": "28b94fef326526f46df96402be80e149",
+      "publisher_identity": {
+        "record": "https://zenodo.org/records/15373938",
+        "algorithm": "md5",
+        "expected": "28b94fef326526f46df96402be80e149",
+        "matches": true,
+        "meaning": "byte_identity_only_not_data_qualification"
+      },
+      "profile": {
+        "row_count": 6459,
+        "scanned_row_count": 6459,
+        "row_group_count": 1,
+        "column_count": 7,
+        "scan": {
+          "scope": "all_rows",
+          "batch_rows": 8192,
+          "row_sampling": false,
+          "raw_rows_emitted": 0
+        },
+        "columns": [
+          {
+            "name": "server_recv_ts",
+            "arrow_type": "timestamp[ns, tz=+01:00]",
+            "nullable": true,
+            "null_count": 0,
+            "non_null_count": 6459,
+            "time_range": {
+              "min": "2025-02-19 03:08:34.106661000+0100",
+              "max": "2025-02-19 07:00:06.161340000+0100"
+            },
+            "timezone": "+01:00"
+          },
+          {
+            "name": "device_ts",
+            "arrow_type": "timestamp[ns]",
+            "nullable": true,
+            "null_count": 0,
+            "non_null_count": 6459,
+            "time_range": {
+              "min": "2015-05-18 17:27:12.804000000",
+              "max": "2015-05-18 21:24:06.717000000"
+            },
+            "timezone": null
+          },
+          {
+            "name": "hostname",
+            "arrow_type": "dictionary<values=string, indices=int8, ordered=0>",
+            "nullable": true,
+            "null_count": 0,
+            "non_null_count": 6459,
+            "categories": {
+              "counts": {
+                "PLC_SECCPU12": 1479,
+                "PLC_SECCPU16": 4980
+              },
+              "max_categories": 64,
+              "overflow_value_count": 0,
+              "scope": "all_rows",
+              "meaning": "source_observation_not_physical_validity"
+            }
+          },
+          {
+            "name": "field_name",
+            "arrow_type": "dictionary<values=string, indices=int8, ordered=0>",
+            "nullable": true,
+            "null_count": 0,
+            "non_null_count": 6459,
+            "categories": {
+              "counts": {
+                "Actual_Charge_Power": 483,
+                "OnOff": 4449,
+                "Target_Charge_Power": 386,
+                "Poa_direct": 381,
+                "Poa_diffuse": 333,
+                "Inverter_ac_power": 105,
+                "Inverter_dc_power": 102,
+                "Cell_Temperature": 193,
+                "Temp_Air": 27
+              },
+              "max_categories": 64,
+              "overflow_value_count": 0,
+              "scope": "all_rows",
+              "meaning": "source_observation_not_physical_validity"
+            }
+          },
+          {
+            "name": "old_value",
+            "arrow_type": "double",
+            "nullable": true,
+            "null_count": 0,
+            "non_null_count": 6459,
+            "numeric": {
+              "finite_count": 6459,
+              "nonfinite_count": 0,
+              "min": -0.6,
+              "max": 65506.0,
+              "mean": 2671.40027868091
+            }
+          },
+          {
+            "name": "new_value",
+            "arrow_type": "double",
+            "nullable": true,
+            "null_count": 0,
+            "non_null_count": 6459,
+            "numeric": {
+              "finite_count": 6459,
+              "nonfinite_count": 0,
+              "min": -0.6,
+              "max": 65506.0,
+              "mean": 2673.458879083449
+            }
+          },
+          {
+            "name": "__index_level_0__",
+            "arrow_type": "int64",
+            "nullable": true,
+            "null_count": 0,
+            "non_null_count": 6459,
+            "numeric": {
+              "finite_count": 6459,
+              "nonfinite_count": 0,
+              "min": 0,
+              "max": 6458,
+              "mean": 3229.0
+            }
+          }
+        ],
+        "qualification": "units_sign_conventions_time_alignment_and_experiment_groups_unresolved"
+      },
+      "status": "profiled"
+    },
+    {
+      "source_id": "S1",
+      "filename": "packets_dataset.parquet",
+      "format": "parquet",
+      "inspection_complete": true,
+      "size_bytes": 201835803,
+      "sha256": "5121f480c174f845d243560e8f112ea2ba43dc2922a9f563309cd7c10166ead2",
+      "md5": "ebbdee3de97e25cf4020d8552f431762",
+      "publisher_identity": {
+        "record": "https://zenodo.org/records/15373938",
+        "algorithm": "md5",
+        "expected": "ebbdee3de97e25cf4020d8552f431762",
+        "matches": true,
+        "meaning": "byte_identity_only_not_data_qualification"
+      },
+      "profile": {
+        "row_count": 10002790,
+        "scanned_row_count": 10002790,
+        "row_group_count": 10,
+        "column_count": 5,
+        "scan": {
+          "scope": "all_rows",
+          "batch_rows": 8192,
+          "row_sampling": false,
+          "raw_rows_emitted": 0
+        },
+        "columns": [
+          {
+            "name": "timestamp",
+            "arrow_type": "timestamp[ns]",
+            "nullable": true,
+            "null_count": 0,
+            "non_null_count": 10002790,
+            "time_range": {
+              "min": "2025-02-19 01:59:44.229999000",
+              "max": "2025-02-19 05:59:32.675575000"
+            },
+            "timezone": null
+          },
+          {
+            "name": "packet",
+            "arrow_type": "binary",
+            "nullable": true,
+            "null_count": 0,
+            "non_null_count": 10002790
+          },
+          {
+            "name": "label",
+            "arrow_type": "string",
+            "nullable": true,
+            "null_count": 0,
+            "non_null_count": 10002790,
+            "categories": {
+              "counts": {
+                "normal": 9991107,
+                "data_modification": 11683
+              },
+              "max_categories": 64,
+              "overflow_value_count": 0,
+              "scope": "all_rows",
+              "meaning": "source_observation_not_physical_validity"
+            }
+          },
+          {
+            "name": "datamod_changes",
+            "arrow_type": "string",
+            "nullable": true,
+            "null_count": 9991107,
+            "non_null_count": 11683
+          },
+          {
+            "name": "s7_datablock",
+            "arrow_type": "binary",
+            "nullable": true,
+            "null_count": 9673817,
+            "non_null_count": 328973
+          }
+        ],
+        "qualification": "units_sign_conventions_time_alignment_and_experiment_groups_unresolved"
+      },
+      "status": "profiled"
+    },
+    {
+      "source_id": "S1",
+      "filename": "process_dataset.parquet",
+      "format": "parquet",
+      "inspection_complete": true,
+      "size_bytes": 359657,
+      "sha256": "163613e85346c8913e423014e9c8911a3407dab2456cc10819e6ee9dad2ee7d8",
+      "md5": "ebc3e048e0319f044ea47cc08e498999",
+      "publisher_identity": {
+        "record": "https://zenodo.org/records/15373938",
+        "algorithm": "md5",
+        "expected": "ebc3e048e0319f044ea47cc08e498999",
+        "matches": true,
+        "meaning": "byte_identity_only_not_data_qualification"
+      },
+      "profile": {
+        "row_count": 13912,
+        "scanned_row_count": 13912,
+        "row_group_count": 1,
+        "column_count": 22,
+        "scan": {
+          "scope": "all_rows",
+          "batch_rows": 8192,
+          "row_sampling": false,
+          "raw_rows_emitted": 0
+        },
+        "columns": [
+          {
+            "name": "archive_recv_ts",
+            "arrow_type": "timestamp[ns]",
+            "nullable": true,
+            "null_count": 0,
+            "non_null_count": 13912,
+            "time_range": {
+              "min": "2025-02-19 02:07:14.956493832",
+              "max": "2025-02-19 06:00:12.745930709"
+            },
+            "timezone": null
+          },
+          {
+            "name": "in_pv_temp_air",
+            "arrow_type": "double",
+            "nullable": true,
+            "null_count": 0,
+            "non_null_count": 13912,
+            "numeric": {
+              "finite_count": 13912,
+              "nonfinite_count": 0,
+              "min": -0.6000000238418579,
+              "max": 28.0,
+              "mean": 10.872786081821808
+            }
+          },
+          {
+            "name": "in_pv_wind_speed",
+            "arrow_type": "double",
+            "nullable": true,
+            "null_count": 0,
+            "non_null_count": 13912,
+            "numeric": {
+              "finite_count": 13912,
+              "nonfinite_count": 0,
+              "min": 0.0,
+              "max": 10.0,
+              "mean": 2.429938179599855
+            }
+          },
+          {
+            "name": "in_pv_poa_direct",
+            "arrow_type": "double",
+            "nullable": true,
+            "null_count": 0,
+            "non_null_count": 13912,
+            "numeric": {
+              "finite_count": 13912,
+              "nonfinite_count": 0,
+              "min": 0.0,
+              "max": 65230.0,
+              "mean": 2129.987277170788
+            }
+          },
+          {
+            "name": "in_pv_poa_diffuse",
+            "arrow_type": "double",
+            "nullable": true,
+            "null_count": 0,
+            "non_null_count": 13912,
+            "numeric": {
+              "finite_count": 13912,
+              "nonfinite_count": 0,
+              "min": 0.0,
+              "max": 65485.0,
+              "mean": 1671.600129384704
+            }
+          },
+          {
+            "name": "in_pv_cell_temperature",
+            "arrow_type": "double",
+            "nullable": true,
+            "null_count": 0,
+            "non_null_count": 13912,
+            "numeric": {
+              "finite_count": 13912,
+              "nonfinite_count": 0,
+              "min": -0.5481613278388977,
+              "max": 49.0,
+              "mean": 16.760715096851058
+            }
+          },
+          {
+            "name": "in_pv_inverter_ac_power",
+            "arrow_type": "double",
+            "nullable": true,
+            "null_count": 0,
+            "non_null_count": 13912,
+            "numeric": {
+              "finite_count": 13912,
+              "nonfinite_count": 0,
+              "min": 0.0,
+              "max": 65445.0,
+              "mean": 2303.556210465785
+            }
+          },
+          {
+            "name": "in_pv_inverter_dc_power",
+            "arrow_type": "double",
+            "nullable": true,
+            "null_count": 0,
+            "non_null_count": 13912,
+            "numeric": {
+              "finite_count": 13912,
+              "nonfinite_count": 0,
+              "min": 0.0,
+              "max": 65430.0,
+              "mean": 2357.114433582519
+            }
+          },
+          {
+            "name": "in_batt_state_of_charge",
+            "arrow_type": "double",
+            "nullable": true,
+            "null_count": 0,
+            "non_null_count": 13912,
+            "numeric": {
+              "finite_count": 13912,
+              "nonfinite_count": 0,
+              "min": 36.0,
+              "max": 121.0,
+              "mean": 86.17753216451169
+            }
+          },
+          {
+            "name": "in_batt_voltage",
+            "arrow_type": "double",
+            "nullable": true,
+            "null_count": 0,
+            "non_null_count": 13912,
+            "numeric": {
+              "finite_count": 13912,
+              "nonfinite_count": 0,
+              "min": 253.0,
+              "max": 548.0,
+              "mean": 399.8019695227142
+            }
+          },
+          {
+            "name": "in_batt_current",
+            "arrow_type": "double",
+            "nullable": true,
+            "null_count": 0,
+            "non_null_count": 13912,
+            "numeric": {
+              "finite_count": 13912,
+              "nonfinite_count": 0,
+              "min": -1613.0,
+              "max": 1546.0,
+              "mean": 3.5112731030565385
+            }
+          },
+          {
+            "name": "in_batt_actual_charge_power",
+            "arrow_type": "double",
+            "nullable": true,
+            "null_count": 0,
+            "non_null_count": 13912,
+            "numeric": {
+              "finite_count": 13912,
+              "nonfinite_count": 0,
+              "min": 0.0,
+              "max": 65139.0,
+              "mean": 1547.2222541690626
+            }
+          },
+          {
+            "name": "in_batt_temperature",
+            "arrow_type": "double",
+            "nullable": true,
+            "null_count": 0,
+            "non_null_count": 13912,
+            "numeric": {
+              "finite_count": 13912,
+              "nonfinite_count": 0,
+              "min": 15.0,
+              "max": 34.0,
+              "mean": 24.958596894767105
+            }
+          },
+          {
+            "name": "state_batt_voltage",
+            "arrow_type": "double",
+            "nullable": true,
+            "null_count": 0,
+            "non_null_count": 13912,
+            "numeric": {
+              "finite_count": 13912,
+              "nonfinite_count": 0,
+              "min": 400.0,
+              "max": 400.0,
+              "mean": 400.0
+            }
+          },
+          {
+            "name": "state_batt_current",
+            "arrow_type": "double",
+            "nullable": true,
+            "null_count": 0,
+            "non_null_count": 13912,
+            "numeric": {
+              "finite_count": 13912,
+              "nonfinite_count": 0,
+              "min": 1250.0,
+              "max": 1250.0,
+              "mean": 1250.0
+            }
+          },
+          {
+            "name": "state_batt_state_of_charge",
+            "arrow_type": "double",
+            "nullable": true,
+            "null_count": 0,
+            "non_null_count": 13912,
+            "numeric": {
+              "finite_count": 13912,
+              "nonfinite_count": 0,
+              "min": 20.0,
+              "max": 20.0,
+              "mean": 20.0
+            }
+          },
+          {
+            "name": "state_batt_stored_energy",
+            "arrow_type": "double",
+            "nullable": true,
+            "null_count": 0,
+            "non_null_count": 13912,
+            "numeric": {
+              "finite_count": 13912,
+              "nonfinite_count": 0,
+              "min": 1000000.0,
+              "max": 1000000.0,
+              "mean": 1000000.0
+            }
+          },
+          {
+            "name": "out_pv_on_off",
+            "arrow_type": "double",
+            "nullable": true,
+            "null_count": 0,
+            "non_null_count": 13912,
+            "numeric": {
+              "finite_count": 13912,
+              "nonfinite_count": 0,
+              "min": 0.0,
+              "max": 1.0,
+              "mean": 0.4754887866589994
+            }
+          },
+          {
+            "name": "out_pv_target_power",
+            "arrow_type": "double",
+            "nullable": true,
+            "null_count": 0,
+            "non_null_count": 13912,
+            "numeric": {
+              "finite_count": 13912,
+              "nonfinite_count": 0,
+              "min": 0.0,
+              "max": 65445.0,
+              "mean": 2303.556210465785
+            }
+          },
+          {
+            "name": "out_batt_on_off",
+            "arrow_type": "double",
+            "nullable": true,
+            "null_count": 0,
+            "non_null_count": 13912,
+            "numeric": {
+              "finite_count": 13912,
+              "nonfinite_count": 0,
+              "min": 1.0,
+              "max": 1.0,
+              "mean": 1.0
+            }
+          },
+          {
+            "name": "out_batt_target_power",
+            "arrow_type": "double",
+            "nullable": true,
+            "null_count": 0,
+            "non_null_count": 13912,
+            "numeric": {
+              "finite_count": 13912,
+              "nonfinite_count": 0,
+              "min": 500000.0,
+              "max": 500000.0,
+              "mean": 500000.0
+            }
+          },
+          {
+            "name": "archive_id",
+            "arrow_type": "int64",
+            "nullable": true,
+            "null_count": 0,
+            "non_null_count": 13912,
+            "numeric": {
+              "finite_count": 13912,
+              "nonfinite_count": 0,
+              "min": 1,
+              "max": 43954,
+              "mean": 21917.536155836686
+            }
+          }
+        ],
+        "qualification": "units_sign_conventions_time_alignment_and_experiment_groups_unresolved"
+      },
+      "status": "profiled"
+    },
+    {
+      "source_id": "S2",
+      "filename": "n76t439f65-1.zip",
+      "format": "zip",
+      "inspection_complete": true,
+      "size_bytes": 203108810,
+      "sha256": "f1494903e3c3ff1ea2972af0daa9793f579b2ac444455bdd5035ebee05b8a042",
+      "md5": "e116fc0851da304652e6e573480c41ad",
+      "profile": {
+        "member_count": 18,
+        "uncompressed_bytes": 205080291,
+        "duplicate_member_names": [],
+        "members": [
+          {
+            "name": "F6L.mat",
+            "size_bytes": 5611362,
+            "compressed_bytes": 5481780,
+            "crc32": "983e9b81",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          },
+          {
+            "name": "F5M.mat",
+            "size_bytes": 5447074,
+            "compressed_bytes": 5319174,
+            "crc32": "b65c36d1",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          },
+          {
+            "name": "F2L.mat",
+            "size_bytes": 5611441,
+            "compressed_bytes": 5502684,
+            "crc32": "1047ea0b",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          },
+          {
+            "name": "F1M.mat",
+            "size_bytes": 5279780,
+            "compressed_bytes": 5152582,
+            "crc32": "2b8445cf",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          },
+          {
+            "name": "F0L.mat",
+            "size_bytes": 5500178,
+            "compressed_bytes": 5370582,
+            "crc32": "2e771a2f",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          },
+          {
+            "name": "F7M.mat",
+            "size_bytes": 5677701,
+            "compressed_bytes": 5542129,
+            "crc32": "99c5f633",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          },
+          {
+            "name": "F4L.mat",
+            "size_bytes": 5611638,
+            "compressed_bytes": 5484505,
+            "crc32": "0049ce1c",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          },
+          {
+            "name": "ReadMe.pdf",
+            "size_bytes": 97443,
+            "compressed_bytes": 90081,
+            "crc32": "1bff5457",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          },
+          {
+            "name": "F3M.mat",
+            "size_bytes": 2808706,
+            "compressed_bytes": 2708229,
+            "crc32": "ec617a3b",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          },
+          {
+            "name": "F6M.mat",
+            "size_bytes": 5667068,
+            "compressed_bytes": 5531498,
+            "crc32": "2820eb64",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          },
+          {
+            "name": "F7L.mat",
+            "size_bytes": 5602160,
+            "compressed_bytes": 5472959,
+            "crc32": "7cd8f4c0",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          },
+          {
+            "name": "F2M.mat",
+            "size_bytes": 5621182,
+            "compressed_bytes": 5490480,
+            "crc32": "caf9af9f",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          },
+          {
+            "name": "F3L.mat",
+            "size_bytes": 4054465,
+            "compressed_bytes": 3942995,
+            "crc32": "652eec89",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          },
+          {
+            "name": "F0M.mat",
+            "size_bytes": 5529694,
+            "compressed_bytes": 5396372,
+            "crc32": "254b43d2",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          },
+          {
+            "name": "F1L.mat",
+            "size_bytes": 5051410,
+            "compressed_bytes": 4928659,
+            "crc32": "44cf86ac",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          },
+          {
+            "name": "F4M.mat",
+            "size_bytes": 5624114,
+            "compressed_bytes": 5495874,
+            "crc32": "ff344ef4",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          },
+          {
+            "name": "F5L.mat",
+            "size_bytes": 5412502,
+            "compressed_bytes": 5288071,
+            "crc32": "e2c184ea",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          },
+          {
+            "name": "CSV_Files.zip",
+            "size_bytes": 120872373,
+            "compressed_bytes": 120908208,
+            "crc32": "412d34a6",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          }
+        ],
+        "archive_extracted": false,
+        "supplied_code_executed": false,
+        "inspection": {
+          "status": "complete",
+          "scope": "outer_member_hashes_and_supported_metadata_nested_manifest_only",
+          "member_status_counts": {
+            "inspected": 18
+          },
+          "issues": []
+        },
+        "limits": {
+          "max_archive_bytes": 536870912,
+          "max_member_bytes": 268435456,
+          "max_mat_bytes": 16777216,
+          "max_nested_depth": 1
+        }
+      },
+      "status": "profiled"
+    },
+    {
+      "source_id": "S3",
+      "filename": "doi-10.34810-data2936.zip",
+      "format": "zip",
+      "inspection_complete": true,
+      "size_bytes": 904073,
+      "sha256": "e4fcab2139c77dca64eed45b95adc4fa41d96c17e810d22d89d2d55fc5acdf5e",
+      "md5": "4405feb819633a32d3c8fa09dde7127f",
+      "profile": {
+        "member_count": 16,
+        "uncompressed_bytes": 931540,
+        "duplicate_member_names": [],
+        "members": [
+          {
+            "name": "data_rho2_5_new_2.mat",
+            "size_bytes": 130372,
+            "compressed_bytes": 127917,
+            "crc32": "b032db38",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          },
+          {
+            "name": "data_rho1_1.mat",
+            "size_bytes": 131101,
+            "compressed_bytes": 128675,
+            "crc32": "6d6bdf95",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          },
+          {
+            "name": "data_rho2_5_new_4.mat",
+            "size_bytes": 130669,
+            "compressed_bytes": 128241,
+            "crc32": "40520c12",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          },
+          {
+            "name": "plot_figure_4.m",
+            "size_bytes": 1907,
+            "compressed_bytes": 405,
+            "crc32": "ed16dd0f",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          },
+          {
+            "name": "data_rho2_5.mat",
+            "size_bytes": 130243,
+            "compressed_bytes": 127809,
+            "crc32": "82e9b9c8",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          },
+          {
+            "name": "Readme.txt",
+            "size_bytes": 4405,
+            "compressed_bytes": 1742,
+            "crc32": "85225bf7",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          },
+          {
+            "name": "plot_figure_1.m",
+            "size_bytes": 1960,
+            "compressed_bytes": 403,
+            "crc32": "397a27a6",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          },
+          {
+            "name": "plot_figure_5.m",
+            "size_bytes": 1907,
+            "compressed_bytes": 406,
+            "crc32": "69b68c3a",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          },
+          {
+            "name": "plot_figures.m",
+            "size_bytes": 194,
+            "compressed_bytes": 115,
+            "crc32": "4e7c11d6",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          },
+          {
+            "name": "plot_figure_3.m",
+            "size_bytes": 1907,
+            "compressed_bytes": 405,
+            "crc32": "fb8df689",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          },
+          {
+            "name": "plot_figure_2.m",
+            "size_bytes": 1907,
+            "compressed_bytes": 405,
+            "crc32": "a8b52115",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          },
+          {
+            "name": "plot_figure_6.m",
+            "size_bytes": 1907,
+            "compressed_bytes": 405,
+            "crc32": "4b677237",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          },
+          {
+            "name": "data_rho1.mat",
+            "size_bytes": 131128,
+            "compressed_bytes": 128674,
+            "crc32": "32af8aa7",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          },
+          {
+            "name": "data_rho2_5_new_1.mat",
+            "size_bytes": 130717,
+            "compressed_bytes": 128251,
+            "crc32": "6b9433e2",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          },
+          {
+            "name": "data_rho2_5_new_3.mat",
+            "size_bytes": 130473,
+            "compressed_bytes": 128030,
+            "crc32": "54c8d2f8",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          },
+          {
+            "name": "MANIFEST.TXT",
+            "size_bytes": 743,
+            "compressed_bytes": 190,
+            "crc32": "71c23c0c",
+            "is_directory": false,
+            "unsafe_path": false,
+            "inspection_status": "inspected"
+          }
+        ],
+        "archive_extracted": false,
+        "supplied_code_executed": false,
+        "inspection": {
+          "status": "complete",
+          "scope": "outer_member_hashes_and_supported_metadata_nested_manifest_only",
+          "member_status_counts": {
+            "inspected": 16
+          },
+          "issues": []
+        },
+        "limits": {
+          "max_archive_bytes": 536870912,
+          "max_member_bytes": 268435456,
+          "max_mat_bytes": 16777216,
+          "max_nested_depth": 1
+        }
+      },
+      "status": "profiled"
+    }
+  ]
+}

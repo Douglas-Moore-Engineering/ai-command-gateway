@@ -2,16 +2,20 @@
 import csv
 import hashlib
 import json
+import os
 import re
 from pathlib import Path
 
 root = Path(__file__).resolve().parents[1]
 errors = []
 links = 0
-for file in root.rglob('*.md'):
-    if '.git' in file.parts:
-        continue
-    for target in re.findall(r'\[[^\]]*\]\(([^)]+)\)', file.read_text()):
+excluded = {'.git', '.venv', '.cache', '.pytest_cache', '__pycache__', 'node_modules', 'outputs', 'build', 'dist'}
+files = []
+for directory, subdirs, names in os.walk(root):
+    subdirs[:] = [name for name in subdirs if name not in excluded and not name.endswith('.egg-info')]
+    files.extend(Path(directory) / name for name in names)
+for file in (file for file in files if file.suffix == '.md'):
+    for target in re.findall(r'\[[^\]]*\]\(([^)]+)\)', file.read_text(encoding='utf-8')):
         if target.startswith(('https:', 'http:', 'mailto:', '#')):
             continue
         links += 1
@@ -20,7 +24,7 @@ for file in root.rglob('*.md'):
             errors.append(f'{file.relative_to(root)}: missing {target}')
 
 def rows(path):
-    with (root / path).open(newline='') as file:
+    with (root / path).open(newline='', encoding='utf-8') as file:
         return list(csv.DictReader(file))
 
 requirements = rows('requirements/requirements.csv')
@@ -43,16 +47,14 @@ if {row['requirement'] for row in trace} != req_ids:
 open_items = rows('customer/open-items.csv')
 if {row['id'] for row in open_items} != {f'OPEN-{i:02}' for i in range(1, 9)} or len(open_items) != 8:
     errors.append('Open-item IDs differ from DISC-001')
-manifest = json.loads((root / 'customer/source-manifest.json').read_text())
+manifest = json.loads((root / 'customer/source-manifest.json').read_text(encoding='utf-8'))
 source = root / 'customer' / manifest['file']
 if hashlib.sha256(source.read_bytes()).hexdigest() != manifest['sha256']:
     errors.append('Discovery source SHA-256 mismatch')
-for file in root.rglob('*'):
-    if '.git' in file.parts or not file.is_file():
-        continue
+for file in files:
     if file.name == 'SKILL.md':
         errors.append(f'Internal instruction file: {file.relative_to(root)}')
-    if file.suffix == '.md' and 'skill://' in file.read_text():
+    if file.suffix == '.md' and 'skill://' in file.read_text(encoding='utf-8'):
         errors.append(f'Internal package locator: {file.relative_to(root)}')
 if errors:
     print('\n'.join(errors))

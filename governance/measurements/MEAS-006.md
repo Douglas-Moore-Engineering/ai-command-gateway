@@ -32,3 +32,15 @@ Requirement: REQ-05. Criterion: AC-05. [Definitions](../../docs/appendix-a-kpi-d
 | Remeasurement trigger | Changes to code, source data, policy, model, permissions or operating envelope |
 
 Only an unmeasured planning record is supported. Customer acceptance and production readiness are not established. [Handoff](../../customer/HANDOFF.md).
+
+## v0.2 evidence boundary - 2026-10-15
+
+The table above preserves the original acceptance-planning baseline. Local implementation and synthetic regression evidence now exist in [results](../../docs/results.md). Source files have been inspected and hashed. These observations do not constitute the frozen, independently reviewed measurement population required by this KPI; its acceptance result remains not evaluated.
+
+## v0.3 evidence boundary - 2026-10-15
+
+The offline advisor now returns verified exact observations or abstains. The [12-case regression suite](../../data/evaluation/advice-cases-v1.json) was authored before its first evaluation and used during retrieval development. It checks expected facts, exact citations and refusal behavior; it is not a held-out or independently reviewed consequential-recommendation population. No model inference was used. KPI-006 and AC-05 remain unevaluated under their domain protocol; the [results record](../../docs/results.md) reports the narrower software evidence.
+
+## v0.4 provider boundary evidence
+
+The provider adapter is exercised using injected responses, including exact-claim acceptance, missing credentials, refusal, malformed claims, errors and catalog changes. These tests establish application behavior, not live model correctness or recommendation coverage. The local observation casebook remains unchanged; AC-05 and KPI-006 remain unevaluated.

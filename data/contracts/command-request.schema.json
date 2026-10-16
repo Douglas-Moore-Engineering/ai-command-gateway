@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ai-command-gateway:command-request:1",
+  "title": "Offline synthetic gateway request",
+  "description": "Runtime adds finite numeric, explicit UTC, freshness, unit, action, evidence and policy checks. Unqualified dataset observations are escalated before validating this execution-eligible request schema.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["proposal", "state"],
+  "$defs": {
+    "text": {"type": "string", "minLength": 1, "maxLength": 1024, "pattern": "\\S"},
+    "reference": {
+      "type": "object", "additionalProperties": false, "required": ["id", "version"],
+      "properties": {"id": {"$ref": "#/$defs/text"}, "version": {"$ref": "#/$defs/text"}}
+    },
+    "measurement": {
+      "type": "object", "additionalProperties": false, "required": ["value", "unit"],
+      "properties": {"value": {"type": "number"}, "unit": {"$ref": "#/$defs/text"}}
+    }
+  },
+  "properties": {
+    "proposal": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "asset_id", "action", "value", "unit", "model_version", "source_refs"],
+      "properties": {
+        "id": {"$ref": "#/$defs/text"}, "asset_id": {"$ref": "#/$defs/text"},
+        "action": {"$ref": "#/$defs/text"}, "value": {"type": "number"},
+        "unit": {"$ref": "#/$defs/text"}, "model_version": {"$ref": "#/$defs/text"},
+        "source_refs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/reference"}}
+      }
+    },
+    "state": {
+      "type": "object", "additionalProperties": false,
+      "required": ["asset_id", "observed_at", "mode", "values"],
+      "properties": {
+        "asset_id": {"$ref": "#/$defs/text"}, "mode": {"$ref": "#/$defs/text"},
+        "observed_at": {"type": "string", "format": "date-time", "pattern": "(?:Z|\\+00:00)$"},
+        "values": {"type": "object", "minProperties": 1, "propertyNames": {"$ref": "#/$defs/text"}, "additionalProperties": {"$ref": "#/$defs/measurement"}}
+      }
+    }
+  }
+}

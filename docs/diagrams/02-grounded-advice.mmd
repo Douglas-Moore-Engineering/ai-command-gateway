@@ -1,0 +1,61 @@
+%% Implemented local observation retrieval; no model inference or equipment advice.
+%%{init: {"theme":"base","look":"classic","themeVariables":{"fontFamily":"Arial, sans-serif","fontSize":"18px","primaryTextColor":"#111111","lineColor":"#425466","background":"transparent","edgeLabelBackground":"transparent","clusterBkg":"transparent"},"flowchart":{"htmlLabels":false,"curve":"basis","nodeSpacing":28,"rankSpacing":38,"padding":12},"themeCSS":"text { font-family:Arial,sans-serif !important; } .cluster-label text { font-size:16px !important; font-weight:600; }"}}%%
+flowchart TB
+  profile["Dataset profile"]
+  inventory["Pinned source inventory"]
+
+  subgraph build["Evidence preparation"]
+    validate["Check identity and typed observations"]
+    catalog[("Catalog, snapshot and manifest")]
+  end
+
+  subgraph retrieval["Local observation retrieval"]
+    question["User question and source filter"]
+    verify["Verify catalog and rebuild facts"]
+    retrieve["Match subject and requested metrics"]
+  end
+
+  subgraph response["Response boundary"]
+    eligible{"Matching, consistent observations?"}
+    answer["Exact observation extracts and citations"]
+    abstain["Abstain with a reason"]
+  end
+
+  subgraph evidence["Regression evidence"]
+    cases["Frozen questions and expected facts"]
+    assess["Check claims, citations and abstention"]
+    report[("Versioned evaluation report")]
+  end
+
+  profile -->|"structured observations only"| validate
+  inventory -->|"expected identities"| validate
+  validate -->|"canonical facts and content hashes"| catalog
+  catalog -->|"local artifacts"| verify
+  question -->|"question remains input data"| retrieve
+  verify -->|"verified facts"| retrieve
+  verify -->|"unavailable or altered"| abstain
+  retrieve -->|"matching facts and conflicts"| eligible
+  eligible -->|"yes; observation only"| answer
+  eligible -->|"no; or operational request"| abstain
+  answer -->|"claim and source bindings"| assess
+  abstain -->|"reason and empty claims"| assess
+  cases -->|"fixed expectations"| assess
+  assess -->|"case results and artifact hashes"| report
+
+  classDef sourceRole fill:#EAF3F8,stroke:#356079,stroke-width:1.5px,color:#111111
+  classDef dataRole fill:#E5F4F2,stroke:#32746E,stroke-width:1.5px,color:#111111
+  classDef analysisRole fill:#EDF0FA,stroke:#42558B,stroke-width:1.5px,color:#111111
+  classDef policyRole fill:#F8F2E4,stroke:#876A2D,stroke-width:1.5px,color:#111111
+  classDef humanRole fill:#EFF6EB,stroke:#4C713E,stroke-width:1.5px,color:#111111
+  classDef evidenceRole fill:#F3F0F8,stroke:#6E5B85,stroke-width:1.5px,color:#111111
+  class profile,inventory sourceRole
+  class validate,verify dataRole
+  class retrieve analysisRole
+  class eligible,abstain policyRole
+  class question humanRole
+  class catalog,answer,cases,assess,report evidenceRole
+  style build fill:none,stroke:#32746E,stroke-width:1.5px,color:#111111
+  style retrieval fill:none,stroke:#42558B,stroke-width:1.5px,color:#111111
+  style response fill:none,stroke:#876A2D,stroke-width:1.5px,color:#111111
+  style evidence fill:none,stroke:#6E5B85,stroke-width:1.5px,color:#111111
+  linkStyle default stroke:#425466,stroke-width:1.5px

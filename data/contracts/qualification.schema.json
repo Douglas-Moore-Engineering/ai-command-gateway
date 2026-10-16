@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ai-command-gateway:source-qualification:1.0.0",
+  "title": "Identity-bound offline source qualification observations",
+  "description": "Completed analysis does not resolve engineering semantics or establish control approval.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "generated_at_utc", "purpose", "inventory", "inspection_summary", "qualification", "files", "evidence", "report_sha256"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "generated_at_utc": {"type": "string", "format": "date-time"},
+    "purpose": {"const": "offline_source_qualification"},
+    "inventory": {
+      "type": "object",
+      "required": ["status", "sha256"],
+      "properties": {
+        "status": {"enum": ["loaded", "error"]},
+        "sha256": {"oneOf": [{"$ref": "#/$defs/digest"}, {"type": "null"}]},
+        "error": {"type": "string"}
+      }
+    },
+    "inspection_summary": {
+      "type": "object",
+      "required": ["status", "expected_file_count", "matched_file_count", "analyzed_parquet_count", "meaning"],
+      "properties": {
+        "status": {"enum": ["complete", "partial"]},
+        "expected_file_count": {"const": 5},
+        "matched_file_count": {"type": "integer", "minimum": 0, "maximum": 5},
+        "analyzed_parquet_count": {"type": "integer", "minimum": 0, "maximum": 3},
+        "meaning": {"const": "completion_of_declared_scope_not_semantic_or_control_qualification"}
+      }
+    },
+    "qualification": {
+      "type": "object",
+      "required": ["status", "clock_alignment", "engineering_units", "scaling", "independent_sources_combined", "physical_limits_learned", "physical_validity_labels_available", "raw_rows_included"],
+      "properties": {
+        "status": {"const": "unresolved"},
+        "clock_alignment": {"const": "unresolved"},
+        "engineering_units": {"const": "unresolved"},
+        "scaling": {"const": "unresolved"},
+        "independent_sources_combined": {"const": false},
+        "physical_limits_learned": {"const": false},
+        "physical_validity_labels_available": {"const": false},
+        "raw_rows_included": {"const": false}
+      }
+    },
+    "files": {"type": "array", "minItems": 5, "maxItems": 5, "items": {"$ref": "#/$defs/file"}},
+    "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidence"}},
+    "report_sha256": {"$ref": "#/$defs/digest"}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "file": {
+      "type": "object",
+      "required": ["source_id", "filename", "format", "status", "qualification_status", "analysis_complete"],
+      "properties": {
+        "source_id": {"enum": ["S1", "S2", "S3"]},
+        "filename": {"type": "string"},
+        "format": {"enum": ["parquet", "zip"]},
+        "status": {"enum": ["analyzed", "identity_verified_only", "inventory_error", "identity_mismatch", "changed_during_analysis", "missing", "error"]},
+        "qualification_status": {"const": "unresolved"},
+        "analysis_complete": {"type": "boolean"},
+        "identity": {
+          "type": "object",
+          "required": ["expected_sha256", "observed_sha256", "expected_size_bytes", "observed_size_bytes", "matches"],
+          "properties": {
+            "expected_sha256": {"$ref": "#/$defs/digest"},
+            "observed_sha256": {"$ref": "#/$defs/digest"},
+            "expected_size_bytes": {"type": "integer", "minimum": 0},
+            "observed_size_bytes": {"type": "integer", "minimum": 0},
+            "matches": {"type": "boolean"},
+            "post_analysis_sha256": {"$ref": "#/$defs/digest"}
+          }
+        },
+        "analysis": {
+          "type": "object",
+          "required": ["row_count", "scanned_row_count", "status", "scope", "selected_columns", "binary_payloads_decoded", "raw_rows_emitted", "timestamp_row_limit", "columns"],
+          "properties": {
+            "row_count": {"type": "integer", "minimum": 0},
+            "scanned_row_count": {"type": "integer", "minimum": 0},
+            "status": {"enum": ["complete", "partial"]},
+            "scope": {"const": "timestamp_and_numeric_fields_all_rows_other_fields_schema_only"},
+            "selected_columns": {"type": "array", "items": {"type": "string"}},
+            "binary_payloads_decoded": {"const": false},
+            "raw_rows_emitted": {"const": 0},
+            "timestamp_row_limit": {"type": "integer", "minimum": 0},
+            "columns": {"type": "array", "items": {"$ref": "#/$defs/column"}}
+          }
+        },
+        "error": {"type": "string"},
+        "scope": {"type": "string"},
+        "unexamined": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "column": {
+      "type": "object",
+      "required": ["name", "arrow_type", "scan_status", "scanned_row_count", "null_count", "engineering_semantics"],
+      "properties": {
+        "name": {"type": "string"},
+        "arrow_type": {"type": "string"},
+        "scan_status": {"enum": ["all_rows", "schema_only"]},
+        "scanned_row_count": {"type": "integer", "minimum": 0},
+        "null_count": {"type": ["integer", "null"], "minimum": 0},
+        "engineering_semantics": {
+          "type": "object",
+          "required": ["status", "units", "scale", "sign_convention", "validity_rules", "candidate_scaling"],
+          "properties": {
+            "status": {"const": "unresolved"},
+            "units": {"type": "null"},
+            "scale": {"type": "null"},
+            "sign_convention": {"type": "null"},
+            "validity_rules": {"type": "null"},
+            "candidate_scaling": {"const": "unsupported_no_conversion_applied"}
+          }
+        },
+        "numeric": {"type": "object", "required": ["finite_count", "nonfinite_count", "min", "max"]},
+        "timestamp": {"type": "object", "required": ["status", "stored_timezone", "stored_unit"]}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evidence_id", "evidence_sha256", "source_id", "filename", "source_sha256", "kind", "trust_class", "text", "locator", "field", "observations"],
+      "properties": {
+        "evidence_id": {"type": "string", "pattern": "^QUAL-[0-9a-f]{20}$"},
+        "evidence_sha256": {"$ref": "#/$defs/digest"},
+        "source_id": {"enum": ["S1", "S2", "S3"]},
+        "filename": {"type": "string"},
+        "source_sha256": {"$ref": "#/$defs/digest"},
+        "kind": {"enum": ["timestamp_quality", "numeric_quality"]},
+        "trust_class": {"const": "source_observed"},
+        "text": {"type": "string"},
+        "locator": {"type": "string"},
+        "field": {"type": "string"},
+        "observations": {"type": "object"}
+      }
+    }
+  }
+}

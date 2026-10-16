@@ -1,0 +1,9 @@
+# Core runtime pins derived from the locally tested Python 3.10 environment.
+# Azure SDK pins are maintained separately in requirements-azure.lock.
+# Version pins, not a hash-verified supply-chain lock; Linux image validation remains required.
+h5py==3.16.0
+numpy==2.2.6
+pip==26.2.0
+pyarrow==25.0.1
+scipy==1.15.3
+setuptools==84.0.0

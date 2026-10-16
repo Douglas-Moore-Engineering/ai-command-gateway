@@ -1,0 +1,55 @@
+%% Local implementation view; no physical actuation or model inference.
+%% Source dataset replay is unqualified and can only escalate.
+%%{init: {"theme":"base","look":"classic","themeVariables":{"fontFamily":"Arial, sans-serif","fontSize":"18px","primaryTextColor":"#111111","lineColor":"#425466","background":"transparent","edgeLabelBackground":"transparent","clusterBkg":"transparent"},"flowchart":{"htmlLabels":false,"curve":"basis","nodeSpacing":28,"rankSpacing":38,"padding":12},"themeCSS":"text { font-family:Arial,sans-serif !important; } .cluster-label text { font-size:16px !important; font-weight:600; }"}}%%
+flowchart TB
+  files["Five local research inputs"]
+  fixture["Synthetic request fixture"]
+
+  subgraph data["Read-only data qualification"]
+    inspect["Inspect files and archive metadata"]
+    profiles[("Provenance and profiles")]
+    replay["Replay S1 recorded targets<br/>Units and rules unqualified"]
+  end
+
+  subgraph gateway["Local deterministic gateway"]
+    policy["Versioned policy<br/>Unqualified or synthetic demo"]
+    evaluate["Validate request and policy<br/>Allow / block / escalate"]
+  end
+
+  subgraph authority["Simulated human authority"]
+    review["Local reviewer label<br/>Approve eligible demo proposal"]
+    recheck["Bind approval; revalidate<br/>Expiry, state, policy and one-use"]
+  end
+
+  subgraph evidence["Durable local evidence"]
+    ledger[("SQLite ledger<br/>Decisions, approvals, mock outcomes")]
+    receipt["Mock outcome receipt<br/>No equipment interface"]
+  end
+
+  files -->|"all five inputs"| inspect
+  inspect -->|"schema and inspection facts"| profiles
+  files -->|"S1 process rows only"| replay
+  replay -->|"unqualified request: escalate"| evaluate
+  fixture -->|"explicit synthetic state"| evaluate
+  policy -->|"rule version and content hash"| evaluate
+  evaluate -->|"eligible demo proposal"| review
+  review -->|"approval request"| recheck
+  evaluate -->|"record every decision"| ledger
+  recheck -->|"atomic consumption and mock outcome"| ledger
+  ledger -->|"committed outcome only"| receipt
+
+  classDef sourceRole fill:#EAF3F8,stroke:#356079,stroke-width:1.5px,color:#111111
+  classDef dataRole fill:#E5F4F2,stroke:#32746E,stroke-width:1.5px,color:#111111
+  classDef policyRole fill:#F8F2E4,stroke:#876A2D,stroke-width:1.5px,color:#111111
+  classDef humanRole fill:#EFF6EB,stroke:#4C713E,stroke-width:1.5px,color:#111111
+  classDef evidenceRole fill:#F3F0F8,stroke:#6E5B85,stroke-width:1.5px,color:#111111
+  class files,fixture sourceRole
+  class inspect,replay dataRole
+  class policy,evaluate,recheck policyRole
+  class review humanRole
+  class profiles,ledger,receipt evidenceRole
+  style data fill:none,stroke:#32746E,stroke-width:1.5px,color:#111111
+  style gateway fill:none,stroke:#876A2D,stroke-width:1.5px,color:#111111
+  style authority fill:none,stroke:#4C713E,stroke-width:1.5px,color:#111111
+  style evidence fill:none,stroke:#6E5B85,stroke-width:1.5px,color:#111111
+  linkStyle default stroke:#425466,stroke-width:1.5px

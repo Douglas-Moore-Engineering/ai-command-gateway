@@ -1,0 +1,23 @@
+# Deny the complete workspace by default, then admit runtime inputs explicitly.
+**
+!Dockerfile
+!.dockerignore
+!pyproject.toml
+!requirements-runtime.lock
+!requirements-azure.lock
+!src/
+!src/ai_command_gateway/
+!src/ai_command_gateway/*.py
+!config/
+!config/policies/
+!config/policies/demo-policy.json
+!config/policies/unqualified-policy.json
+!data/
+!data/contracts/
+!data/contracts/*.json
+!data/lineage/
+!data/lineage/source-inventory.json
+!data/evaluation/
+!data/evaluation/advice-cases-v1.json
+!data/samples/
+!data/samples/demo-request.json

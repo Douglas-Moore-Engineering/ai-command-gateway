@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ai-command-gateway:source-profile:1.0.0",
+  "title": "Offline source observation report",
+  "description": "File observations are not source qualification or physical command validity labels. Raw records are excluded.",
+  "type": "object",
+  "required": ["schema_version", "generated_at_utc", "purpose", "inspection_summary", "qualification", "sources", "files"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "generated_at_utc": {"type": "string", "format": "date-time"},
+    "purpose": {"const": "offline_source_observations"},
+    "inspection_summary": {
+      "type": "object", "required": ["status", "expected_file_count", "profiled_file_count", "fully_inspected_file_count", "meaning"],
+      "properties": {
+        "status": {"enum": ["complete", "partial"]},
+        "expected_file_count": {"const": 5},
+        "profiled_file_count": {"type": "integer", "minimum": 0, "maximum": 5},
+        "fully_inspected_file_count": {"type": "integer", "minimum": 0, "maximum": 5},
+        "meaning": {"const": "completion_of_requested_profile_scope_not_source_qualification"}
+      }
+    },
+    "qualification": {
+      "type": "object",
+      "required": ["status", "physical_validity_labels_available", "independent_sources_combined", "source_labels_meaning", "open_items"],
+      "properties": {
+        "status": {"const": "unresolved"},
+        "physical_validity_labels_available": {"const": false},
+        "independent_sources_combined": {"const": false},
+        "source_labels_meaning": {"const": "research_labels_not_command_safety_ground_truth"},
+        "open_items": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "sources": {
+      "type": "array", "minItems": 3, "maxItems": 3,
+      "items": {
+        "type": "object", "required": ["source_id", "role", "record"],
+        "properties": {
+          "source_id": {"enum": ["S1", "S2", "S3"]},
+          "role": {"type": "string"}, "record": {"type": "string", "format": "uri"}
+        }
+      }
+    },
+    "files": {
+      "type": "array", "minItems": 5, "maxItems": 5,
+      "items": {"$ref": "#/$defs/file"}
+    }
+  },
+  "$defs": {
+    "file": {
+      "type": "object", "required": ["source_id", "filename", "format", "status", "inspection_complete"],
+      "properties": {
+        "source_id": {"enum": ["S1", "S2", "S3"]},
+        "filename": {"type": "string"}, "format": {"enum": ["parquet", "zip"]},
+        "status": {"enum": ["profiled", "missing", "error"]},
+        "inspection_complete": {"type": "boolean"},
+        "size_bytes": {"type": "integer", "minimum": 0},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "md5": {"type": "string", "pattern": "^[0-9a-f]{32}$"},
+        "publisher_identity": {"type": "object"},
+        "error": {"type": "string"},
+        "profile": {"oneOf": [{"$ref": "#/$defs/parquet"}, {"$ref": "#/$defs/archive"}]}
+      },
+      "allOf": [{
+        "if": {"properties": {"status": {"const": "profiled"}}},
+        "then": {"required": ["size_bytes", "sha256", "md5", "profile"]}
+      }]
+    },
+    "parquet": {
+      "type": "object",
+      "required": ["row_count", "scanned_row_count", "column_count", "row_group_count", "scan", "columns", "qualification"],
+      "properties": {
+        "row_count": {"type": "integer", "minimum": 0},
+        "scanned_row_count": {"type": "integer", "minimum": 0},
+        "column_count": {"type": "integer", "minimum": 0},
+        "row_group_count": {"type": "integer", "minimum": 0},
+        "scan": {
+          "type": "object", "required": ["scope", "batch_rows", "row_sampling", "raw_rows_emitted"],
+          "properties": {
+            "scope": {"const": "all_rows"}, "batch_rows": {"type": "integer", "minimum": 1},
+            "row_sampling": {"const": false}, "raw_rows_emitted": {"const": 0}
+          }
+        },
+        "columns": {
+          "type": "array", "items": {
+            "type": "object", "required": ["name", "arrow_type", "nullable", "null_count", "non_null_count"],
+            "properties": {
+              "name": {"type": "string"}, "arrow_type": {"type": "string"},
+              "nullable": {"type": "boolean"}, "null_count": {"type": "integer", "minimum": 0},
+              "non_null_count": {"type": "integer", "minimum": 0}
+            }
+          }
+        },
+        "qualification": {"type": "string"}
+      }
+    },
+    "archive": {
+      "type": "object", "required": ["member_count", "uncompressed_bytes", "members", "archive_extracted", "supplied_code_executed", "inspection", "limits"],
+      "properties": {
+        "member_count": {"type": "integer", "minimum": 0},
+        "uncompressed_bytes": {"type": "integer", "minimum": 0},
+        "archive_extracted": {"const": false}, "supplied_code_executed": {"const": false},
+        "inspection": {
+          "type": "object", "required": ["status", "scope", "member_status_counts", "issues"],
+          "properties": {
+            "status": {"enum": ["complete", "partial"]}, "scope": {"type": "string"},
+            "member_status_counts": {"type": "object"}, "issues": {"type": "array", "items": {"type": "object"}}
+          }
+        },
+        "members": {
+          "type": "array", "items": {
+            "type": "object", "required": ["name", "size_bytes", "compressed_bytes", "crc32", "is_directory", "unsafe_path", "inspection_status"],
+            "properties": {
+              "name": {"type": "string"}, "size_bytes": {"type": "integer", "minimum": 0},
+              "compressed_bytes": {"type": "integer", "minimum": 0},
+              "crc32": {"type": "string", "pattern": "^[0-9a-f]{8}$"},
+              "is_directory": {"type": "boolean"}, "unsafe_path": {"type": "boolean"},
+              "inspection_status": {"enum": ["directory", "blocked_unsafe_path", "skipped_resource_limit", "skipped_encrypted", "inspected", "inspection_error"]}
+            }
+          }
+        },
+        "limits": {"type": "object"}
+      }
+    }
+  }
+}

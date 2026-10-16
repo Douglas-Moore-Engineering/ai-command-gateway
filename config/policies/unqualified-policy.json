@@ -1,0 +1,15 @@
+{
+  "schema_version": "1",
+  "id": "engineering-qualification-pending",
+  "version": "unqualified-1",
+  "status": "unqualified",
+  "basis": "Dataset telemetry is not authoritative equipment limits or command-approval evidence. Engineering limits, approved procedures, units, sign conventions, interlocks, and equipment modes remain unqualified.",
+  "valid_from": "2026-01-01T00:00:00Z",
+  "valid_until": "2027-01-01T00:00:00Z",
+  "max_state_age_seconds": 30,
+  "max_future_skew_seconds": 0,
+  "approval_ttl_seconds": 20,
+  "approval_actors": [],
+  "source_refs": [],
+  "assets": {}
+}

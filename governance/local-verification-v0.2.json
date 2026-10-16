@@ -1,0 +1,152 @@
+{
+  "version": "0.2.0",
+  "recorded_at_utc": "2026-10-15T18:18:01.409874+00:00",
+  "scope": "local software and qualification-gate verification; no domain acceptance or production performance claim",
+  "python": "3.10.11",
+  "platform": "Windows-10-10.0.26300-SP0",
+  "dependencies": {
+    "pyarrow": "25.0.1",
+    "scipy": "1.15.3",
+    "numpy": "2.2.6",
+    "h5py": "3.16.0",
+    "pytest": "9.1.1"
+  },
+  "checks": [
+    {
+      "name": "tests",
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "--junitxml=outputs/verification/tests.xml"
+      ],
+      "exit_code": 0,
+      "summary": "51 passed, 44 subtests passed in 6.96s"
+    },
+    {
+      "name": "repository",
+      "command": [
+        "python",
+        "scripts/check_repository.py"
+      ],
+      "exit_code": 0,
+      "summary": "PASS: 168 local file links; 6 requirements; 6 criteria; 8 open items; trace IDs; original SHA-256; no internal instruction files.\nScope: repository consistency only; application, remote CI, rendering and acceptance not evaluated.",
+      "note": "Documentation consistency rechecked after final evidence index updates; software test/code hashes unchanged."
+    },
+    {
+      "name": "demo",
+      "command": [
+        "python",
+        "-m",
+        "ai_command_gateway",
+        "demo",
+        "--db",
+        "outputs/verification/demo.sqlite3"
+      ],
+      "exit_code": 0,
+      "checks": {
+        "synthetic_in_range_allowed": true,
+        "synthetic_out_of_range_blocked": true,
+        "missing_evidence_escalated": true,
+        "approved_mock_executed": true,
+        "approval_replay_blocked": true
+      }
+    },
+    {
+      "name": "profile",
+      "command": [
+        "python",
+        "-m",
+        "ai_command_gateway",
+        "profile",
+        "--input-dir",
+        "C:\\Users\\moore\\Downloads",
+        "--output-dir",
+        "outputs/profiles"
+      ],
+      "exit_code": 0,
+      "files": [
+        {
+          "source_id": "S1",
+          "filename": "logs_dataset.parquet",
+          "sha256": "5ea386a66b4ee5c0c5602f3e70e6c118d6d5e208cabf0d99e9c4110b84e4352d",
+          "status": "profiled"
+        },
+        {
+          "source_id": "S1",
+          "filename": "packets_dataset.parquet",
+          "sha256": "5121f480c174f845d243560e8f112ea2ba43dc2922a9f563309cd7c10166ead2",
+          "status": "profiled"
+        },
+        {
+          "source_id": "S1",
+          "filename": "process_dataset.parquet",
+          "sha256": "163613e85346c8913e423014e9c8911a3407dab2456cc10819e6ee9dad2ee7d8",
+          "status": "profiled"
+        },
+        {
+          "source_id": "S2",
+          "filename": "n76t439f65-1.zip",
+          "sha256": "f1494903e3c3ff1ea2972af0daa9793f579b2ac444455bdd5035ebee05b8a042",
+          "status": "profiled"
+        },
+        {
+          "source_id": "S3",
+          "filename": "doi-10.34810-data2936.zip",
+          "sha256": "e4fcab2139c77dca64eed45b95adc4fa41d96c17e810d22d89d2d55fc5acdf5e",
+          "status": "profiled"
+        }
+      ],
+      "inspection_summary": {
+        "status": "complete",
+        "expected_file_count": 5,
+        "profiled_file_count": 5,
+        "fully_inspected_file_count": 5,
+        "meaning": "completion_of_requested_profile_scope_not_source_qualification"
+      }
+    },
+    {
+      "name": "replay",
+      "command": [
+        "python",
+        "-m",
+        "ai_command_gateway",
+        "replay",
+        "--input-dir",
+        "C:\\Users\\moore\\Downloads",
+        "--output-dir",
+        "outputs/verification/replay",
+        "--db",
+        "outputs/verification/replay.sqlite3",
+        "--limit",
+        "20"
+      ],
+      "exit_code": 0,
+      "rows_replayed": 20,
+      "decisions": {
+        "escalate": 20
+      },
+      "qualification_gate_exercised": true
+    }
+  ],
+  "all_checks_passed": true,
+  "source_sha256": {
+    "config/policies/demo-policy.json": "dd9c2de63888499aed149576d02933e8c6efe01f02c259df9d563dba756fe29c",
+    "config/policies/unqualified-policy.json": "c333fac2954a8cfc193b514a1b02a8b49322404c2696f19e08c61303be6c9ed7",
+    "data/contracts/command-request.schema.json": "404defb181ed6632576b9fb4b5bac272dd549306ef2e989f52c16744e8dd8468",
+    "data/contracts/source-profile.schema.json": "69c4a53fc23b0a229d53625793471e405ad74f62f2ce6b95e0c9fa73e603ea41",
+    "pyproject.toml": "309c96c17c5046582c03f7a1d82929d59e0775bfaa3e66cba1c6341ab552c7dd",
+    "requirements-dev.lock": "8d85e82f5517400fbc0eb05d37a7c7abdf5acd26bb40fea9dc20020567afce60",
+    "scripts/verify_local.py": "0d95375b4abe94111f5143b49dbcea240c3e3024684aa83f1cc573dff7e1c06b",
+    "src/ai_command_gateway/__init__.py": "15ebba97970b8082670568100ad7682447170326b7293185ebc54391a988ad9c",
+    "src/ai_command_gateway/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "src/ai_command_gateway/cli.py": "109345e4655c08161d72d0d285ba6c51b5af7e89c8a099f2c59bc284e067ed1d",
+    "src/ai_command_gateway/datasets.py": "12b0445a66e1ac17ce89c4c1af9bf49843b872ab2d2a3885f946e2eff181398f",
+    "src/ai_command_gateway/gateway.py": "91192bce015e96b2fc8b96801951a146d4452b3fa7184a3a74e98ca39e190930",
+    "src/ai_command_gateway/replay.py": "9349184e74b656e4b7b2b93989628a51b25323f6fc5ee182f255727aa2f29c2c",
+    "tests/test_cli.py": "21ed9af720d7080e0841e34d924d5a216f65764db0dbf507772506e540b6661e",
+    "tests/test_datasets.py": "5debaf65c9bb14a4fe49730cb2180fa55070e1f806f8628e4d5e2b1b4df05664",
+    "tests/test_gateway.py": "7dda484e8a042edd4a9c94fd5e8030f5e0333296dadea99162a659295e479b73"
+  }
+}

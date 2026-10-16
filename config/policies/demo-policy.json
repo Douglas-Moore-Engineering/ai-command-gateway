@@ -1,0 +1,25 @@
+{
+  "schema_version": "1",
+  "id": "synthetic-battery-demo",
+  "version": "synthetic-1",
+  "status": "synthetic-demo",
+  "basis": "Invented limits for software branch testing only. No equipment rating, operating procedure, physical-safety claim, or dataset-derived engineering limit.",
+  "valid_from": "2026-01-01T00:00:00Z",
+  "valid_until": "2027-01-01T00:00:00Z",
+  "max_state_age_seconds": 30,
+  "max_future_skew_seconds": 0,
+  "approval_ttl_seconds": 20,
+  "approval_actors": ["local-demo-operator"],
+  "source_refs": [{"id": "demo-policy-manual", "version": "synthetic-1"}],
+  "assets": {
+    "battery-demo-1": {
+      "actions": {
+        "set_battery_power": {"unit": "kW", "min": -5, "max": 5, "modes": ["remote"]}
+      },
+      "state_limits": {
+        "battery_soc_pct": {"unit": "%", "min": 20, "max": 80},
+        "battery_temperature_c": {"unit": "degC", "min": 0, "max": 45}
+      }
+    }
+  }
+}

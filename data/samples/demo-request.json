@@ -1,0 +1,20 @@
+{
+  "proposal": {
+    "id": "synthetic-proposal-001",
+    "asset_id": "battery-demo-1",
+    "action": "set_battery_power",
+    "value": 2,
+    "unit": "kW",
+    "model_version": "manual-synthetic-fixture-1",
+    "source_refs": [{"id": "demo-policy-manual", "version": "synthetic-1"}]
+  },
+  "state": {
+    "asset_id": "battery-demo-1",
+    "observed_at": "2026-10-15T16:00:00Z",
+    "mode": "remote",
+    "values": {
+      "battery_soc_pct": {"value": 50, "unit": "%"},
+      "battery_temperature_c": {"value": 25, "unit": "degC"}
+    }
+  }
+}

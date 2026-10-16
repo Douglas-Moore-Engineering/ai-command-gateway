@@ -1,0 +1,56 @@
+%% Approved foundation scope. Dashed paths and the prepared workload remain pending.
+%%{init: {"theme":"base","look":"classic","themeVariables":{"fontFamily":"Arial, sans-serif","fontSize":"18px","primaryTextColor":"#111111","lineColor":"#425466","background":"transparent","edgeLabelBackground":"transparent","clusterBkg":"transparent"},"flowchart":{"htmlLabels":false,"curve":"basis","nodeSpacing":28,"rankSpacing":38,"padding":12},"themeCSS":"text { font-family:Arial,sans-serif !important; } .cluster-label text { font-size:16px !important; font-weight:600; }"}}%%
+flowchart TB
+  subgraph preparation["Build and deployment preparation"]
+    source["Reviewed runtime and pinned dependencies"]
+    image["Local non-root image<br/>Promotion unresolved"]
+    review["Explicit target and cost review<br/>Compile; scan; Azure what-if"]
+  end
+
+  subgraph azure["Approved Azure foundation"]
+    registry[("Private container registry<br/>Publication pending")]
+    inputs[("Private input Blob container<br/>Dataset upload pending")]
+    outputs[("Private output Blob container<br/>Runtime artifacts pending")]
+    monitor[("Private Azure Monitor scope<br/>Log Analytics workspace")]
+    identity["User-assigned managed identity<br/>Scoped role assignments"]
+    subgraph vnet["VNet and private endpoint DNS"]
+      environment["Internal Container Apps environment"]
+      subgraph future["Prepared workload - not provisioned"]
+      job["Manual Container Apps Job<br/>Demo or dataset analysis"]
+      verify["Verify input identities<br/>Run offline analysis"]
+      publish["Allowlisted artifacts only<br/>Write completion last"]
+      end
+    end
+  end
+  operator["Authorized deployment and job operator"]
+
+  source -->|"local image build"| image
+  image -.->|"reviewed push from connected builder"| registry
+  review -->|"approved foundation apply"| azure
+  operator -.->|"privileged manual start"| job
+  identity -.->|"AcrPull; input read; output write"| job
+  registry -.->|"private image pull"| job
+  job -.->|"selected mode"| verify
+  inputs -.->|"managed identity over private endpoint"| verify
+  verify -.->|"summary evidence; mock authority only"| publish
+  publish -.->|"unique run prefix; no overwrite"| outputs
+  job -.->|"platform and console diagnostics"| monitor
+
+  classDef sourceRole fill:#EAF3F8,stroke:#356079,stroke-width:1.5px,color:#111111
+  classDef dataRole fill:#E5F4F2,stroke:#32746E,stroke-width:1.5px,color:#111111
+  classDef analysisRole fill:#EDF0FA,stroke:#42558B,stroke-width:1.5px,color:#111111
+  classDef policyRole fill:#F8F2E4,stroke:#876A2D,stroke-width:1.5px,color:#111111
+  classDef humanRole fill:#EFF6EB,stroke:#4C713E,stroke-width:1.5px,color:#111111
+  classDef evidenceRole fill:#F3F0F8,stroke:#6E5B85,stroke-width:1.5px,color:#111111
+  class source,image,registry,inputs sourceRole
+  class verify dataRole
+  class environment,job analysisRole
+  class identity,review policyRole
+  class operator humanRole
+  class publish,outputs,monitor evidenceRole
+  style preparation fill:none,stroke:#356079,stroke-width:1.5px,color:#111111
+  style azure fill:none,stroke:#42558B,stroke-width:1.5px,color:#111111
+  style vnet fill:none,stroke:#32746E,stroke-width:1.5px,color:#111111
+  style future fill:none,stroke:#42558B,stroke-width:1.5px,stroke-dasharray:5 5,color:#111111
+  environment -.->|"future host"| job
+  linkStyle default stroke:#425466,stroke-width:1.5px

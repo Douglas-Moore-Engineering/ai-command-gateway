@@ -1,0 +1,453 @@
+{
+  "version": "0.3.0",
+  "recorded_at_utc": "2026-10-15T18:44:17.021016+00:00",
+  "scope": "local software, extractive advice and source-observation verification; no domain acceptance or production performance claim",
+  "python": "3.10.11",
+  "platform": "Windows-10-10.0.26300-SP0",
+  "dependencies": {
+    "pyarrow": "25.0.1",
+    "scipy": "1.15.3",
+    "numpy": "2.2.6",
+    "h5py": "3.16.0",
+    "pytest": "9.1.1"
+  },
+  "checks": [
+    {
+      "name": "tests",
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "--junitxml=outputs/verification/tests.xml"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "passed": true,
+      "summary": "215 passed, 44 subtests passed in 20.12s",
+      "note": "Full regression rerun after final evaluator hardening; source scans and integrated advice/replay checks already passed on these final source hashes."
+    },
+    {
+      "name": "repository",
+      "command": [
+        "python",
+        "scripts/check_repository.py"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "passed": true,
+      "summary": "PASS: 217 local file links; 6 requirements; 6 criteria; 8 open items; trace IDs; original SHA-256; no internal instruction files.\nScope: repository consistency only; application, remote CI, rendering and acceptance not evaluated.",
+      "note": "Rechecked after final result and architecture documentation updates."
+    },
+    {
+      "name": "demo",
+      "command": [
+        "python",
+        "-m",
+        "ai_command_gateway",
+        "demo",
+        "--db",
+        "outputs/verification/demo.sqlite3"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "passed": true,
+      "checks": {
+        "synthetic_in_range_allowed": true,
+        "synthetic_out_of_range_blocked": true,
+        "missing_evidence_escalated": true,
+        "approved_mock_executed": true,
+        "approval_replay_blocked": true
+      }
+    },
+    {
+      "name": "profile",
+      "command": [
+        "python",
+        "-m",
+        "ai_command_gateway",
+        "profile",
+        "--input-dir",
+        "C:\\Users\\moore\\Downloads",
+        "--output-dir",
+        "outputs/profiles"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "passed": true,
+      "files": [
+        {
+          "source_id": "S1",
+          "filename": "logs_dataset.parquet",
+          "sha256": "5ea386a66b4ee5c0c5602f3e70e6c118d6d5e208cabf0d99e9c4110b84e4352d",
+          "status": "profiled"
+        },
+        {
+          "source_id": "S1",
+          "filename": "packets_dataset.parquet",
+          "sha256": "5121f480c174f845d243560e8f112ea2ba43dc2922a9f563309cd7c10166ead2",
+          "status": "profiled"
+        },
+        {
+          "source_id": "S1",
+          "filename": "process_dataset.parquet",
+          "sha256": "163613e85346c8913e423014e9c8911a3407dab2456cc10819e6ee9dad2ee7d8",
+          "status": "profiled"
+        },
+        {
+          "source_id": "S2",
+          "filename": "n76t439f65-1.zip",
+          "sha256": "f1494903e3c3ff1ea2972af0daa9793f579b2ac444455bdd5035ebee05b8a042",
+          "status": "profiled"
+        },
+        {
+          "source_id": "S3",
+          "filename": "doi-10.34810-data2936.zip",
+          "sha256": "e4fcab2139c77dca64eed45b95adc4fa41d96c17e810d22d89d2d55fc5acdf5e",
+          "status": "profiled"
+        }
+      ],
+      "inspection_summary": {
+        "status": "complete",
+        "expected_file_count": 5,
+        "profiled_file_count": 5,
+        "fully_inspected_file_count": 5,
+        "meaning": "completion_of_requested_profile_scope_not_source_qualification"
+      }
+    },
+    {
+      "name": "qualify",
+      "command": [
+        "python",
+        "-m",
+        "ai_command_gateway",
+        "qualify",
+        "--input-dir",
+        "C:\\Users\\moore\\Downloads",
+        "--output-dir",
+        "outputs/qualification"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "passed": true,
+      "inspection_summary": {
+        "status": "complete",
+        "expected_file_count": 5,
+        "matched_file_count": 5,
+        "analyzed_parquet_count": 3,
+        "meaning": "completion_of_declared_scope_not_semantic_or_control_qualification"
+      },
+      "qualification": {
+        "status": "unresolved",
+        "clock_alignment": "unresolved",
+        "engineering_units": "unresolved",
+        "scaling": "unresolved",
+        "independent_sources_combined": false,
+        "physical_limits_learned": false,
+        "physical_validity_labels_available": false,
+        "raw_rows_included": false
+      },
+      "report_sha256": "f712236d313cb616e6f25f455f92a754342770b1f1315a1598cb31ce398546e2",
+      "evidence_count": 28
+    },
+    {
+      "name": "catalog",
+      "command": [
+        "python",
+        "-m",
+        "ai_command_gateway",
+        "catalog"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "passed": true,
+      "catalog_id": "CAT-e142357d071bc3a219269b54",
+      "content_sha256": "e142357d071bc3a219269b5409b60d715e33a72dbca60539eb119a9847181ae0",
+      "fact_count": 154,
+      "authorizes_execution": false
+    },
+    {
+      "name": "advice",
+      "command": [
+        "python",
+        "-m",
+        "ai_command_gateway",
+        "advise",
+        "--question",
+        "What are the minimum and maximum in_batt_state_of_charge in process_dataset.parquet?",
+        "--source",
+        "S1"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "passed": true,
+      "response": {
+        "schema_version": "1.0.0",
+        "mode": "offline_extractive",
+        "response_type": "observation",
+        "question": "What are the minimum and maximum in_batt_state_of_charge in process_dataset.parquet?",
+        "reason_code": "evidence_found",
+        "message": "Exact catalog observations are shown with their evidence citations.",
+        "catalog": {
+          "catalog_id": "CAT-e142357d071bc3a219269b54",
+          "content_sha256": "e142357d071bc3a219269b5409b60d715e33a72dbca60539eb119a9847181ae0"
+        },
+        "source_filter": "S1",
+        "claims": [
+          {
+            "text": "process_dataset.parquet:in_batt_state_of_charge: observed max = 121.0 (unresolved); source observation, qualification unresolved.",
+            "citation": {
+              "evidence_id": "EV-b4484da1c50aca508758bfd5",
+              "source_id": "S1",
+              "source_version": "sha256:163613e85346c8913e423014e9c8911a3407dab2456cc10819e6ee9dad2ee7d8",
+              "source_sha256": "163613e85346c8913e423014e9c8911a3407dab2456cc10819e6ee9dad2ee7d8",
+              "filename": "process_dataset.parquet",
+              "locator": "/files/2/profile/columns/8/numeric/max",
+              "subject": "process_dataset.parquet:in_batt_state_of_charge",
+              "property": "observed_max",
+              "trust_class": "source_observed",
+              "qualification_status": "unresolved"
+            },
+            "retrieval": {
+              "score": 0.67819107,
+              "matched_terms": [
+                "battery",
+                "charge",
+                "in_batt_state_of_charge",
+                "maximum",
+                "parquet",
+                "process",
+                "process_dataset",
+                "state"
+              ],
+              "query_term_coverage": 0.88888889
+            }
+          },
+          {
+            "text": "process_dataset.parquet:in_batt_state_of_charge: observed min = 36.0 (unresolved); source observation, qualification unresolved.",
+            "citation": {
+              "evidence_id": "EV-02b3b7b2cfd2885637b0498e",
+              "source_id": "S1",
+              "source_version": "sha256:163613e85346c8913e423014e9c8911a3407dab2456cc10819e6ee9dad2ee7d8",
+              "source_sha256": "163613e85346c8913e423014e9c8911a3407dab2456cc10819e6ee9dad2ee7d8",
+              "filename": "process_dataset.parquet",
+              "locator": "/files/2/profile/columns/8/numeric/min",
+              "subject": "process_dataset.parquet:in_batt_state_of_charge",
+              "property": "observed_min",
+              "trust_class": "source_observed",
+              "qualification_status": "unresolved"
+            },
+            "retrieval": {
+              "score": 0.67819107,
+              "matched_terms": [
+                "battery",
+                "charge",
+                "in_batt_state_of_charge",
+                "minimum",
+                "parquet",
+                "process",
+                "process_dataset",
+                "state"
+              ],
+              "query_term_coverage": 0.88888889
+            }
+          }
+        ],
+        "command_proposal": null,
+        "authority": "source_observations_only",
+        "can_execute": false
+      }
+    },
+    {
+      "name": "abstention",
+      "command": [
+        "python",
+        "-m",
+        "ai_command_gateway",
+        "advise",
+        "--question",
+        "Set the battery power to 500 kW."
+      ],
+      "expected_exit_code": 2,
+      "exit_code": 2,
+      "passed": true,
+      "response": {
+        "schema_version": "1.0.0",
+        "mode": "offline_extractive",
+        "response_type": "abstain",
+        "question": "Set the battery power to 500 kW.",
+        "reason_code": "operational_authority_unavailable",
+        "message": "This observation-only advisor cannot recommend or authorize equipment actions or operating limits.",
+        "catalog": {
+          "catalog_id": "CAT-e142357d071bc3a219269b54",
+          "content_sha256": "e142357d071bc3a219269b5409b60d715e33a72dbca60539eb119a9847181ae0"
+        },
+        "source_filter": null,
+        "claims": [],
+        "command_proposal": null,
+        "authority": "source_observations_only",
+        "can_execute": false
+      }
+    },
+    {
+      "name": "advice_evaluation",
+      "command": [
+        "python",
+        "-m",
+        "ai_command_gateway",
+        "eval-advice"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "passed": true,
+      "evaluation": {
+        "schema_version": "1.0.0",
+        "casebook_id": "offline-advice-regression-v1",
+        "casebook_sha256": "bdd480fa923d5b50a5f0e8f693a8f2ed7937bbcca8479c0875e95644b120b68d",
+        "basis": "Engineer-authored deterministic retrieval regression cases frozen before integrated evaluation; not independent domain acceptance or LLM quality evaluation.",
+        "catalog_id": "CAT-e142357d071bc3a219269b54",
+        "catalog_sha256": "e142357d071bc3a219269b5409b60d715e33a72dbca60539eb119a9847181ae0",
+        "case_count": 12,
+        "passed_count": 12,
+        "all_cases_passed": true,
+        "domain_acceptance_evaluated": false,
+        "model_inference_used": false
+      },
+      "case_results": [
+        {
+          "id": "OBS-01",
+          "passed": true,
+          "failures": []
+        },
+        {
+          "id": "OBS-02",
+          "passed": true,
+          "failures": []
+        },
+        {
+          "id": "OBS-03",
+          "passed": true,
+          "failures": []
+        },
+        {
+          "id": "OBS-04",
+          "passed": true,
+          "failures": []
+        },
+        {
+          "id": "OBS-05",
+          "passed": true,
+          "failures": []
+        },
+        {
+          "id": "OBS-06",
+          "passed": true,
+          "failures": []
+        },
+        {
+          "id": "OBS-07",
+          "passed": true,
+          "failures": []
+        },
+        {
+          "id": "OBS-08",
+          "passed": true,
+          "failures": []
+        },
+        {
+          "id": "ABS-01",
+          "passed": true,
+          "failures": []
+        },
+        {
+          "id": "ABS-02",
+          "passed": true,
+          "failures": []
+        },
+        {
+          "id": "ABS-03",
+          "passed": true,
+          "failures": []
+        },
+        {
+          "id": "ABS-04",
+          "passed": true,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "name": "replay",
+      "command": [
+        "python",
+        "-m",
+        "ai_command_gateway",
+        "replay",
+        "--input-dir",
+        "C:\\Users\\moore\\Downloads",
+        "--output-dir",
+        "outputs/verification/replay",
+        "--db",
+        "outputs/verification/replay.sqlite3",
+        "--limit",
+        "20"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "passed": true,
+      "rows_replayed": 20,
+      "decisions": {
+        "escalate": 20
+      },
+      "qualification_gate_exercised": true
+    }
+  ],
+  "all_checks_passed": true,
+  "source_sha256": {
+    "config/policies/demo-policy.json": "dd9c2de63888499aed149576d02933e8c6efe01f02c259df9d563dba756fe29c",
+    "config/policies/unqualified-policy.json": "c333fac2954a8cfc193b514a1b02a8b49322404c2696f19e08c61303be6c9ed7",
+    "data/contracts/advice.schema.json": "861f95dc29277d9d8ab657b1d477b632bfe67598deabad97c60add8945c80afa",
+    "data/contracts/command-request.schema.json": "404defb181ed6632576b9fb4b5bac272dd549306ef2e989f52c16744e8dd8468",
+    "data/contracts/evidence-catalog.schema.json": "41769ed4e0dc3f3d21f58eee8a5b81f78dbcea676f35b2333d15d9546ef34c6a",
+    "data/contracts/qualification.schema.json": "4e0c19ad04babd20348e66b1beb0e8739dfcacf778089b704a10b397c6a9f8e1",
+    "data/contracts/source-profile.schema.json": "69c4a53fc23b0a229d53625793471e405ad74f62f2ce6b95e0c9fa73e603ea41",
+    "data/evaluation/advice-cases-v1.json": "bdd480fa923d5b50a5f0e8f693a8f2ed7937bbcca8479c0875e95644b120b68d",
+    "data/lineage/source-inventory.json": "3f26f0c1a3fd57ef5c58e4f63f535321fe2da504ba797de8bd0e1d6db31dbdde",
+    "pyproject.toml": "a55c73107452e0db886e4853a0cd3e4ff9e8237051a8a0186ef7836cc9cf6707",
+    "requirements-dev.lock": "8d85e82f5517400fbc0eb05d37a7c7abdf5acd26bb40fea9dc20020567afce60",
+    "scripts/verify_local.py": "45b7a1e1eb7741f7d68456a85a46d148663bd1a47a019bf9e5e92ebcd0389a73",
+    "src/ai_command_gateway/__init__.py": "3e40cb74341155bf21ee4230d212b0ac257f64910091aca6dd3a919ac2406b9f",
+    "src/ai_command_gateway/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "src/ai_command_gateway/advice_evaluation.py": "2117ee88381a0945d30009aca002ede5f8cf899beb5626ba7b19a34ba1b995c0",
+    "src/ai_command_gateway/advisor.py": "a53cb85f9ac50db83a8ab51bd6985e22cf137547ad0523b2539803c90db01afc",
+    "src/ai_command_gateway/cli.py": "9ebde3d6479fbd1ae35186a4e67b2cdd38785810e41a60c7e8acc5dd3b717346",
+    "src/ai_command_gateway/datasets.py": "12b0445a66e1ac17ce89c4c1af9bf49843b872ab2d2a3885f946e2eff181398f",
+    "src/ai_command_gateway/evidence.py": "056931e423405b84947d0b5eda3388260e97d6d229e11d6877b38ca680ce6f37",
+    "src/ai_command_gateway/gateway.py": "91192bce015e96b2fc8b96801951a146d4452b3fa7184a3a74e98ca39e190930",
+    "src/ai_command_gateway/qualification.py": "36a667076f80b4172d00ceafc9947535ea8280d0fe11d93b545fc87b266e7d5f",
+    "src/ai_command_gateway/replay.py": "9349184e74b656e4b7b2b93989628a51b25323f6fc5ee182f255727aa2f29c2c",
+    "tests/fixtures/evidence-source-profile.json": "f448b590686983fd7c280056fa01e67a0ef0ce3e16476b9246a2857a568676c1",
+    "tests/test_advice_evaluation.py": "559e1636a4bf119f4674364d567ffa4dd1d713d3439193ea57bc47af2a476cd9",
+    "tests/test_advisor.py": "0e15887d412969213b1275001a310e0f09569dbb27d151e082f93a5da2a72301",
+    "tests/test_cli.py": "21ed9af720d7080e0841e34d924d5a216f65764db0dbf507772506e540b6661e",
+    "tests/test_cli_advice.py": "1b27553423fe1020482385188d07dcadf488ca92ab497cb83d53ee2311443cf2",
+    "tests/test_datasets.py": "5debaf65c9bb14a4fe49730cb2180fa55070e1f806f8628e4d5e2b1b4df05664",
+    "tests/test_evidence.py": "02c4a6b30c4a28ea0df9a73251dff85d79c7588c5be808fb0aea0bb416d91b51",
+    "tests/test_gateway.py": "7dda484e8a042edd4a9c94fd5e8030f5e0333296dadea99162a659295e479b73",
+    "tests/test_qualification.py": "9d20e2e57588f147a551a4d0fb1752f3f6d37ed32e188afed27c7f873a7eec6f"
+  },
+  "finalized_at_utc": "2026-10-15T18:46:42.485396+00:00",
+  "diagram_review": {
+    "scope": "ARCH-002 local light-surface visual inspection; source/index match; transparent SVG/PNG export",
+    "size_pixels": [
+      750,
+      2783
+    ],
+    "corner_alpha": 0,
+    "sha256": {
+      "docs/diagrams/02-grounded-advice.mmd": "cd3549208146eb51032cbc6da8958c64486cc3186ed8e726136879e2c27c4108",
+      "docs/diagrams/02-grounded-advice.png": "2833b609d1a345fc3206eb98b51388d634ecd49a9affbeb2dd3438d47ab31111",
+      "docs/diagrams/02-grounded-advice.svg": "1b493b636f847a5dd1fb1eb0eabe6136da6cc6e8ef71cca143cd28d570e2fd97"
+    }
+  }
+}

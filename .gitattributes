@@ -1,0 +1,13 @@
+# Evidence records bind exact working-file bytes, including line endings.
+# Preserve those bytes on every platform instead of normalizing on add/checkout.
+# Accept recorded CRLF; keep normal whitespace checks for new edits.
+* -text whitespace=cr-at-eol
+# Preserve the exact deployed/tested bytes in these initial evidence-bound files.
+infra/main.bicep whitespace=cr-at-eol,-blank-at-eof
+infra/modules/environment.bicep whitespace=cr-at-eol,-blank-at-eof
+infra/modules/job.bicep whitespace=cr-at-eol,-blank-at-eof
+infra/modules/monitoring.bicep whitespace=cr-at-eol,-blank-at-eof
+infra/modules/network.bicep whitespace=cr-at-eol,-blank-at-eof
+infra/modules/registry.bicep whitespace=cr-at-eol,-blank-at-eof
+infra/modules/storage.bicep whitespace=cr-at-eol,-blank-at-eof
+pyproject.toml whitespace=cr-at-eol,-blank-at-eof

@@ -1,0 +1,813 @@
+{
+  "schema_version": "1.0.0",
+  "application_version": "0.4.0",
+  "recorded_at_utc": "2026-10-16T00:52:39.252431+00:00",
+  "client_date": "2026-10-15",
+  "scope": "Approved Azure private foundation deployment and control-plane verification; local image scan and resource-bounded dataset test. No cloud workload or production acceptance.",
+  "status": "foundation_deployed_control_plane_verified_workload_pending",
+  "target": {
+    "account": "douglas@dmesystems.global",
+    "subscription_id": "b31e9bd1-6179-4504-819b-f212ed36f609",
+    "resource_group": "rg-ai-command-gateway-dev",
+    "location": "eastus2"
+  },
+  "approval": {
+    "user_response": "Approve foundation deployment with these costs and risks",
+    "recorded_at_utc": "2026-10-16T00:21:22.946377+00:00",
+    "scope": "Private foundation only; approximately $98/month standing core cost plus usage and unpriced private access; partial deployment risk acknowledged",
+    "excluded": [
+      "image publication",
+      "source upload",
+      "job execution",
+      "model inference",
+      "equipment connection"
+    ]
+  },
+  "deployment": {
+    "name": "aicg-foundation",
+    "state": "Succeeded",
+    "duration": "PT22M21.1546584S",
+    "timestamp": "2026-10-16T00:44:20.183308+00:00",
+    "compiled_template_sha256": "9c572c097c819215eb9ef2905843f0b8dc77f1b9b44d4b9f8941faec8330ca3d",
+    "outputs": {
+      "environmentName": {
+        "type": "String",
+        "value": "cae-aicg-sn5edmznrgh7s"
+      },
+      "foundationDeploymentName": {
+        "type": "String",
+        "value": "aicg-bootstrap"
+      },
+      "jobProvisioned": {
+        "type": "Bool",
+        "value": false
+      },
+      "logAnalyticsWorkspaceId": {
+        "type": "String",
+        "value": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.OperationalInsights/workspaces/log-aicg-sn5edmznrgh7s"
+      },
+      "managedIdentityClientId": {
+        "type": "String",
+        "value": "9ff8b26e-c113-4fe3-80ef-bd0d3273d2c7"
+      },
+      "managedIdentityResourceId": {
+        "type": "String",
+        "value": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-aicg-sn5edmznrgh7s"
+      },
+      "registryLoginServer": {
+        "type": "String",
+        "value": "craicgsn5edmznrgh7s.azurecr.io"
+      },
+      "registryName": {
+        "type": "String",
+        "value": "craicgsn5edmznrgh7s"
+      },
+      "resourceGroupId": {
+        "type": "String",
+        "value": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev"
+      },
+      "resourceGroupName": {
+        "type": "String",
+        "value": "rg-ai-command-gateway-dev"
+      },
+      "storageAccountName": {
+        "type": "String",
+        "value": "staicgsn5edmznrgh7s"
+      },
+      "storageAccountUrl": {
+        "type": "String",
+        "value": "https://staicgsn5edmznrgh7s.blob.core.windows.net/"
+      },
+      "vnetId": {
+        "type": "String",
+        "value": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/virtualNetworks/vnet-aicg-sn5edmznrgh7s"
+      }
+    },
+    "job_provisioned": false,
+    "existing_network_watcher_included": false,
+    "what_if": {
+      "status": "Succeeded",
+      "exit_code": 0,
+      "validation_level": "Provider",
+      "change_counts": {
+        "Create": 39
+      },
+      "all_resource_ids_inside_proposed_new_group": true,
+      "no_job_resource": true,
+      "sha256": "6a898543f5c70f5d33fc8788201821aed1d1d4ab8284651254e9f10bea2a0590"
+    }
+  },
+  "control_plane_verification": {
+    "schema_version": "1.0.0",
+    "recorded_at_utc": "2026-10-16T00:48:38.8088032Z",
+    "scope": "Azure control-plane configuration only; no private DNS, connectivity, data-plane or job execution test",
+    "subscription_id": "b31e9bd1-6179-4504-819b-f212ed36f609",
+    "resource_group": "rg-ai-command-gateway-dev",
+    "bootstrap_deployment": "aicg-bootstrap",
+    "run_id": "5ec1fc4b-3b12-4468-8ad1-1b4c26b26d35",
+    "passed": true,
+    "error_code": null,
+    "checks": [
+      {
+        "name": "bootstrap_deployment_succeeded",
+        "passed": true,
+        "observed": "Succeeded"
+      },
+      {
+        "name": "bootstrap_outputs_match_inventory",
+        "passed": true,
+        "observed": {
+          "workspace": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.OperationalInsights/workspaces/log-aicg-sn5edmznrgh7s",
+          "environment": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.App/managedEnvironments/cae-aicg-sn5edmznrgh7s",
+          "registry": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.ContainerRegistry/registries/craicgsn5edmznrgh7s",
+          "vnet": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/virtualNetworks/vnet-aicg-sn5edmznrgh7s",
+          "storage": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Storage/storageAccounts/staicgsn5edmznrgh7s",
+          "identity": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-aicg-sn5edmznrgh7s"
+        }
+      },
+      {
+        "name": "storage_private_tls_zrs",
+        "passed": true,
+        "observed": {
+          "publicNetworkAccess": "Disabled",
+          "allowBlobPublicAccess": false,
+          "minimumTlsVersion": "TLS1_2",
+          "allowSharedKeyAccess": false,
+          "sku": "Standard_ZRS"
+        }
+      },
+      {
+        "name": "registry_private_no_local_auth",
+        "passed": true,
+        "observed": {
+          "publicNetworkAccess": "Disabled",
+          "adminUserEnabled": false,
+          "sku": "Premium",
+          "anonymousPullEnabled": false
+        }
+      },
+      {
+        "name": "environment_internal_consumption_profile",
+        "passed": true,
+        "observed": {
+          "publicNetworkAccess": "Disabled",
+          "workloadProfiles": [
+            {
+              "name": "Consumption",
+              "workloadProfileType": "Consumption"
+            }
+          ],
+          "subnet": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/virtualNetworks/vnet-aicg-sn5edmznrgh7s/subnets/snet-environment",
+          "internal": true
+        }
+      },
+      {
+        "name": "managed_identity_three_exact_scoped_roles",
+        "passed": true,
+        "observed": [
+          {
+            "scope": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourcegroups/rg-ai-command-gateway-dev/providers/Microsoft.ContainerRegistry/registries/craicgsn5edmznrgh7s",
+            "role_definition_id": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/providers/Microsoft.Authorization/roleDefinitions/7f951dda-4ed3-4680-a7ca-43fe172d538d",
+            "principal_id": "c474fd95-753c-4043-a126-191a4c2f9ff0"
+          },
+          {
+            "scope": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourcegroups/rg-ai-command-gateway-dev/providers/Microsoft.Storage/storageAccounts/staicgsn5edmznrgh7s/blobServices/default/containers/inputs",
+            "role_definition_id": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/providers/Microsoft.Authorization/roleDefinitions/2a2b9908-6ea1-4ae2-8e65-a410df84e7d1",
+            "principal_id": "c474fd95-753c-4043-a126-191a4c2f9ff0"
+          },
+          {
+            "scope": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourcegroups/rg-ai-command-gateway-dev/providers/Microsoft.Storage/storageAccounts/staicgsn5edmznrgh7s/blobServices/default/containers/outputs",
+            "role_definition_id": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/providers/Microsoft.Authorization/roleDefinitions/ba92f5b4-2d11-453d-a403-e96b0029c9fe",
+            "principal_id": "c474fd95-753c-4043-a126-191a4c2f9ff0"
+          }
+        ]
+      },
+      {
+        "name": "private_endpoint_approved:pep-aicg-sn5edmznrgh7s-monitor",
+        "passed": true,
+        "observed": {
+          "targets": [
+            "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/microsoft.insights/privateLinkScopes/ampls-aicg-sn5edmznrgh7s"
+          ],
+          "connectionStatuses": [
+            "Approved"
+          ],
+          "provisioningState": "Succeeded"
+        }
+      },
+      {
+        "name": "private_endpoint_approved:pep-aicg-sn5edmznrgh7s-registry",
+        "passed": true,
+        "observed": {
+          "targets": [
+            "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.ContainerRegistry/registries/craicgsn5edmznrgh7s"
+          ],
+          "connectionStatuses": [
+            "Approved"
+          ],
+          "provisioningState": "Succeeded"
+        }
+      },
+      {
+        "name": "private_endpoint_approved:pep-aicg-sn5edmznrgh7s-blob",
+        "passed": true,
+        "observed": {
+          "targets": [
+            "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Storage/storageAccounts/staicgsn5edmznrgh7s"
+          ],
+          "connectionStatuses": [
+            "Approved"
+          ],
+          "provisioningState": "Succeeded"
+        }
+      },
+      {
+        "name": "three_expected_private_endpoints",
+        "passed": true,
+        "observed": [
+          "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/microsoft.insights/privateLinkScopes/ampls-aicg-sn5edmznrgh7s",
+          "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.ContainerRegistry/registries/craicgsn5edmznrgh7s",
+          "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Storage/storageAccounts/staicgsn5edmznrgh7s"
+        ]
+      },
+      {
+        "name": "six_expected_private_dns_zones",
+        "passed": true,
+        "observed": [
+          "privatelink.monitor.azure.com",
+          "privatelink.azurecr.io",
+          "privatelink.blob.core.windows.net",
+          "privatelink.agentsvc.azure-automation.net",
+          "privatelink.ods.opinsights.azure.com",
+          "privatelink.oms.opinsights.azure.com"
+        ]
+      },
+      {
+        "name": "private_dns_vnet_link:privatelink.monitor.azure.com",
+        "passed": true,
+        "observed": [
+          {
+            "registrationEnabled": false,
+            "vnet": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/virtualNetworks/vnet-aicg-sn5edmznrgh7s",
+            "provisioningState": "Succeeded"
+          }
+        ]
+      },
+      {
+        "name": "private_dns_vnet_link:privatelink.azurecr.io",
+        "passed": true,
+        "observed": [
+          {
+            "registrationEnabled": false,
+            "vnet": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/virtualNetworks/vnet-aicg-sn5edmznrgh7s",
+            "provisioningState": "Succeeded"
+          }
+        ]
+      },
+      {
+        "name": "private_dns_vnet_link:privatelink.blob.core.windows.net",
+        "passed": true,
+        "observed": [
+          {
+            "registrationEnabled": false,
+            "vnet": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/virtualNetworks/vnet-aicg-sn5edmznrgh7s",
+            "provisioningState": "Succeeded"
+          }
+        ]
+      },
+      {
+        "name": "private_dns_vnet_link:privatelink.agentsvc.azure-automation.net",
+        "passed": true,
+        "observed": [
+          {
+            "registrationEnabled": false,
+            "vnet": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/virtualNetworks/vnet-aicg-sn5edmznrgh7s",
+            "provisioningState": "Succeeded"
+          }
+        ]
+      },
+      {
+        "name": "private_dns_vnet_link:privatelink.ods.opinsights.azure.com",
+        "passed": true,
+        "observed": [
+          {
+            "registrationEnabled": false,
+            "vnet": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/virtualNetworks/vnet-aicg-sn5edmznrgh7s",
+            "provisioningState": "Succeeded"
+          }
+        ]
+      },
+      {
+        "name": "private_dns_vnet_link:privatelink.oms.opinsights.azure.com",
+        "passed": true,
+        "observed": [
+          {
+            "registrationEnabled": false,
+            "vnet": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/virtualNetworks/vnet-aicg-sn5edmznrgh7s",
+            "provisioningState": "Succeeded"
+          }
+        ]
+      },
+      {
+        "name": "monitor_workspace_private_no_local_auth",
+        "passed": true,
+        "observed": {
+          "disableLocalAuth": true,
+          "publicNetworkAccessForQuery": "Disabled",
+          "publicNetworkAccessForIngestion": "Disabled"
+        }
+      },
+      {
+        "name": "monitor_scope_private_only",
+        "passed": true,
+        "observed": {
+          "ingestionAccessMode": "PrivateOnly",
+          "exclusions_schema_valid": true,
+          "queryAccessMode": "PrivateOnly",
+          "exclusions_count": 0
+        }
+      },
+      {
+        "name": "monitor_scope_links_workspace",
+        "passed": true,
+        "observed": [
+          "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourcegroups/rg-ai-command-gateway-dev/providers/microsoft.operationalinsights/workspaces/log-aicg-sn5edmznrgh7s"
+        ]
+      },
+      {
+        "name": "foundation_has_no_jobs",
+        "passed": true,
+        "observed": {
+          "count": 0
+        }
+      }
+    ],
+    "arm_get_requests": 20,
+    "last_read_step": "foundation_jobs",
+    "resource_changes_performed": false,
+    "secrets_requested": false,
+    "dns_resolution_tested": false,
+    "data_plane_tested": false,
+    "job_execution_tested": false,
+    "verifier_sha256": "71e5210f3dbe88a595c16b088ff693aed617def349129f3efbc516b68b229afa"
+  },
+  "verification_attempts": [
+    {
+      "report": "outputs/azure-foundation-verification/593d1c7f-cbc8-41c0-9c55-8b7c306abfb1/summary.json",
+      "sha256": "9f7c582d80d3e6a29b0d852909327f147a9074e3b5f400fb25898a4ec95e3b18",
+      "passed": false,
+      "error_code": "arm_read_failed:managed_identity_roles"
+    },
+    {
+      "report": "outputs/azure-foundation-verification/5ec1fc4b-3b12-4468-8ad1-1b4c26b26d35/summary.json",
+      "sha256": "4719bad326dd6c7812e2cfa4656af864a34d713fc8641cf11f84d7d4f770caa5",
+      "passed": true,
+      "error_code": null
+    }
+  ],
+  "static_infrastructure": {
+    "bicep_version": "0.48.1",
+    "compile_passed": true,
+    "checkov_version": "3.3.29",
+    "passed": 19,
+    "failed": 0,
+    "skipped": 4,
+    "dispositions": "infra/security-exceptions.md",
+    "severity_or_production_acceptance_claimed": false
+  },
+  "script_contracts": {
+    "scope": "PowerShell contract tests with real local Bicep compilation and simulated Azure CLI; no live Azure calls",
+    "passed": true,
+    "checks": [
+      {
+        "name": "offline compilation does not invoke Azure",
+        "passed": true
+      },
+      {
+        "name": "custom network prefixes pass through deployment review into Bicep parameters",
+        "passed": true
+      },
+      {
+        "name": "adjacent subnet ranges and minimum local size boundaries are accepted",
+        "passed": true
+      },
+      {
+        "name": "invalid network blocks before Azure: abbreviated IPv4",
+        "passed": true
+      },
+      {
+        "name": "invalid network blocks before Azure: octet above 255",
+        "passed": true
+      },
+      {
+        "name": "invalid network blocks before Azure: leading-zero octet",
+        "passed": true
+      },
+      {
+        "name": "invalid network blocks before Azure: IPv6",
+        "passed": true
+      },
+      {
+        "name": "invalid network blocks before Azure: prefix above 32",
+        "passed": true
+      },
+      {
+        "name": "invalid network blocks before Azure: VNet /0",
+        "passed": true
+      },
+      {
+        "name": "invalid network blocks before Azure: VNet /1",
+        "passed": true
+      },
+      {
+        "name": "invalid network blocks before Azure: VNet smaller than /29",
+        "passed": true
+      },
+      {
+        "name": "invalid network blocks before Azure: leading-zero prefix",
+        "passed": true
+      },
+      {
+        "name": "invalid network blocks before Azure: trailing newline",
+        "passed": true
+      },
+      {
+        "name": "invalid network blocks before Azure: VNet host bits",
+        "passed": true
+      },
+      {
+        "name": "invalid network blocks before Azure: environment subnet host bits",
+        "passed": true
+      },
+      {
+        "name": "invalid network blocks before Azure: endpoint subnet host bits",
+        "passed": true
+      },
+      {
+        "name": "invalid network blocks before Azure: environment smaller than /27",
+        "passed": true
+      },
+      {
+        "name": "invalid network blocks before Azure: endpoint /28",
+        "passed": true
+      },
+      {
+        "name": "invalid network blocks before Azure: endpoint /29",
+        "passed": true
+      },
+      {
+        "name": "invalid network blocks before Azure: endpoint /30",
+        "passed": true
+      },
+      {
+        "name": "invalid network blocks before Azure: endpoint /31",
+        "passed": true
+      },
+      {
+        "name": "invalid network blocks before Azure: endpoint /32",
+        "passed": true
+      },
+      {
+        "name": "invalid network blocks before Azure: environment outside VNet",
+        "passed": true
+      },
+      {
+        "name": "invalid network blocks before Azure: endpoint outside VNet",
+        "passed": true
+      },
+      {
+        "name": "invalid network blocks before Azure: subnet contains VNet",
+        "passed": true
+      },
+      {
+        "name": "invalid network blocks before Azure: overlapping subnets",
+        "passed": true
+      },
+      {
+        "name": "invalid network blocks before Azure: identical subnets",
+        "passed": true
+      },
+      {
+        "name": "online review allows Create NoChange Ignore without deployment",
+        "passed": true
+      },
+      {
+        "name": "Deploy requires explicit Online",
+        "passed": true
+      },
+      {
+        "name": "Job requires an immutable lowercase digest",
+        "passed": true
+      },
+      {
+        "name": "default blocks Delete",
+        "passed": true
+      },
+      {
+        "name": "default blocks Unsupported",
+        "passed": true
+      },
+      {
+        "name": "default blocks Deploy",
+        "passed": true
+      },
+      {
+        "name": "default blocks Unexpected",
+        "passed": true
+      },
+      {
+        "name": "default blocks Modify",
+        "passed": true
+      },
+      {
+        "name": "AllowModify admits reviewed modifications only",
+        "passed": true
+      },
+      {
+        "name": "AllowModify does not admit deletion",
+        "passed": true
+      },
+      {
+        "name": "failed what-if status prevents apply",
+        "passed": true
+      },
+      {
+        "name": "nonzero Azure CLI exit prevents apply",
+        "passed": true
+      },
+      {
+        "name": "explicit create applies after successful what-if",
+        "passed": true
+      }
+    ]
+  },
+  "local_container": {
+    "image_id": "sha256:b2bc076451a10eb7708cdb4ed0127ab4243f7b09e8596ec661d7dd9efa3e6952",
+    "identity_kind": "local Docker image ID/index; not a published registry digest",
+    "platform": "linux/amd64",
+    "run_id": "41f1ece4-6055-48e9-8e1f-a612bf19351d",
+    "passed": true,
+    "dataset_checks_passed": 16,
+    "resource_measurement": {
+      "scope": "Linux image resource-bounded dataset job with filesystem Blob simulation; no Azure service calls",
+      "application_version": "0.4.0",
+      "uid": 10001,
+      "exit_code": 0,
+      "duration_seconds": 81.363,
+      "cgroup_limits": {
+        "memory.max": "2147483648",
+        "memory.swap.max": "0",
+        "cpu.max": "100000 100000"
+      },
+      "cgroup_peak_memory_bytes": 1006088192,
+      "cgroup_memory_events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+      "process_max_rss_bytes": 1011908608,
+      "network": "none",
+      "root_filesystem": "read-only",
+      "input_mounts": "five individual files, read-only",
+      "all_checks_passed": true
+    },
+    "azure_data_plane_exercised": false
+  },
+  "image_security": {
+    "image_id": "sha256:b2bc076451a10eb7708cdb4ed0127ab4243f7b09e8596ec661d7dd9efa3e6952",
+    "scanner": {
+      "name": "Trivy",
+      "version": "0.76.0",
+      "release_url": "https://github.com/aquasecurity/trivy/releases/tag/v0.76.0",
+      "release_published_at": "2026-10-14T11:45:44Z",
+      "archive_sha256": "7b4762a5a5326cb4b83dfd2bb5d9aaf15a1ed867c75cad7dd8b38840a28e7be6",
+      "executable_sha256": "51e50a34f8739424bc88282602d10945b25249ffdb51703fe3c9453c20217c42",
+      "checksums_sha256": "761d7853500074a0c81b1ef2f05ccb07f05080937aab68f98e7f2902a565e945",
+      "official_github_asset_digests_matched": true,
+      "official_checksum_manifest_matched": true,
+      "sigstore_attestation_verification_performed": false
+    },
+    "database": {
+      "Version": 2,
+      "NextUpdate": "2026-10-16T19:09:25.631493777Z",
+      "UpdatedAt": "2026-10-15T19:09:25.631494278Z",
+      "DownloadedAt": "2026-10-16T00:03:59.4841453Z",
+      "repository": "ghcr.io/aquasecurity/trivy-db:2",
+      "files": [
+        {
+          "Name": "metadata.json",
+          "Length": 151,
+          "SHA256": "ae28e10c6fc78f4e96251695541dc107c3a7e8dff6973c2f73c5f021ba067530"
+        },
+        {
+          "Name": "trivy.db",
+          "Length": 1628803072,
+          "SHA256": "32c6ed2327c56930f4814c2f243bcdbf54fe4b6b42d85533e53d0a02ebe36e4d"
+        }
+      ],
+      "oci_manifest_digest_captured": false
+    },
+    "results": {
+      "package_advisory_occurrences": 164,
+      "distinct_advisory_ids": 71,
+      "severity_occurrences": {
+        "CRITICAL": 0,
+        "HIGH": 44,
+        "MEDIUM": 58,
+        "LOW": 61,
+        "UNKNOWN": 1
+      },
+      "distinct_advisories_by_severity": {
+        "CRITICAL": 0,
+        "HIGH": 8,
+        "MEDIUM": 29,
+        "LOW": 33,
+        "UNKNOWN": 1
+      },
+      "fixable_occurrences": 0,
+      "high_or_critical_fixable_occurrences": 0,
+      "targets": [
+        {
+          "type": "debian",
+          "packages": 87,
+          "findings": 164
+        },
+        {
+          "type": "python-pkg",
+          "packages": 37,
+          "findings": 0
+        }
+      ]
+    },
+    "security_gate_passed": false,
+    "risk_accepted": false,
+    "published": false,
+    "changes": [
+      "Patch liblzma5 to 5.8.1-1+deb13u2",
+      "Use pinned pip 26.2 during build, then remove the installer from runtime"
+    ]
+  },
+  "cost": {
+    "currency": "USD",
+    "persistent_core_monthly": 97.49241666666667,
+    "estimate_document": "docs/azure-cost-estimate.md",
+    "actual_bill_measured": false,
+    "private_builder_or_access_priced": false
+  },
+  "application_regression": {
+    "baseline_record": "governance/local-verification-v0.4.json",
+    "baseline_sha256": "d5a9adc20abb0154788b1cec9be4577451a253738fd2dc0f5d2510e8047a89c9",
+    "application_test_contract_policy_hashes_unchanged": true,
+    "tests_passed_in_baseline": 452,
+    "subtests_passed_in_baseline": 44,
+    "full_suite_repeated_for_infra_only_changes": false
+  },
+  "remaining": [
+    "Choose and price a VNet-connected publisher/operator path with correct private DNS.",
+    "Review remaining image findings and bind publication to the exact registry manifest digest.",
+    "Obtain separate authorization for publication, dataset upload and job execution.",
+    "Verify live private DNS, identity data access, denied input writes, image pull, completion artifacts, logs and failure behavior.",
+    "Complete domain qualification, independent acceptance, authenticated operational authority and production gates."
+  ],
+  "historical_records_sha256": {
+    "governance/local-verification-v0.2.json": "3728988ec99ec8a514d06fa701092aac07e5962808455e89679d1d9ec05c80ff",
+    "governance/local-verification-v0.3.json": "3b7f54dfe5ec6f4a713a9cb2a608064ed2f23e4a51eebefce81cedbaaaa2a941",
+    "governance/local-verification-v0.4.json": "d5a9adc20abb0154788b1cec9be4577451a253738fd2dc0f5d2510e8047a89c9",
+    "infra/validation.json": "cad9b0f6bdc12f4682219db47af63b1281003d10b3e815f7e9ec30572a8cdda1",
+    "infra/validation.md": "d99668a52dad76dfed5cf74bbca4ba839a81f936e0b683a713ea567d661738b0"
+  },
+  "source_sha256": {
+    ".azure/infrastructure-plan.json": "a59085f07f4dfefa057866dffb9ccf583c576a69be39aa5863333195ada733e3",
+    ".azure/insights.json": "2ce54bb4146185bb0cfe5052d3e722794b0e78263e5b698a930dd97696ccd9ad",
+    ".dockerignore": "724bb2d027fca93eeb8c8407e51cef45f339b4eec8212344ad2927409e7de266",
+    "Dockerfile": "7933de10f7758f742963274140641190cd7fbb52e2b44a3522bbd5c5fdaee2b5",
+    "config/policies/demo-policy.json": "dd9c2de63888499aed149576d02933e8c6efe01f02c259df9d563dba756fe29c",
+    "config/policies/unqualified-policy.json": "c333fac2954a8cfc193b514a1b02a8b49322404c2696f19e08c61303be6c9ed7",
+    "data/contracts/advice.schema.json": "861f95dc29277d9d8ab657b1d477b632bfe67598deabad97c60add8945c80afa",
+    "data/contracts/command-request.schema.json": "404defb181ed6632576b9fb4b5bac272dd549306ef2e989f52c16744e8dd8468",
+    "data/contracts/evidence-catalog.schema.json": "41769ed4e0dc3f3d21f58eee8a5b81f78dbcea676f35b2333d15d9546ef34c6a",
+    "data/contracts/model-advice.schema.json": "4cbc12815e36b59fe0530fe0ad4204c6cf39deda2a633919c37ba767f4a17904",
+    "data/contracts/qualification.schema.json": "4e0c19ad04babd20348e66b1beb0e8739dfcacf778089b704a10b397c6a9f8e1",
+    "data/contracts/source-profile.schema.json": "69c4a53fc23b0a229d53625793471e405ad74f62f2ce6b95e0c9fa73e603ea41",
+    "data/evaluation/advice-cases-v1.json": "bdd480fa923d5b50a5f0e8f693a8f2ed7937bbcca8479c0875e95644b120b68d",
+    "data/lineage/source-inventory.json": "3f26f0c1a3fd57ef5c58e4f63f535321fe2da504ba797de8bd0e1d6db31dbdde",
+    "infra/main.bicep": "0cf30ed140bfae216d1e4921e349d21cd7c0068c3642581778918ab4c02e34dd",
+    "infra/main.parameters.example.json": "49ea72d80568e78a627ea66adc523d4d34bb9efe8c379d07def8c70413636f4e",
+    "infra/modules/environment.bicep": "30cd199db514bbf93e4e5fa5ef68be670aa20a77773c19452c4fcbeead3aa14f",
+    "infra/modules/job.bicep": "88de96d1a26cac7b309a8fdf86742fa846057dbb1270691ebdcb6c937d5241ff",
+    "infra/modules/monitoring.bicep": "1f736cb0ff5dd40e52a0bcd22ea04b8776f312a1aeecd9a8dea22c70bbf8bf6f",
+    "infra/modules/network.bicep": "e899852ff2de17a7ebf5e928e5d6c8b902b02f2a43aecc3c52ccf8044fe4d537",
+    "infra/modules/registry.bicep": "61cfcb8304229dad5682fb02f60052e3bdc279a60f482cb10b8ec853f1e6d5e9",
+    "infra/modules/storage.bicep": "bb6729452dd057d586ec7f1c4f37f032233f9b8fa54beeebad776200ac11e810",
+    "infra/subscription.bicep": "562fcbc61158c545262e23ec0b9bfabc174899133a37ec3005e1aaab82ca04fb",
+    "infra/validation.json": "cad9b0f6bdc12f4682219db47af63b1281003d10b3e815f7e9ec30572a8cdda1",
+    "pyproject.toml": "4ee8caf5db2d4768cb4c876d4df2d63f119f18f5140e6d14f20f85d564a27ba0",
+    "requirements-azure.in": "6e0196f7635378c37026fc6e2ce635c7159b08c599d325c1d379f15a1b212587",
+    "requirements-azure.lock": "5fadd3b78ee5d7c8497c373e1739270eec131e7c81d2c7092644e263f7b23a6f",
+    "requirements-dev.lock": "8d85e82f5517400fbc0eb05d37a7c7abdf5acd26bb40fea9dc20020567afce60",
+    "requirements-runtime.lock": "ef4a072be1db0ca5dc6249ec970d9ee8286f75756784203d9f546905636c36d2",
+    "scripts/azure_preflight.ps1": "2af56ea62e2a1708a7a13409597dbc38d83d42c5bfb53162110ebac3ba845389",
+    "scripts/check_repository.py": "fc4b03add60bc1f2ce65540063f137f71d4e3089610d68a4c41fd51212b60bda",
+    "scripts/deploy_azure.ps1": "90ce95b3cd369d4d0d73b1456bbef26ab90de1fe3cd828882bf4e0144371f97d",
+    "scripts/test_azure_container.ps1": "c1c539aecc0b4b5e802903cc4a8b35c2b9ebf3c67d167a327b823997d607f588",
+    "scripts/test_azure_scripts.ps1": "0f9679c7faf5035fec8bbbfbe0c702c69213195ed55c1889fc14d3740f93c546",
+    "scripts/verify_azure_container.py": "5f443b0f4af3ac6c828782a1771afc825c38b5c760c8302d09528d48d9fa54a1",
+    "scripts/verify_azure_foundation.ps1": "71e5210f3dbe88a595c16b088ff693aed617def349129f3efbc516b68b229afa",
+    "scripts/verify_azure_local.py": "0eaee37f2b776db86ea120ae68a7f313983958bd3114ef96e7b1bcf6954b7fb2",
+    "scripts/verify_local.py": "cc0a85d2feac0d0fcf650c55a8ea4d3925a060f315a38394c88640a5265c6c62",
+    "src/ai_command_gateway/__init__.py": "e990610ff2a3ad2e9cc3ccbed64b4e4ffc56942984219f7d5f622fa8882521fb",
+    "src/ai_command_gateway/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "src/ai_command_gateway/advice_evaluation.py": "2117ee88381a0945d30009aca002ede5f8cf899beb5626ba7b19a34ba1b995c0",
+    "src/ai_command_gateway/advisor.py": "a53cb85f9ac50db83a8ab51bd6985e22cf137547ad0523b2539803c90db01afc",
+    "src/ai_command_gateway/azure_job.py": "745fc779d7d58dad8d1a782c69b0ae602bd2d7469d38ce36c907d758cb9f7134",
+    "src/ai_command_gateway/cli.py": "1f0df40392bd18cf9546e503bc7d44af1e0128a17990f419a23bc843cf845d26",
+    "src/ai_command_gateway/datasets.py": "12b0445a66e1ac17ce89c4c1af9bf49843b872ab2d2a3885f946e2eff181398f",
+    "src/ai_command_gateway/evidence.py": "056931e423405b84947d0b5eda3388260e97d6d229e11d6877b38ca680ce6f37",
+    "src/ai_command_gateway/gateway.py": "91192bce015e96b2fc8b96801951a146d4452b3fa7184a3a74e98ca39e190930",
+    "src/ai_command_gateway/model_advisor.py": "5679bc4aae4b6bda14b9c038fed412b8e6304749cb91015a3c9acb7f41be2681",
+    "src/ai_command_gateway/openai_transport.py": "4cd069777dbc62e1b49bc35f6ae80e11f3b060b8c1bd5c38807da31ee98a815d",
+    "src/ai_command_gateway/qualification.py": "36a667076f80b4172d00ceafc9947535ea8280d0fe11d93b545fc87b266e7d5f",
+    "src/ai_command_gateway/replay.py": "9349184e74b656e4b7b2b93989628a51b25323f6fc5ee182f255727aa2f29c2c",
+    "tests/fixtures/evidence-source-profile.json": "f448b590686983fd7c280056fa01e67a0ef0ce3e16476b9246a2857a568676c1",
+    "tests/test_advice_evaluation.py": "559e1636a4bf119f4674364d567ffa4dd1d713d3439193ea57bc47af2a476cd9",
+    "tests/test_advisor.py": "0e15887d412969213b1275001a310e0f09569dbb27d151e082f93a5da2a72301",
+    "tests/test_azure_job.py": "97a3815d1568a15521e9ea19325a1a2fcf4c2134f2242c11e8fdf92e689eb3be",
+    "tests/test_cli.py": "21ed9af720d7080e0841e34d924d5a216f65764db0dbf507772506e540b6661e",
+    "tests/test_cli_advice.py": "1b27553423fe1020482385188d07dcadf488ca92ab497cb83d53ee2311443cf2",
+    "tests/test_cli_model_advice.py": "72aff3ceac5d2831cfa67231629242bc0acf7850004ed4a52ea2d1a01cec8883",
+    "tests/test_datasets.py": "5debaf65c9bb14a4fe49730cb2180fa55070e1f806f8628e4d5e2b1b4df05664",
+    "tests/test_evidence.py": "02c4a6b30c4a28ea0df9a73251dff85d79c7588c5be808fb0aea0bb416d91b51",
+    "tests/test_gateway.py": "7dda484e8a042edd4a9c94fd5e8030f5e0333296dadea99162a659295e479b73",
+    "tests/test_model_advisor.py": "52c3d3093dd262d3d911a42209310ae2b648f969bb59503e16515d27858986e9",
+    "tests/test_openai_transport.py": "c67d8871c4b98a9f6a261964c32b83acef98e2f9644f6ed6caf694cba40a1572",
+    "tests/test_qualification.py": "9d20e2e57588f147a551a4d0fb1752f3f6d37ed32e188afed27c7f873a7eec6f"
+  },
+  "raw_evidence_sha256": {
+    "outputs/azure-deployment-review/summary.json": "b0a9e846332c19cdcead376766b8b082c2c683f635f4231c5453179cd6fdf643",
+    "outputs/azure-deployment-review/what-if.json": "6a898543f5c70f5d33fc8788201821aed1d1d4ab8284651254e9f10bea2a0590",
+    "outputs/azure-deployment-review/preapply-what-if.json": "6a898543f5c70f5d33fc8788201821aed1d1d4ab8284651254e9f10bea2a0590",
+    "outputs/azure-deployment-review/deployment.json": "1bd1dccca290db42209bb7ca1d178e1ae961423935b9cfa21c8cdee142d3e7b3",
+    "outputs/azure-subscription-validation/subscription.json": "9c572c097c819215eb9ef2905843f0b8dc77f1b9b44d4b9f8941faec8330ca3d",
+    "outputs/azure-subscription-validation/bicep.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "outputs/azure-subscription-validation/checkov.log": "330f963df6474a52e60cbb54aac96e70d880623a1c4d174d3a7b471fb33625d1",
+    "outputs/azure-foundation-verification/summary.json": "4719bad326dd6c7812e2cfa4656af864a34d713fc8641cf11f84d7d4f770caa5",
+    "outputs/azure-image-scan-final/scan-summary.json": "f2b17220c6887cb6b115bd30379bdfd965ee048cf336b1a3b14dad91e12be0dd",
+    "outputs/azure-image-scan-final/trivy-image.json": "efab41edbcf0447893b94ac6f8493befcb0e9347f0e67e808378d62002510c80",
+    "outputs/azure-image-scan-final/sbom.cyclonedx.json": "af1a1c140c54f8e8c96db0dc1700002e087aea03138116f04acc4e16bc739f75",
+    "outputs/azure-image-scan-final/runtime-package-probe.json": "e9f59303452f8594520a8cc40d3e254963419e45a09dfee3f669da039e80a0e5",
+    "outputs/azure-script-verification/summary.json": "e6b41e80e89a0cda81f2a2bc37a3ace17747e433cd9bf574f26e715661389999",
+    "outputs/azure-container-resources-reviewed/summary.json": "48ac166d96f176aa42618af0c1907ad3ea3faa92b14bb6571ec8c235a2c8bae8",
+    "outputs/azure-container-resources-reviewed/41f1ece4-6055-48e9-8e1f-a612bf19351d/resource-summary.json": "7f172956b8704768c53862dc1a3f95b01b5553ea15dca305476f381d6617ba0f",
+    "outputs/azure-container-resources-reviewed/41f1ece4-6055-48e9-8e1f-a612bf19351d/dataset-analysis/summary.json": "387e75f7c48645b2e37822f1bef97aac01f5a8be526e2a342a0e66ca86ce3e73",
+    "outputs/azure-cost-review/estimate.json": "2c9282cb057f98a1f5ec19b9bc28f5895f3db1742f93e2d9b14228a5f482003c",
+    "outputs/azure-deployment-review/postdeploy-inventory.json": "50081552ad5f53fb93fd3253440cc79c5c4d8678c1be5ffb3292995c8cf999f7",
+    "outputs/azure-deployment-review/managed-inventory.json": "b51a1a04a82b7243bc4b66893a5a274022f7016dd0ad785ef9f19747841f22c2"
+  },
+  "diagrams": {
+    "azure_view": "ARCH-004 v0.2",
+    "dimensions": [
+      1066,
+      2220
+    ],
+    "transparent_corner_alpha": 0,
+    "light_surface_visually_inspected": true,
+    "source_matches_architecture_embed": true,
+    "pending_workload_paths_dashed": true,
+    "sha256": {
+      "docs/diagrams/04-azure-job.mmd": "c377ea0836b5ee41f7cfc43bbbf7ee88343496a6e272dc90b8367a674ffb305e",
+      "docs/diagrams/04-azure-job.svg": "d3473fa5ecd1378fa4285dbdd894611fb03ec64ae2ce4a99f81cd709606338a3",
+      "docs/diagrams/04-azure-job.png": "87c4eaa7a129f9df91767c43e7c5be42a9e92827534cad5738864797d1b70790",
+      "docs/diagrams/render.mjs": "27ea01d86e65f314a21b702c97fbf7fb692bd376d2e6f0b48fc4dba7720d8bf2"
+    }
+  },
+  "documentation_sha256": {
+    "README.md": "063db4426e7ffd75dd532aa14b89b573929a5b47519623de91c196d2e8b0ed4a",
+    "PROJECT_STATUS.md": "1ef439bd8b49a566e925304040dcf7f30357d8d4c64af228e712609be7dbafba",
+    "CHANGELOG.md": "49ae04f6aa391fc3e353e07f5df0b3fe31dad457853261863b690a05444d4ea2",
+    "docs/results.md": "9550bcb537442885caffa9b0bdda5b2133553ce1dfa4abd566ecd535759767ba",
+    "docs/README.md": "48f087e1fcb60b5de2ad9898815437dc1ef9f9ec9d381389ff49b6744bd6e89f",
+    "docs/azure-deployment-review.md": "ae2b13253e0670f49b021e171d9a58c219b241bd5f43b9a1d91a21fd56dd3b2f",
+    "docs/azure-cost-estimate.md": "ff4f33767cdab7b7706871402919c5eaef2d89a157144e536905617bb17a6a3d",
+    "docs/azure-runtime-checks.md": "00fa91d91ed8d6d9896ecbbc8bac25af6c8b2f34d86f3e088b3d0ad75fc30ed1",
+    "docs/image-security.md": "04ac04392e05cb330ce64dafb868bba47616db49d7e6fedd99ecd94344e2fed3",
+    "docs/azure-implementation.md": "184a280d90a37476d9557a05819ab40f19cbd0022497a952b95fa5f2509b7efa",
+    "docs/architecture/README.md": "573813856c3132b3380dcf2787afacf4e569ef6abd08e45208e7b65817d86e10",
+    "docs/diagrams/README.md": "86f54160e2aa0c7730be242e1d1b7f389ae2311869af8bc334edf52d09f0ce3a",
+    "customer/COST-001.md": "f3046fe9a0a05ec3459cf0b017c43918a7aaca969a2886a0a5e3e99378b23cf6",
+    "customer/HANDOFF.md": "ce792ebb8ac61229f2b8f6aa10d23b34876ace4c22260bc91be988196e9474f7",
+    "runbooks/README.md": "6bfb1e55cb565bbc36a3b9b6aceea04c63b91f6bf6555c272a1aeaa10583ce18",
+    "infra/README.md": "b29193c89777595c0d5aaa30f14ca6e61afe6362511167a12d4c82542552d705",
+    "infra/subscription-readme.md": "978895d137769142710ab42b39182676b8f780ddef86d3a5d6f58524c8c26cd7",
+    "governance/release_gates.md": "cec294c8591cf94c06d0fe5f030fd99a6b2e7d7fb2743b0622e469e3bb43bd8e",
+    "governance/cloud_entry_criteria.csv": "2edb38a5884e2f1e4fa5dcabe23c67a0e7d038dc0fef6240341f378a22dcb202",
+    "architecture/adr/ADR-004-azure-batch-foundation.md": "c0bf05950e05208b6c6438770b5f0b3f2515d9083f9efbdd726e72e6873c9ec0"
+  },
+  "final_repository_check": {
+    "recorded_at_utc": "2026-10-16T00:53:12.202313+00:00",
+    "passed": true,
+    "local_links": 396,
+    "requirements": 6,
+    "acceptance_criteria": 6,
+    "open_items": 8,
+    "original_discovery_hash_preserved": true,
+    "git_diff_check_passed": true,
+    "snapshot_hashes_rechecked": 112,
+    "scope": "Repository consistency and recorded file integrity only; no additional runtime or production acceptance claim"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ai-command-gateway:advice:1",
+  "title": "Offline extractive source observations",
+  "description": "Every claim is an exact catalog statement. Integrity-checked source observations never confer operational authority. No generative model or execution path is present.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "mode", "response_type", "question", "reason_code", "message", "catalog", "source_filter", "claims", "command_proposal", "authority", "can_execute"],
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "text": {"type": "string", "minLength": 1},
+    "citation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["evidence_id", "source_id", "source_version", "source_sha256", "filename", "locator", "subject", "property", "trust_class", "qualification_status"],
+      "properties": {
+        "evidence_id": {"$ref": "#/$defs/text"},
+        "source_id": {"$ref": "#/$defs/text"},
+        "source_version": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "source_sha256": {"$ref": "#/$defs/sha256"},
+        "filename": {"$ref": "#/$defs/text"},
+        "locator": {"$ref": "#/$defs/text"},
+        "subject": {"$ref": "#/$defs/text"},
+        "property": {"$ref": "#/$defs/text"},
+        "trust_class": {"const": "source_observed"},
+        "qualification_status": {"const": "unresolved"}
+      }
+    }
+  },
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "mode": {"const": "offline_extractive"},
+    "response_type": {"enum": ["observation", "abstain"]},
+    "question": {"type": ["string", "null"]},
+    "reason_code": {"enum": ["evidence_found", "no_matching_evidence", "operational_authority_unavailable", "conflicting_evidence", "unknown_source", "catalog_unverified", "invalid_question", "invalid_filter"]},
+    "message": {"$ref": "#/$defs/text"},
+    "catalog": {
+      "oneOf": [
+        {"type": "null"},
+        {"type": "object", "additionalProperties": false,
+         "required": ["catalog_id", "content_sha256"],
+         "properties": {"catalog_id": {"$ref": "#/$defs/text"}, "content_sha256": {"$ref": "#/$defs/sha256"}}}
+      ]
+    },
+    "source_filter": {"type": ["string", "null"]},
+    "claims": {
+      "type": "array", "maxItems": 10,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["text", "citation", "retrieval"],
+        "properties": {
+          "text": {"$ref": "#/$defs/text"},
+          "citation": {"$ref": "#/$defs/citation"},
+          "retrieval": {
+            "type": "object", "additionalProperties": false,
+            "required": ["score", "matched_terms", "query_term_coverage"],
+            "properties": {
+              "score": {"type": "number", "minimum": 0, "maximum": 1},
+              "matched_terms": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/text"}},
+              "query_term_coverage": {"type": "number", "exclusiveMinimum": 0, "maximum": 1}
+            }
+          }
+        }
+      }
+    },
+    "command_proposal": {"type": "null"},
+    "authority": {"const": "source_observations_only"},
+    "can_execute": {"const": false}
+  },
+  "allOf": [
+    {"if": {"properties": {"response_type": {"const": "abstain"}}},
+     "then": {"properties": {"claims": {"maxItems": 0}, "reason_code": {"not": {"const": "evidence_found"}}}}},
+    {"if": {"properties": {"response_type": {"const": "observation"}}},
+     "then": {"properties": {"claims": {"minItems": 1}, "reason_code": {"const": "evidence_found"}, "catalog": {"type": "object"}}}}
+  ]
+}

@@ -1,0 +1,1067 @@
+{
+  "version": "0.4.0",
+  "recorded_at_utc": "2026-10-15T19:17:09.209544+00:00",
+  "scope": "Local application, provider fixtures, real-source analysis, Azure job simulation, Linux container and static IaC verification; no live Azure/model or domain acceptance claim",
+  "python": "3.10.11",
+  "platform": "Windows-10-10.0.26300-SP0",
+  "dependencies": {
+    "pyarrow": "25.0.1",
+    "scipy": "1.15.3",
+    "numpy": "2.2.6",
+    "h5py": "3.16.0",
+    "pytest": "9.1.1"
+  },
+  "optional_dependencies": {
+    "azure-identity": "1.26.0",
+    "azure-storage-blob": "12.31.0",
+    "azure-core": "1.41.0"
+  },
+  "checks": [
+    {
+      "name": "tests",
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "--junitxml=outputs/verification/tests.xml"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "passed": true,
+      "summary": "452 passed, 44 subtests passed in 36.69s"
+    },
+    {
+      "name": "repository",
+      "command": [
+        "python",
+        "scripts/check_repository.py"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "passed": true,
+      "summary": "PASS: 310 local file links; 6 requirements; 6 criteria; 8 open items; trace IDs; original SHA-256; no internal instruction files.\nScope: repository consistency only; application, remote CI, rendering and acceptance not evaluated."
+    },
+    {
+      "name": "demo",
+      "command": [
+        "python",
+        "-m",
+        "ai_command_gateway",
+        "demo",
+        "--db",
+        "outputs/verification/demo.sqlite3"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "passed": true,
+      "checks": {
+        "synthetic_in_range_allowed": true,
+        "synthetic_out_of_range_blocked": true,
+        "missing_evidence_escalated": true,
+        "approved_mock_executed": true,
+        "approval_replay_blocked": true
+      }
+    },
+    {
+      "name": "profile",
+      "command": [
+        "python",
+        "-m",
+        "ai_command_gateway",
+        "profile",
+        "--input-dir",
+        "C:\\Users\\moore\\Downloads",
+        "--output-dir",
+        "outputs/profiles"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "passed": true,
+      "files": [
+        {
+          "source_id": "S1",
+          "filename": "logs_dataset.parquet",
+          "sha256": "5ea386a66b4ee5c0c5602f3e70e6c118d6d5e208cabf0d99e9c4110b84e4352d",
+          "status": "profiled"
+        },
+        {
+          "source_id": "S1",
+          "filename": "packets_dataset.parquet",
+          "sha256": "5121f480c174f845d243560e8f112ea2ba43dc2922a9f563309cd7c10166ead2",
+          "status": "profiled"
+        },
+        {
+          "source_id": "S1",
+          "filename": "process_dataset.parquet",
+          "sha256": "163613e85346c8913e423014e9c8911a3407dab2456cc10819e6ee9dad2ee7d8",
+          "status": "profiled"
+        },
+        {
+          "source_id": "S2",
+          "filename": "n76t439f65-1.zip",
+          "sha256": "f1494903e3c3ff1ea2972af0daa9793f579b2ac444455bdd5035ebee05b8a042",
+          "status": "profiled"
+        },
+        {
+          "source_id": "S3",
+          "filename": "doi-10.34810-data2936.zip",
+          "sha256": "e4fcab2139c77dca64eed45b95adc4fa41d96c17e810d22d89d2d55fc5acdf5e",
+          "status": "profiled"
+        }
+      ],
+      "inspection_summary": {
+        "status": "complete",
+        "expected_file_count": 5,
+        "profiled_file_count": 5,
+        "fully_inspected_file_count": 5,
+        "meaning": "completion_of_requested_profile_scope_not_source_qualification"
+      }
+    },
+    {
+      "name": "qualify",
+      "command": [
+        "python",
+        "-m",
+        "ai_command_gateway",
+        "qualify",
+        "--input-dir",
+        "C:\\Users\\moore\\Downloads",
+        "--output-dir",
+        "outputs/qualification"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "passed": true,
+      "inspection_summary": {
+        "status": "complete",
+        "expected_file_count": 5,
+        "matched_file_count": 5,
+        "analyzed_parquet_count": 3,
+        "meaning": "completion_of_declared_scope_not_semantic_or_control_qualification"
+      },
+      "qualification": {
+        "status": "unresolved",
+        "clock_alignment": "unresolved",
+        "engineering_units": "unresolved",
+        "scaling": "unresolved",
+        "independent_sources_combined": false,
+        "physical_limits_learned": false,
+        "physical_validity_labels_available": false,
+        "raw_rows_included": false
+      },
+      "report_sha256": "f712236d313cb616e6f25f455f92a754342770b1f1315a1598cb31ce398546e2",
+      "evidence_count": 28
+    },
+    {
+      "name": "catalog",
+      "command": [
+        "python",
+        "-m",
+        "ai_command_gateway",
+        "catalog"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "passed": true,
+      "catalog_id": "CAT-4e18dfcea86bcd8a28ff1edf",
+      "content_sha256": "4e18dfcea86bcd8a28ff1edfed2e22ce94fbf7f5c334946d17f42bfe231c3ef0",
+      "fact_count": 154,
+      "authorizes_execution": false
+    },
+    {
+      "name": "advice",
+      "command": [
+        "python",
+        "-m",
+        "ai_command_gateway",
+        "advise",
+        "--question",
+        "What are the minimum and maximum in_batt_state_of_charge in process_dataset.parquet?",
+        "--source",
+        "S1"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "passed": true,
+      "response": {
+        "schema_version": "1.0.0",
+        "mode": "offline_extractive",
+        "response_type": "observation",
+        "question": "What are the minimum and maximum in_batt_state_of_charge in process_dataset.parquet?",
+        "reason_code": "evidence_found",
+        "message": "Exact catalog observations are shown with their evidence citations.",
+        "catalog": {
+          "catalog_id": "CAT-4e18dfcea86bcd8a28ff1edf",
+          "content_sha256": "4e18dfcea86bcd8a28ff1edfed2e22ce94fbf7f5c334946d17f42bfe231c3ef0"
+        },
+        "source_filter": "S1",
+        "claims": [
+          {
+            "text": "process_dataset.parquet:in_batt_state_of_charge: observed max = 121.0 (unresolved); source observation, qualification unresolved.",
+            "citation": {
+              "evidence_id": "EV-b4484da1c50aca508758bfd5",
+              "source_id": "S1",
+              "source_version": "sha256:163613e85346c8913e423014e9c8911a3407dab2456cc10819e6ee9dad2ee7d8",
+              "source_sha256": "163613e85346c8913e423014e9c8911a3407dab2456cc10819e6ee9dad2ee7d8",
+              "filename": "process_dataset.parquet",
+              "locator": "/files/2/profile/columns/8/numeric/max",
+              "subject": "process_dataset.parquet:in_batt_state_of_charge",
+              "property": "observed_max",
+              "trust_class": "source_observed",
+              "qualification_status": "unresolved"
+            },
+            "retrieval": {
+              "score": 0.67819107,
+              "matched_terms": [
+                "battery",
+                "charge",
+                "in_batt_state_of_charge",
+                "maximum",
+                "parquet",
+                "process",
+                "process_dataset",
+                "state"
+              ],
+              "query_term_coverage": 0.88888889
+            }
+          },
+          {
+            "text": "process_dataset.parquet:in_batt_state_of_charge: observed min = 36.0 (unresolved); source observation, qualification unresolved.",
+            "citation": {
+              "evidence_id": "EV-02b3b7b2cfd2885637b0498e",
+              "source_id": "S1",
+              "source_version": "sha256:163613e85346c8913e423014e9c8911a3407dab2456cc10819e6ee9dad2ee7d8",
+              "source_sha256": "163613e85346c8913e423014e9c8911a3407dab2456cc10819e6ee9dad2ee7d8",
+              "filename": "process_dataset.parquet",
+              "locator": "/files/2/profile/columns/8/numeric/min",
+              "subject": "process_dataset.parquet:in_batt_state_of_charge",
+              "property": "observed_min",
+              "trust_class": "source_observed",
+              "qualification_status": "unresolved"
+            },
+            "retrieval": {
+              "score": 0.67819107,
+              "matched_terms": [
+                "battery",
+                "charge",
+                "in_batt_state_of_charge",
+                "minimum",
+                "parquet",
+                "process",
+                "process_dataset",
+                "state"
+              ],
+              "query_term_coverage": 0.88888889
+            }
+          }
+        ],
+        "command_proposal": null,
+        "authority": "source_observations_only",
+        "can_execute": false
+      }
+    },
+    {
+      "name": "abstention",
+      "command": [
+        "python",
+        "-m",
+        "ai_command_gateway",
+        "advise",
+        "--question",
+        "Set the battery power to 500 kW."
+      ],
+      "expected_exit_code": 2,
+      "exit_code": 2,
+      "passed": true,
+      "response": {
+        "schema_version": "1.0.0",
+        "mode": "offline_extractive",
+        "response_type": "abstain",
+        "question": "Set the battery power to 500 kW.",
+        "reason_code": "operational_authority_unavailable",
+        "message": "This observation-only advisor cannot recommend or authorize equipment actions or operating limits.",
+        "catalog": {
+          "catalog_id": "CAT-4e18dfcea86bcd8a28ff1edf",
+          "content_sha256": "4e18dfcea86bcd8a28ff1edfed2e22ce94fbf7f5c334946d17f42bfe231c3ef0"
+        },
+        "source_filter": null,
+        "claims": [],
+        "command_proposal": null,
+        "authority": "source_observations_only",
+        "can_execute": false
+      }
+    },
+    {
+      "name": "advice_evaluation",
+      "command": [
+        "python",
+        "-m",
+        "ai_command_gateway",
+        "eval-advice"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "passed": true,
+      "evaluation": {
+        "schema_version": "1.0.0",
+        "casebook_id": "offline-advice-regression-v1",
+        "casebook_sha256": "bdd480fa923d5b50a5f0e8f693a8f2ed7937bbcca8479c0875e95644b120b68d",
+        "basis": "Engineer-authored deterministic retrieval regression cases frozen before integrated evaluation; not independent domain acceptance or LLM quality evaluation.",
+        "catalog_id": "CAT-4e18dfcea86bcd8a28ff1edf",
+        "catalog_sha256": "4e18dfcea86bcd8a28ff1edfed2e22ce94fbf7f5c334946d17f42bfe231c3ef0",
+        "case_count": 12,
+        "passed_count": 12,
+        "all_cases_passed": true,
+        "domain_acceptance_evaluated": false,
+        "model_inference_used": false
+      },
+      "case_results": [
+        {
+          "id": "OBS-01",
+          "passed": true,
+          "failures": []
+        },
+        {
+          "id": "OBS-02",
+          "passed": true,
+          "failures": []
+        },
+        {
+          "id": "OBS-03",
+          "passed": true,
+          "failures": []
+        },
+        {
+          "id": "OBS-04",
+          "passed": true,
+          "failures": []
+        },
+        {
+          "id": "OBS-05",
+          "passed": true,
+          "failures": []
+        },
+        {
+          "id": "OBS-06",
+          "passed": true,
+          "failures": []
+        },
+        {
+          "id": "OBS-07",
+          "passed": true,
+          "failures": []
+        },
+        {
+          "id": "OBS-08",
+          "passed": true,
+          "failures": []
+        },
+        {
+          "id": "ABS-01",
+          "passed": true,
+          "failures": []
+        },
+        {
+          "id": "ABS-02",
+          "passed": true,
+          "failures": []
+        },
+        {
+          "id": "ABS-03",
+          "passed": true,
+          "failures": []
+        },
+        {
+          "id": "ABS-04",
+          "passed": true,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "name": "model_preview",
+      "command": [
+        "python",
+        "-m",
+        "ai_command_gateway",
+        "advise",
+        "--provider",
+        "openai",
+        "--dry-run",
+        "--question",
+        "How many rows are in packets_dataset.parquet?",
+        "--source",
+        "S1"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "passed": true,
+      "model": {
+        "provider": "openai",
+        "requested_model": "gpt-6.1-sol",
+        "status": "dry_run",
+        "reason_code": "dry_run",
+        "attempted": false,
+        "request_sha256": "9b90c57849daa5b7484184dbce7625732706154905972fb08925da69ea2d38f5",
+        "response_id": null,
+        "response_model": null,
+        "usage": null
+      },
+      "response_type": "observation",
+      "request_preview_included": true
+    },
+    {
+      "name": "replay",
+      "command": [
+        "python",
+        "-m",
+        "ai_command_gateway",
+        "replay",
+        "--input-dir",
+        "C:\\Users\\moore\\Downloads",
+        "--output-dir",
+        "outputs/verification/replay",
+        "--db",
+        "outputs/verification/replay.sqlite3",
+        "--limit",
+        "20"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "passed": true,
+      "rows_replayed": 20,
+      "decisions": {
+        "escalate": 20
+      },
+      "qualification_gate_exercised": true
+    }
+  ],
+  "all_checks_passed": true,
+  "source_sha256": {
+    ".azure/infrastructure-plan.json": "cf127b936e845996f2569be1c48c0bf303672a2fa79ad9410e78c3cb8eb6a71d",
+    ".azure/insights.json": "68c926edbdc9101a8d0082666da60a1a0a7ab1ea92c2fab5b84321f9e35b9a47",
+    ".dockerignore": "724bb2d027fca93eeb8c8407e51cef45f339b4eec8212344ad2927409e7de266",
+    "config/policies/demo-policy.json": "dd9c2de63888499aed149576d02933e8c6efe01f02c259df9d563dba756fe29c",
+    "config/policies/unqualified-policy.json": "c333fac2954a8cfc193b514a1b02a8b49322404c2696f19e08c61303be6c9ed7",
+    "data/contracts/advice.schema.json": "861f95dc29277d9d8ab657b1d477b632bfe67598deabad97c60add8945c80afa",
+    "data/contracts/command-request.schema.json": "404defb181ed6632576b9fb4b5bac272dd549306ef2e989f52c16744e8dd8468",
+    "data/contracts/evidence-catalog.schema.json": "41769ed4e0dc3f3d21f58eee8a5b81f78dbcea676f35b2333d15d9546ef34c6a",
+    "data/contracts/model-advice.schema.json": "4cbc12815e36b59fe0530fe0ad4204c6cf39deda2a633919c37ba767f4a17904",
+    "data/contracts/qualification.schema.json": "4e0c19ad04babd20348e66b1beb0e8739dfcacf778089b704a10b397c6a9f8e1",
+    "data/contracts/source-profile.schema.json": "69c4a53fc23b0a229d53625793471e405ad74f62f2ce6b95e0c9fa73e603ea41",
+    "data/evaluation/advice-cases-v1.json": "bdd480fa923d5b50a5f0e8f693a8f2ed7937bbcca8479c0875e95644b120b68d",
+    "data/lineage/source-inventory.json": "3f26f0c1a3fd57ef5c58e4f63f535321fe2da504ba797de8bd0e1d6db31dbdde",
+    "Dockerfile": "3ec209d0cc7008abc05db3577cbe78dd7f7316fd6ecc37044a8fc95020d5f495",
+    "infra/main.bicep": "410b6130d6ea26e4055e066181f0e462ef02ad08315b77ec34d2795a49aa26f9",
+    "infra/main.parameters.example.json": "49ea72d80568e78a627ea66adc523d4d34bb9efe8c379d07def8c70413636f4e",
+    "infra/modules/environment.bicep": "30cd199db514bbf93e4e5fa5ef68be670aa20a77773c19452c4fcbeead3aa14f",
+    "infra/modules/job.bicep": "88de96d1a26cac7b309a8fdf86742fa846057dbb1270691ebdcb6c937d5241ff",
+    "infra/modules/monitoring.bicep": "1f736cb0ff5dd40e52a0bcd22ea04b8776f312a1aeecd9a8dea22c70bbf8bf6f",
+    "infra/modules/network.bicep": "e899852ff2de17a7ebf5e928e5d6c8b902b02f2a43aecc3c52ccf8044fe4d537",
+    "infra/modules/registry.bicep": "4b55590a59ebefdc81282046f492f5032549695dc2389abed63672d573655fe8",
+    "infra/modules/storage.bicep": "f353337d7238af2ad7a116c1863cb86d053493f67e328d641429466685cfb094",
+    "infra/validation.json": "cad9b0f6bdc12f4682219db47af63b1281003d10b3e815f7e9ec30572a8cdda1",
+    "pyproject.toml": "4ee8caf5db2d4768cb4c876d4df2d63f119f18f5140e6d14f20f85d564a27ba0",
+    "requirements-azure.in": "6e0196f7635378c37026fc6e2ce635c7159b08c599d325c1d379f15a1b212587",
+    "requirements-azure.lock": "5fadd3b78ee5d7c8497c373e1739270eec131e7c81d2c7092644e263f7b23a6f",
+    "requirements-dev.lock": "8d85e82f5517400fbc0eb05d37a7c7abdf5acd26bb40fea9dc20020567afce60",
+    "requirements-runtime.lock": "f4a6acfbdbede39dd10af190bc79fb7c5be45530940cdf38484f3b9f2f8f0748",
+    "scripts/azure_preflight.ps1": "12807e0729a01027313966478531dc965250aa8d1767478e98b0628c20849b1d",
+    "scripts/check_repository.py": "fc4b03add60bc1f2ce65540063f137f71d4e3089610d68a4c41fd51212b60bda",
+    "scripts/deploy_azure.ps1": "7a84ee6cee1fb89017d2135318f8cefcb67500688c1e316bc5f006b5c9d16dd4",
+    "scripts/test_azure_scripts.ps1": "f7aad17c73edb7e71a7687204f5f72284e23f29767fff259f6fe5f1fa077086f",
+    "scripts/verify_azure_local.py": "0eaee37f2b776db86ea120ae68a7f313983958bd3114ef96e7b1bcf6954b7fb2",
+    "scripts/verify_local.py": "cc0a85d2feac0d0fcf650c55a8ea4d3925a060f315a38394c88640a5265c6c62",
+    "src/ai_command_gateway/__init__.py": "e990610ff2a3ad2e9cc3ccbed64b4e4ffc56942984219f7d5f622fa8882521fb",
+    "src/ai_command_gateway/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "src/ai_command_gateway/advice_evaluation.py": "2117ee88381a0945d30009aca002ede5f8cf899beb5626ba7b19a34ba1b995c0",
+    "src/ai_command_gateway/advisor.py": "a53cb85f9ac50db83a8ab51bd6985e22cf137547ad0523b2539803c90db01afc",
+    "src/ai_command_gateway/azure_job.py": "745fc779d7d58dad8d1a782c69b0ae602bd2d7469d38ce36c907d758cb9f7134",
+    "src/ai_command_gateway/cli.py": "1f0df40392bd18cf9546e503bc7d44af1e0128a17990f419a23bc843cf845d26",
+    "src/ai_command_gateway/datasets.py": "12b0445a66e1ac17ce89c4c1af9bf49843b872ab2d2a3885f946e2eff181398f",
+    "src/ai_command_gateway/evidence.py": "056931e423405b84947d0b5eda3388260e97d6d229e11d6877b38ca680ce6f37",
+    "src/ai_command_gateway/gateway.py": "91192bce015e96b2fc8b96801951a146d4452b3fa7184a3a74e98ca39e190930",
+    "src/ai_command_gateway/model_advisor.py": "5679bc4aae4b6bda14b9c038fed412b8e6304749cb91015a3c9acb7f41be2681",
+    "src/ai_command_gateway/openai_transport.py": "4cd069777dbc62e1b49bc35f6ae80e11f3b060b8c1bd5c38807da31ee98a815d",
+    "src/ai_command_gateway/qualification.py": "36a667076f80b4172d00ceafc9947535ea8280d0fe11d93b545fc87b266e7d5f",
+    "src/ai_command_gateway/replay.py": "9349184e74b656e4b7b2b93989628a51b25323f6fc5ee182f255727aa2f29c2c",
+    "tests/fixtures/evidence-source-profile.json": "f448b590686983fd7c280056fa01e67a0ef0ce3e16476b9246a2857a568676c1",
+    "tests/test_advice_evaluation.py": "559e1636a4bf119f4674364d567ffa4dd1d713d3439193ea57bc47af2a476cd9",
+    "tests/test_advisor.py": "0e15887d412969213b1275001a310e0f09569dbb27d151e082f93a5da2a72301",
+    "tests/test_azure_job.py": "97a3815d1568a15521e9ea19325a1a2fcf4c2134f2242c11e8fdf92e689eb3be",
+    "tests/test_cli.py": "21ed9af720d7080e0841e34d924d5a216f65764db0dbf507772506e540b6661e",
+    "tests/test_cli_advice.py": "1b27553423fe1020482385188d07dcadf488ca92ab497cb83d53ee2311443cf2",
+    "tests/test_cli_model_advice.py": "72aff3ceac5d2831cfa67231629242bc0acf7850004ed4a52ea2d1a01cec8883",
+    "tests/test_datasets.py": "5debaf65c9bb14a4fe49730cb2180fa55070e1f806f8628e4d5e2b1b4df05664",
+    "tests/test_evidence.py": "02c4a6b30c4a28ea0df9a73251dff85d79c7588c5be808fb0aea0bb416d91b51",
+    "tests/test_gateway.py": "7dda484e8a042edd4a9c94fd5e8030f5e0333296dadea99162a659295e479b73",
+    "tests/test_model_advisor.py": "52c3d3093dd262d3d911a42209310ae2b648f969bb59503e16515d27858986e9",
+    "tests/test_openai_transport.py": "c67d8871c4b98a9f6a261964c32b83acef98e2f9644f6ed6caf694cba40a1572",
+    "tests/test_qualification.py": "9d20e2e57588f147a551a4d0fb1752f3f6d37ed32e188afed27c7f873a7eec6f"
+  },
+  "snapshot_recorded_at_utc": "2026-10-15T19:18:11.912385+00:00",
+  "azure_verification": {
+    "infrastructure": {
+      "schema_version": "1.0.0",
+      "verification_date": "2026-10-15",
+      "scope": "Local static IaC verification only; no Azure deployment or production acceptance.",
+      "commands": [
+        {
+          "tool": "Bicep",
+          "version": "0.48.1",
+          "command": ".\\.cache\\azure-cli\\bin\\bicep.exe build infra/main.bicep --outfile .cache/azure-main.json",
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "tool": "Checkov",
+          "version": "3.3.29",
+          "command": ".\\.cache\\checkov-venv\\Scripts\\python.exe .\\.cache\\checkov-venv\\Scripts\\checkov -d infra/ --framework bicep --quiet --skip-download",
+          "exit_code": 0,
+          "stdout": "bicep scan results:\n\nPassed checks: 19, Failed checks: 0, Skipped checks: 4\n",
+          "stderr": "",
+          "passed": 19,
+          "failed": 0,
+          "skipped": 4,
+          "skip_ids": [
+            "CKV_AZURE_36",
+            "CKV_AZURE_43",
+            "CKV_AZURE_166",
+            "CKV_AZURE_206"
+          ]
+        }
+      ],
+      "plan_checks": {
+        "logical_resource_count": 41,
+        "unique_names": true,
+        "dependencies_resolve": true,
+        "acyclic": true
+      },
+      "deployment_performed": false,
+      "live_azure_validation_performed": false,
+      "source_sha256": {
+        ".azure/infrastructure-plan.json": "cf127b936e845996f2569be1c48c0bf303672a2fa79ad9410e78c3cb8eb6a71d",
+        ".azure/insights.json": "68c926edbdc9101a8d0082666da60a1a0a7ab1ea92c2fab5b84321f9e35b9a47",
+        "infra/main.bicep": "410b6130d6ea26e4055e066181f0e462ef02ad08315b77ec34d2795a49aa26f9",
+        "infra/main.parameters.example.json": "49ea72d80568e78a627ea66adc523d4d34bb9efe8c379d07def8c70413636f4e",
+        "infra/modules/environment.bicep": "30cd199db514bbf93e4e5fa5ef68be670aa20a77773c19452c4fcbeead3aa14f",
+        "infra/modules/job.bicep": "88de96d1a26cac7b309a8fdf86742fa846057dbb1270691ebdcb6c937d5241ff",
+        "infra/modules/monitoring.bicep": "1f736cb0ff5dd40e52a0bcd22ea04b8776f312a1aeecd9a8dea22c70bbf8bf6f",
+        "infra/modules/network.bicep": "e899852ff2de17a7ebf5e928e5d6c8b902b02f2a43aecc3c52ccf8044fe4d537",
+        "infra/modules/registry.bicep": "4b55590a59ebefdc81282046f492f5032549695dc2389abed63672d573655fe8",
+        "infra/modules/storage.bicep": "f353337d7238af2ad7a116c1863cb86d053493f67e328d641429466685cfb094",
+        "infra/README.md": "22cd373686ff386ae66e8a0061b407475d5a22cd5fd3fd2c95f831d29873cb23",
+        "infra/security-exceptions.md": "111f1b7387450cb22a5aac13b23cab12cc1354cbd71955a9e37f166ac07d2175",
+        "infra/validation.md": "d99668a52dad76dfed5cf74bbca4ba839a81f936e0b683a713ea567d661738b0"
+      },
+      "limitations": [
+        "Four scoped static-check dispositions require review; no severity-based assurance claimed.",
+        "Live Azure inventory, target/region/quota validation, what-if, image publication, DNS/RBAC/log checks and execution have not been performed.",
+        "Automated image quarantine, scanning and release enforcement is deferred."
+      ]
+    },
+    "checkov_final_json_summary": {
+      "passed": 19,
+      "failed": 0,
+      "skipped": 4,
+      "parsing_errors": 0,
+      "resource_count": 49,
+      "checkov_version": "3.3.29"
+    },
+    "deployment_script_contracts": {
+      "scope": "PowerShell contract tests with real local Bicep compilation and simulated Azure CLI; no live Azure calls",
+      "passed": true,
+      "checks": [
+        {
+          "name": "offline compilation does not invoke Azure",
+          "passed": true
+        },
+        {
+          "name": "online review allows Create NoChange Ignore without deployment",
+          "passed": true
+        },
+        {
+          "name": "Deploy requires explicit Online",
+          "passed": true
+        },
+        {
+          "name": "Job requires an immutable lowercase digest",
+          "passed": true
+        },
+        {
+          "name": "default blocks Delete",
+          "passed": true
+        },
+        {
+          "name": "default blocks Unsupported",
+          "passed": true
+        },
+        {
+          "name": "default blocks Deploy",
+          "passed": true
+        },
+        {
+          "name": "default blocks Unexpected",
+          "passed": true
+        },
+        {
+          "name": "default blocks Modify",
+          "passed": true
+        },
+        {
+          "name": "AllowModify admits reviewed modifications only",
+          "passed": true
+        },
+        {
+          "name": "AllowModify does not admit deletion",
+          "passed": true
+        },
+        {
+          "name": "failed what-if status prevents apply",
+          "passed": true
+        },
+        {
+          "name": "nonzero Azure CLI exit prevents apply",
+          "passed": true
+        },
+        {
+          "name": "explicit create applies after successful what-if",
+          "passed": true
+        }
+      ]
+    },
+    "dataset_job_local_blob_simulation": {
+      "schema_version": "1.0.0",
+      "application_version": "0.4.0",
+      "recorded_at_utc": "2026-10-15T19:14:55.474976+00:00",
+      "scope": "actual dataset-analysis runner using a local filesystem Blob simulation; not Azure service validation",
+      "azure_service_validation_performed": false,
+      "azure_sdk_used": false,
+      "network_calls_performed": false,
+      "domain_acceptance_evaluated": false,
+      "model_inference_used": false,
+      "duration_seconds": 24.726,
+      "python": "3.10.11",
+      "platform": "Windows-10-10.0.26300-SP0",
+      "dependencies": {
+        "pyarrow": "25.0.1",
+        "scipy": "1.15.3",
+        "numpy": "2.2.6",
+        "h5py": "3.16.0"
+      },
+      "job_status": {
+        "run_id": "303e817a-f1e4-4e15-9632-6efb3eadefc0",
+        "mode": "dataset-analysis",
+        "status": "completed",
+        "error_code": null,
+        "artifact_count": 7,
+        "completion_published": true,
+        "output_prefix": "runs/303e817a-f1e4-4e15-9632-6efb3eadefc0/",
+        "storage": "azure_blob"
+      },
+      "job_status_storage_meaning": "azure_blob names the exercised production branch; all Blob operations were simulated on local files",
+      "simulated_blob_directory": "outputs/azure-local-verification/simulated-blobs/outputs/runs/303e817a-f1e4-4e15-9632-6efb3eadefc0",
+      "workspace_directory": "outputs/azure-local-verification/workspace/303e817a-f1e4-4e15-9632-6efb3eadefc0",
+      "checks": [
+        {
+          "name": "job_completed",
+          "passed": true,
+          "observed": {
+            "run_id": "303e817a-f1e4-4e15-9632-6efb3eadefc0",
+            "mode": "dataset-analysis",
+            "status": "completed",
+            "error_code": null,
+            "artifact_count": 7,
+            "completion_published": true,
+            "output_prefix": "runs/303e817a-f1e4-4e15-9632-6efb3eadefc0/",
+            "storage": "azure_blob"
+          }
+        },
+        {
+          "name": "no_azure_sdk_or_network_attempts",
+          "passed": true,
+          "observed": []
+        },
+        {
+          "name": "five_exact_input_streams",
+          "passed": true,
+          "observed": [
+            {
+              "filename": "logs_dataset.parquet",
+              "requested_length": 123122,
+              "bytes_streamed": 123121,
+              "sha256": "5ea386a66b4ee5c0c5602f3e70e6c118d6d5e208cabf0d99e9c4110b84e4352d"
+            },
+            {
+              "filename": "packets_dataset.parquet",
+              "requested_length": 201835804,
+              "bytes_streamed": 201835803,
+              "sha256": "5121f480c174f845d243560e8f112ea2ba43dc2922a9f563309cd7c10166ead2"
+            },
+            {
+              "filename": "process_dataset.parquet",
+              "requested_length": 359658,
+              "bytes_streamed": 359657,
+              "sha256": "163613e85346c8913e423014e9c8911a3407dab2456cc10819e6ee9dad2ee7d8"
+            },
+            {
+              "filename": "n76t439f65-1.zip",
+              "requested_length": 203108811,
+              "bytes_streamed": 203108810,
+              "sha256": "f1494903e3c3ff1ea2972af0daa9793f579b2ac444455bdd5035ebee05b8a042"
+            },
+            {
+              "filename": "doi-10.34810-data2936.zip",
+              "requested_length": 904074,
+              "bytes_streamed": 904073,
+              "sha256": "e4fcab2139c77dca64eed45b95adc4fa41d96c17e810d22d89d2d55fc5acdf5e"
+            }
+          ]
+        },
+        {
+          "name": "seven_artifacts_and_completion_only",
+          "passed": true,
+          "observed": [
+            "profiles/profile-summary.json",
+            "qualification/source-qualification.json",
+            "advice/evidence-catalog.json",
+            "advice/evidence-manifest.json",
+            "advice/evidence-profile.json",
+            "advice-evaluation/advice-evaluation.json",
+            "replay/replay-summary.json",
+            "completion.json"
+          ]
+        },
+        {
+          "name": "completion_uploaded_last",
+          "passed": true
+        },
+        {
+          "name": "uploads_never_overwrite",
+          "passed": true
+        },
+        {
+          "name": "completion_manifest_verified_inputs",
+          "passed": true
+        },
+        {
+          "name": "filesystem_contains_no_unlisted_or_raw_outputs",
+          "passed": true
+        },
+        {
+          "name": "seven_uploaded_artifact_sizes_and_hashes_match",
+          "passed": true,
+          "observed": [
+            {
+              "name": "profiles/profile-summary.json",
+              "sha256": "23ed85af9b6d048e1ae1b61c1e39fa10b81a00626fa4286848d3ee8221be1a30",
+              "size_bytes": 1625
+            },
+            {
+              "name": "qualification/source-qualification.json",
+              "sha256": "5d0db590181966844aa3ac5afa7f5a2f3760e6b1b0e3ef8d210e4ce63a63ebbd",
+              "size_bytes": 69720
+            },
+            {
+              "name": "advice/evidence-catalog.json",
+              "sha256": "0ea785099b2f2086120202645c09b8adaf716d930bdc76ef389da3e296680379",
+              "size_bytes": 125612
+            },
+            {
+              "name": "advice/evidence-manifest.json",
+              "sha256": "6b233842636cd273a46aa257c5c92f42caad7f6d35355a191070ad475c05c23a",
+              "size_bytes": 554
+            },
+            {
+              "name": "advice/evidence-profile.json",
+              "sha256": "3718a31663f3b40255bc2bd54a8770ef10ca176da999f098f45e059a76795113",
+              "size_bytes": 12525
+            },
+            {
+              "name": "advice-evaluation/advice-evaluation.json",
+              "sha256": "86c405ec0ed65fa8e20a23c8a2166c65977df12b8b40b9ed34cd934eb8373d85",
+              "size_bytes": 23330
+            },
+            {
+              "name": "replay/replay-summary.json",
+              "sha256": "35a656e339cd8c2177e01f51f9327c133b4878d5bc8f552e887e7f9df7dd9fe8",
+              "size_bytes": 644
+            }
+          ]
+        },
+        {
+          "name": "all_twelve_advice_cases_pass",
+          "passed": true,
+          "observed": {
+            "casebook_id": "offline-advice-regression-v1",
+            "casebook_sha256": "bdd480fa923d5b50a5f0e8f693a8f2ed7937bbcca8479c0875e95644b120b68d",
+            "case_count": 12,
+            "passed_count": 12,
+            "all_cases_passed": true
+          }
+        },
+        {
+          "name": "twenty_rows_durably_exercise_policy_unqualified",
+          "passed": true,
+          "observed": {
+            "decisions": {
+              "escalate": 20
+            },
+            "durable_qualification_events": 20,
+            "expected_behavior": "escalate pending source and policy qualification",
+            "ground_truth_used": false,
+            "physical_command_validity_evaluated": false,
+            "qualification_gate_exercised": true,
+            "raw_rows_included": false,
+            "reason_counts": {
+              "policy_unqualified": 20
+            },
+            "rows_replayed": 20,
+            "sampling": "first N rows in storage order, not a representative evaluation split",
+            "sha256": "163613e85346c8913e423014e9c8911a3407dab2456cc10819e6ee9dad2ee7d8",
+            "source_file": "process_dataset.parquet",
+            "source_id": "S1",
+            "total_source_rows": 13912
+          }
+        },
+        {
+          "name": "five_sources_match_and_three_parquets_analyzed",
+          "passed": true,
+          "observed": {
+            "status": "complete",
+            "expected_file_count": 5,
+            "matched_file_count": 5,
+            "analyzed_parquet_count": 3,
+            "meaning": "completion_of_declared_scope_not_semantic_or_control_qualification"
+          }
+        },
+        {
+          "name": "raw_rows_and_archive_text_excluded",
+          "passed": true
+        },
+        {
+          "name": "published_json_excludes_local_absolute_paths",
+          "passed": true
+        },
+        {
+          "name": "no_model_or_equipment_authority",
+          "passed": true
+        },
+        {
+          "name": "source_files_unchanged_during_verification",
+          "passed": true
+        }
+      ],
+      "all_checks_passed": true,
+      "uploads_in_order": [
+        {
+          "blob_name": "runs/303e817a-f1e4-4e15-9632-6efb3eadefc0/profiles/profile-summary.json",
+          "size_bytes": 1625,
+          "sha256": "23ed85af9b6d048e1ae1b61c1e39fa10b81a00626fa4286848d3ee8221be1a30",
+          "overwrite": false,
+          "sequence": 1
+        },
+        {
+          "blob_name": "runs/303e817a-f1e4-4e15-9632-6efb3eadefc0/qualification/source-qualification.json",
+          "size_bytes": 69720,
+          "sha256": "5d0db590181966844aa3ac5afa7f5a2f3760e6b1b0e3ef8d210e4ce63a63ebbd",
+          "overwrite": false,
+          "sequence": 2
+        },
+        {
+          "blob_name": "runs/303e817a-f1e4-4e15-9632-6efb3eadefc0/advice/evidence-catalog.json",
+          "size_bytes": 125612,
+          "sha256": "0ea785099b2f2086120202645c09b8adaf716d930bdc76ef389da3e296680379",
+          "overwrite": false,
+          "sequence": 3
+        },
+        {
+          "blob_name": "runs/303e817a-f1e4-4e15-9632-6efb3eadefc0/advice/evidence-manifest.json",
+          "size_bytes": 554,
+          "sha256": "6b233842636cd273a46aa257c5c92f42caad7f6d35355a191070ad475c05c23a",
+          "overwrite": false,
+          "sequence": 4
+        },
+        {
+          "blob_name": "runs/303e817a-f1e4-4e15-9632-6efb3eadefc0/advice/evidence-profile.json",
+          "size_bytes": 12525,
+          "sha256": "3718a31663f3b40255bc2bd54a8770ef10ca176da999f098f45e059a76795113",
+          "overwrite": false,
+          "sequence": 5
+        },
+        {
+          "blob_name": "runs/303e817a-f1e4-4e15-9632-6efb3eadefc0/advice-evaluation/advice-evaluation.json",
+          "size_bytes": 23330,
+          "sha256": "86c405ec0ed65fa8e20a23c8a2166c65977df12b8b40b9ed34cd934eb8373d85",
+          "overwrite": false,
+          "sequence": 6
+        },
+        {
+          "blob_name": "runs/303e817a-f1e4-4e15-9632-6efb3eadefc0/replay/replay-summary.json",
+          "size_bytes": 644,
+          "sha256": "35a656e339cd8c2177e01f51f9327c133b4878d5bc8f552e887e7f9df7dd9fe8",
+          "overwrite": false,
+          "sequence": 7
+        },
+        {
+          "blob_name": "runs/303e817a-f1e4-4e15-9632-6efb3eadefc0/completion.json",
+          "size_bytes": 3660,
+          "sha256": "07cbf3f98cb2060186204492e168908e01198a6a509b2ad87ed79dddb73ac57a",
+          "overwrite": false,
+          "sequence": 8
+        }
+      ],
+      "source_sha256": {
+        "config/policies/demo-policy.json": "dd9c2de63888499aed149576d02933e8c6efe01f02c259df9d563dba756fe29c",
+        "config/policies/unqualified-policy.json": "c333fac2954a8cfc193b514a1b02a8b49322404c2696f19e08c61303be6c9ed7",
+        "data/evaluation/advice-cases-v1.json": "bdd480fa923d5b50a5f0e8f693a8f2ed7937bbcca8479c0875e95644b120b68d",
+        "data/lineage/source-inventory.json": "3f26f0c1a3fd57ef5c58e4f63f535321fe2da504ba797de8bd0e1d6db31dbdde",
+        "pyproject.toml": "4ee8caf5db2d4768cb4c876d4df2d63f119f18f5140e6d14f20f85d564a27ba0",
+        "requirements-azure.lock": "5fadd3b78ee5d7c8497c373e1739270eec131e7c81d2c7092644e263f7b23a6f",
+        "requirements-runtime.lock": "f4a6acfbdbede39dd10af190bc79fb7c5be45530940cdf38484f3b9f2f8f0748",
+        "scripts/verify_azure_local.py": "0eaee37f2b776db86ea120ae68a7f313983958bd3114ef96e7b1bcf6954b7fb2",
+        "src/ai_command_gateway/__init__.py": "e990610ff2a3ad2e9cc3ccbed64b4e4ffc56942984219f7d5f622fa8882521fb",
+        "src/ai_command_gateway/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+        "src/ai_command_gateway/advice_evaluation.py": "2117ee88381a0945d30009aca002ede5f8cf899beb5626ba7b19a34ba1b995c0",
+        "src/ai_command_gateway/advisor.py": "a53cb85f9ac50db83a8ab51bd6985e22cf137547ad0523b2539803c90db01afc",
+        "src/ai_command_gateway/azure_job.py": "745fc779d7d58dad8d1a782c69b0ae602bd2d7469d38ce36c907d758cb9f7134",
+        "src/ai_command_gateway/cli.py": "1f0df40392bd18cf9546e503bc7d44af1e0128a17990f419a23bc843cf845d26",
+        "src/ai_command_gateway/datasets.py": "12b0445a66e1ac17ce89c4c1af9bf49843b872ab2d2a3885f946e2eff181398f",
+        "src/ai_command_gateway/evidence.py": "056931e423405b84947d0b5eda3388260e97d6d229e11d6877b38ca680ce6f37",
+        "src/ai_command_gateway/gateway.py": "91192bce015e96b2fc8b96801951a146d4452b3fa7184a3a74e98ca39e190930",
+        "src/ai_command_gateway/model_advisor.py": "5679bc4aae4b6bda14b9c038fed412b8e6304749cb91015a3c9acb7f41be2681",
+        "src/ai_command_gateway/openai_transport.py": "4cd069777dbc62e1b49bc35f6ae80e11f3b060b8c1bd5c38807da31ee98a815d",
+        "src/ai_command_gateway/qualification.py": "36a667076f80b4172d00ceafc9947535ea8280d0fe11d93b545fc87b266e7d5f",
+        "src/ai_command_gateway/replay.py": "9349184e74b656e4b7b2b93989628a51b25323f6fc5ee182f255727aa2f29c2c"
+      }
+    },
+    "container": {
+      "recorded_at_utc": "2026-10-15T19:14:08.4949021Z",
+      "scope": "Local Linux container smoke and contents; no Azure or model calls",
+      "all_checks_passed": true,
+      "tag": "ai-command-gateway:0.4.0",
+      "image_id": "sha256:aabf26d5512afe6451d95444c580a54c107aa4c5a6709fd9710f570fe962779e",
+      "image_os": "linux",
+      "image_architecture": "amd64",
+      "base_image": "python:3.10-slim@sha256:6ff506466f8b1e981719b468cc0023b8ef000b983cdec0eafe119d01f379e31d",
+      "network": "none",
+      "root_filesystem": "read-only",
+      "smoke": {
+        "artifact_count": 2,
+        "completion_published": false,
+        "error_code": null,
+        "mode": "demo",
+        "output_prefix": "d9794d84-e5e4-4981-bef2-787c5ef265da/",
+        "run_id": "d9794d84-e5e4-4981-bef2-787c5ef265da",
+        "status": "completed",
+        "storage": "local"
+      },
+      "inspection": {
+        "uid": 10001,
+        "application_version": "0.4.0",
+        "project_root": "/app",
+        "azure_sdk_imports": "passed",
+        "excluded_workspace_files": "passed",
+        "raw_dataset_files_present": false,
+        "runner_sha256": "745fc779d7d58dad8d1a782c69b0ae602bd2d7469d38ce36c907d758cb9f7134"
+      }
+    },
+    "azure_resources_deployed": false,
+    "azure_dataset_uploads_performed": false,
+    "live_azure_validation_performed": false
+  },
+  "model_live_inference_performed": false,
+  "historical_records_preserved": [
+    "governance/local-verification-v0.2.json",
+    "governance/local-verification-v0.3.json"
+  ],
+  "diagrams": [
+    {
+      "stem": "01-offline-authority",
+      "source_matches_index": true,
+      "width": 941,
+      "height": 2306,
+      "png_color_type": 6,
+      "visual_review": "light-surface preview inspected; labels, arrows, groups and legend readable",
+      "transparent_corner_alpha": 0,
+      "sha256": {
+        "docs/diagrams/01-offline-authority.mmd": "51d9e98dc6708033163a740a38e67811752b70417c1268fd70a86c26fde45a12",
+        "docs/diagrams/01-offline-authority.svg": "0b16f1c617d7a49cb19f2bafc05e5ec9d6363c1276d83e56eab56c47bfe88ce9",
+        "docs/diagrams/01-offline-authority.png": "c7de555677acee05336695cbb7dca15abe9b71f42144b63f3df40f2131958947"
+      }
+    },
+    {
+      "stem": "02-grounded-advice",
+      "source_matches_index": true,
+      "width": 750,
+      "height": 2783,
+      "png_color_type": 6,
+      "visual_review": "light-surface preview inspected; labels, arrows, groups and legend readable",
+      "transparent_corner_alpha": 0,
+      "sha256": {
+        "docs/diagrams/02-grounded-advice.mmd": "cd3549208146eb51032cbc6da8958c64486cc3186ed8e726136879e2c27c4108",
+        "docs/diagrams/02-grounded-advice.svg": "1b493b636f847a5dd1fb1eb0eabe6136da6cc6e8ef71cca143cd28d570e2fd97",
+        "docs/diagrams/02-grounded-advice.png": "2833b609d1a345fc3206eb98b51388d634ecd49a9affbeb2dd3438d47ab31111"
+      }
+    },
+    {
+      "stem": "03-guarded-model-advice",
+      "source_matches_index": true,
+      "width": 877,
+      "height": 2807,
+      "png_color_type": 6,
+      "visual_review": "light-surface preview inspected; labels, arrows, groups and legend readable",
+      "transparent_corner_alpha": 0,
+      "sha256": {
+        "docs/diagrams/03-guarded-model-advice.mmd": "ad433ac605e98eafc96740a7994a33165aed61b55701cbe7e2af00101bd73e70",
+        "docs/diagrams/03-guarded-model-advice.svg": "34e1adc6e31bd5df6aa41c164d8de7fe0c5ddbaadd30926dbc73b166d9cf69a3",
+        "docs/diagrams/03-guarded-model-advice.png": "0e527a205bfa75b7ceb87cc1508945e76b4037cf5773ad4478e8251df59757c0"
+      }
+    },
+    {
+      "stem": "04-azure-job",
+      "source_matches_index": true,
+      "width": 981,
+      "height": 1939,
+      "png_color_type": 6,
+      "visual_review": "light-surface preview inspected; labels, arrows, groups and legend readable",
+      "transparent_corner_alpha": 0,
+      "sha256": {
+        "docs/diagrams/04-azure-job.mmd": "56ce2c5748af24728126c48670c0f672d9235ece22f237dd613112425f068c47",
+        "docs/diagrams/04-azure-job.svg": "a3691642ebecfb07fba8e9f43449d544b8bae61618af71af26ef1aceb1228a78",
+        "docs/diagrams/04-azure-job.png": "38d6f09b87ee8c9ba7ef126d2095ee25c99b07353efd4a740330c3f71188c542"
+      }
+    }
+  ],
+  "limitations": [
+    "No live OpenAI request; response tests use injected fixtures and request preview.",
+    "All Azure Blob operations in dataset verification were simulated locally; managed identity, private DNS, role propagation, image pull, logging and live job behavior remain unverified.",
+    "Static scan has four documented scoped skips; no image vulnerability scan or production security acceptance is claimed.",
+    "Domain acceptance, engineering units/limits and customer release remain unresolved.",
+    "Container memory/duration have not been qualified against the proposed Azure job resources; private builder, target and cost review remain required."
+  ],
+  "final_documentation_check": {
+    "recorded_at_utc": "2026-10-15T19:19:26.401234+00:00",
+    "command": [
+      "python",
+      "scripts/check_repository.py"
+    ],
+    "exit_code": 0,
+    "stdout": "PASS: 318 local file links; 6 requirements; 6 criteria; 8 open items; trace IDs; original SHA-256; no internal instruction files.\nScope: repository consistency only; application, remote CI, rendering and acceptance not evaluated.",
+    "note": "Repeated after results/guide edits only; application and infrastructure source hashes remained unchanged."
+  },
+  "documentation_sha256": {
+    "README.md": "7aeb89e269a3a0b2e9c6848497d167e438bc8bd8a2be202b8155e4601751e97d",
+    "PROJECT_STATUS.md": "462be856f7cd30601d78236de553190c039baa7da0f72fd6437148b6d84b8784",
+    "CHANGELOG.md": "ffdc80c5c171bfeae2682a797cd7c1bc5deb6ab1d9b73d1e5de77b1fb36edd47",
+    "docs/results.md": "9e2863792633e7ba19645edb38da08f03ded67d6349b059bf334e1f288f5540d",
+    "docs/azure-implementation.md": "e4434d01620be2cafb437f6c6a56154ed0accbf758806a8695e78f4ea7d84966",
+    "docs/code-walkthrough.md": "a80d5c686b414f41b5dc9441ac897a7f063042e09f02306b1257072b70523219",
+    "docs/architecture/README.md": "1cc36438293bde1a9c8d9b07a4622491b4ce3c491c5dc75e9954d230ef2d7de4",
+    "docs/diagrams/README.md": "d41a74c12a126a6decbb8b0a28071e673290f7a7b657db0d154d165e0a2637a1",
+    "docs/diagrams/render.mjs": "25fde77c4f8ca100ff6a6302139fdb5d6999c39adc4ec0238d25891269f1d343",
+    "runbooks/README.md": "b4fb2f0f88dc0bbf9adaa0099f55dd2ef1bb90a2cf974fc009b252a71971f733"
+  }
+}

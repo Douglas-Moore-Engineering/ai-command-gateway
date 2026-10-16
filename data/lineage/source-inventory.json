@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0.0",
+  "observation_date": "2026-10-15",
+  "purpose": "aggregate_file_identity_evidence",
+  "qualification_status": "unresolved",
+  "raw_records_included": false,
+  "files": [
+    {
+      "source_id": "S1",
+      "filename": "logs_dataset.parquet",
+      "format": "parquet",
+      "size_bytes": 123121,
+      "sha256": "5ea386a66b4ee5c0c5602f3e70e6c118d6d5e208cabf0d99e9c4110b84e4352d",
+      "md5": "28b94fef326526f46df96402be80e149",
+      "row_count": 6459,
+      "scanned_row_count": 6459,
+      "row_group_count": 1,
+      "column_count": 7,
+      "publisher_md5_matches": true
+    },
+    {
+      "source_id": "S1",
+      "filename": "packets_dataset.parquet",
+      "format": "parquet",
+      "size_bytes": 201835803,
+      "sha256": "5121f480c174f845d243560e8f112ea2ba43dc2922a9f563309cd7c10166ead2",
+      "md5": "ebbdee3de97e25cf4020d8552f431762",
+      "row_count": 10002790,
+      "scanned_row_count": 10002790,
+      "row_group_count": 10,
+      "column_count": 5,
+      "publisher_md5_matches": true
+    },
+    {
+      "source_id": "S1",
+      "filename": "process_dataset.parquet",
+      "format": "parquet",
+      "size_bytes": 359657,
+      "sha256": "163613e85346c8913e423014e9c8911a3407dab2456cc10819e6ee9dad2ee7d8",
+      "md5": "ebc3e048e0319f044ea47cc08e498999",
+      "row_count": 13912,
+      "scanned_row_count": 13912,
+      "row_group_count": 1,
+      "column_count": 22,
+      "publisher_md5_matches": true
+    },
+    {
+      "source_id": "S2",
+      "filename": "n76t439f65-1.zip",
+      "format": "zip",
+      "size_bytes": 203108810,
+      "sha256": "f1494903e3c3ff1ea2972af0daa9793f579b2ac444455bdd5035ebee05b8a042",
+      "md5": "e116fc0851da304652e6e573480c41ad",
+      "member_count": 18,
+      "uncompressed_bytes": 205080291
+    },
+    {
+      "source_id": "S3",
+      "filename": "doi-10.34810-data2936.zip",
+      "format": "zip",
+      "size_bytes": 904073,
+      "sha256": "e4fcab2139c77dca64eed45b95adc4fa41d96c17e810d22d89d2d55fc5acdf5e",
+      "md5": "4405feb819633a32d3c8fa09dde7127f",
+      "member_count": 16,
+      "uncompressed_bytes": 931540
+    }
+  ]
+}

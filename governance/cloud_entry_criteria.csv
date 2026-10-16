@@ -1,0 +1,13 @@
+id,criterion,status,owner,required_evidence,affected_decision
+CE-01,Canonical schemas and qualified source mappings,partial,DME data lead,Versioned contracts with units clocks asset IDs joins and source provenance,Operational data integration
+CE-02,Authoritative command rules and expected cases,open,Controls owner unassigned,Approved limits modes interlocks actions and independent expected outcomes,Domain validation and any actuation
+CE-03,Measured workload and retention,open,Platform owner unassigned,Event rate payload distribution concurrency retention and storage measurements,Service and capacity selection
+CE-04,Latency freshness availability RPO and RTO,open,Controls and platform owners unassigned,Approved operational targets with measurement boundaries,Service architecture and qualification
+CE-05,Identity RBAC and approval authority,open,Security owner unassigned,Authenticated role matrix separation of duties and tested policy permissions,Multi-user or network exposure
+CE-06,Data rights classification residency and retention,open,Source and security owners unassigned,Documented permitted use handling locations deletion and redistribution,External processing or publication of data
+CE-07,Threat model and trust boundary review,partial,DME prepares security reviewer unassigned,Reviewed threats controls network flow and residual risk disposition,Cloud or site exposure
+CE-08,Release manifest and evidence,partial,DME delivery lead,Immutable code config data and model versions with tests and reviewer disposition,Protected promotion
+CE-09,Lifecycle cost and affordability,partial,User approves foundation; broader budget authority unassigned,Foundation estimate and recurring cost approved on 2026-10-15; private access and workload costs remain unapproved,Spending or recurring service commitment
+CE-10,Recovery and operator readiness,open,Service owner unassigned,Tested restore rollback runbooks incident ownership and operator exercise,Operational readiness
+CE-11,Standards applicability and adopted edition baseline,partial,DME assurance lead,Official edition metadata applicability and assessed control gaps,Technical baseline and regulated claims
+CE-12,Specific cloud or site authorization,partial,User and future site release authority,User approved private foundation in rg-ai-command-gateway-dev East US 2 on 2026-10-15; image publication data upload job execution and operational exposure excluded,Provisioning or equipment connectivity

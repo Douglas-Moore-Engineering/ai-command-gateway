@@ -32,3 +32,7 @@ Requirement: REQ-06. Criterion: AC-06. [Definitions](../../docs/appendix-a-kpi-d
 | Remeasurement trigger | Changes to code, source data, policy, model, permissions or operating envelope |
 
 Only an unmeasured planning record is supported. Customer acceptance and production readiness are not established. [Handoff](../../customer/HANDOFF.md).
+
+## v0.2 evidence boundary - 2026-10-15
+
+The table above preserves the original acceptance-planning baseline. Local implementation and synthetic regression evidence now exist in [results](../../docs/results.md). Source files have been inspected and hashed. These observations do not constitute the frozen, independently reviewed measurement population required by this KPI; its acceptance result remains not evaluated.

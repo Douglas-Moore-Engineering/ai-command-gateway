@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ai-command-gateway:evidence-catalog:1.0.0",
+  "title": "Local context-only observation catalog",
+  "description": "Runtime acceptance also requires deterministic regeneration, all five pinned file identities and a matching local manifest. This schema and checksums do not establish source authenticity or domain approval.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["catalog_id", "content_sha256", "schema_version", "purpose", "qualification_status", "authorizes_execution", "source_profile_sha256", "profile_snapshot_sha256", "inventory_sha256", "source_files", "facts", "conflicts"],
+  "properties": {
+    "catalog_id": {"type": "string", "pattern": "^CAT-[0-9a-f]{24}$"},
+    "content_sha256": {"$ref": "#/$defs/digest"},
+    "schema_version": {"const": "1.0.0"},
+    "purpose": {"const": "offline_context_only_evidence"},
+    "qualification_status": {"const": "unresolved"},
+    "authorizes_execution": {"const": false},
+    "source_profile_sha256": {"$ref": "#/$defs/digest"},
+    "profile_snapshot_sha256": {"$ref": "#/$defs/digest"},
+    "inventory_sha256": {"$ref": "#/$defs/digest"},
+    "source_files": {"type": "array", "minItems": 5, "maxItems": 5, "items": {"$ref": "#/$defs/source"}},
+    "facts": {"type": "array", "minItems": 1, "maxItems": 1000, "items": {"$ref": "#/$defs/fact"}},
+    "conflicts": {"type": "array", "items": {"$ref": "#/$defs/conflict"}}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "filename": {"enum": ["logs_dataset.parquet", "packets_dataset.parquet", "process_dataset.parquet", "n76t439f65-1.zip", "doi-10.34810-data2936.zip"]},
+    "source": {
+      "type": "object", "additionalProperties": false,
+      "required": ["source_id", "filename", "format", "size_bytes", "sha256"],
+      "properties": {
+        "source_id": {"enum": ["S1", "S2", "S3"]},
+        "filename": {"$ref": "#/$defs/filename"},
+        "format": {"enum": ["parquet", "zip"]},
+        "size_bytes": {"type": "integer", "minimum": 0},
+        "sha256": {"$ref": "#/$defs/digest"}
+      }
+    },
+    "fact": {
+      "type": "object", "additionalProperties": false,
+      "required": ["fact_id", "source_id", "filename", "sha256", "source_version", "subject", "property", "value", "units", "locator", "statement", "kind", "status", "qualification_status", "trust_class"],
+      "properties": {
+        "fact_id": {"type": "string", "pattern": "^EV-[0-9a-f]{24}$"},
+        "source_id": {"enum": ["S1", "S2", "S3"]},
+        "filename": {"$ref": "#/$defs/filename"},
+        "sha256": {"$ref": "#/$defs/digest"},
+        "source_version": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "subject": {"type": "string", "minLength": 1, "maxLength": 100},
+        "property": {"enum": ["size_bytes", "row_count", "column_count", "row_group_count", "null_count", "member_count", "uncompressed_bytes", "observed_min", "observed_max", "observed_mean", "nonfinite_count", "time_min", "time_max", "timezone", "label_count:normal", "label_count:data_modification"]},
+        "value": {"type": ["number", "string", "null"]},
+        "units": {"enum": ["bytes", "rows", "columns", "row_groups", "archive_members", "unresolved", "timestamp_as_recorded", "timezone_metadata", "rows_research_label"]},
+        "locator": {"type": "string", "pattern": "^/files/[0-4]/", "maxLength": 150},
+        "statement": {"type": "string", "maxLength": 500},
+        "kind": {"const": "observation"},
+        "status": {"const": "context_only"},
+        "qualification_status": {"const": "unresolved"},
+        "trust_class": {"const": "source_observed"}
+      }
+    },
+    "conflict": {
+      "type": "object", "additionalProperties": false,
+      "required": ["source_id", "subject", "property", "fact_ids"],
+      "properties": {
+        "source_id": {"enum": ["S1", "S2", "S3"]},
+        "subject": {"type": "string"},
+        "property": {"type": "string"},
+        "fact_ids": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": "string", "pattern": "^EV-[0-9a-f]{24}$"}}
+      }
+    }
+  }
+}

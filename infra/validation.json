@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0.0",
+  "verification_date": "2026-10-15",
+  "scope": "Local static IaC verification only; no Azure deployment or production acceptance.",
+  "commands": [
+    {
+      "tool": "Bicep",
+      "version": "0.48.1",
+      "command": ".\\.cache\\azure-cli\\bin\\bicep.exe build infra/main.bicep --outfile .cache/azure-main.json",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "tool": "Checkov",
+      "version": "3.3.29",
+      "command": ".\\.cache\\checkov-venv\\Scripts\\python.exe .\\.cache\\checkov-venv\\Scripts\\checkov -d infra/ --framework bicep --quiet --skip-download",
+      "exit_code": 0,
+      "stdout": "bicep scan results:\n\nPassed checks: 19, Failed checks: 0, Skipped checks: 4\n",
+      "stderr": "",
+      "passed": 19,
+      "failed": 0,
+      "skipped": 4,
+      "skip_ids": [
+        "CKV_AZURE_36",
+        "CKV_AZURE_43",
+        "CKV_AZURE_166",
+        "CKV_AZURE_206"
+      ]
+    }
+  ],
+  "plan_checks": {
+    "logical_resource_count": 41,
+    "unique_names": true,
+    "dependencies_resolve": true,
+    "acyclic": true
+  },
+  "deployment_performed": false,
+  "live_azure_validation_performed": false,
+  "source_sha256": {
+    ".azure/infrastructure-plan.json": "cf127b936e845996f2569be1c48c0bf303672a2fa79ad9410e78c3cb8eb6a71d",
+    ".azure/insights.json": "68c926edbdc9101a8d0082666da60a1a0a7ab1ea92c2fab5b84321f9e35b9a47",
+    "infra/main.bicep": "410b6130d6ea26e4055e066181f0e462ef02ad08315b77ec34d2795a49aa26f9",
+    "infra/main.parameters.example.json": "49ea72d80568e78a627ea66adc523d4d34bb9efe8c379d07def8c70413636f4e",
+    "infra/modules/environment.bicep": "30cd199db514bbf93e4e5fa5ef68be670aa20a77773c19452c4fcbeead3aa14f",
+    "infra/modules/job.bicep": "88de96d1a26cac7b309a8fdf86742fa846057dbb1270691ebdcb6c937d5241ff",
+    "infra/modules/monitoring.bicep": "1f736cb0ff5dd40e52a0bcd22ea04b8776f312a1aeecd9a8dea22c70bbf8bf6f",
+    "infra/modules/network.bicep": "e899852ff2de17a7ebf5e928e5d6c8b902b02f2a43aecc3c52ccf8044fe4d537",
+    "infra/modules/registry.bicep": "4b55590a59ebefdc81282046f492f5032549695dc2389abed63672d573655fe8",
+    "infra/modules/storage.bicep": "f353337d7238af2ad7a116c1863cb86d053493f67e328d641429466685cfb094",
+    "infra/README.md": "22cd373686ff386ae66e8a0061b407475d5a22cd5fd3fd2c95f831d29873cb23",
+    "infra/security-exceptions.md": "111f1b7387450cb22a5aac13b23cab12cc1354cbd71955a9e37f166ac07d2175",
+    "infra/validation.md": "d99668a52dad76dfed5cf74bbca4ba839a81f936e0b683a713ea567d661738b0"
+  },
+  "limitations": [
+    "Four scoped static-check dispositions require review; no severity-based assurance claimed.",
+    "Live Azure inventory, target/region/quota validation, what-if, image publication, DNS/RBAC/log checks and execution have not been performed.",
+    "Automated image quarantine, scanning and release enforcement is deferred."
+  ]
+}

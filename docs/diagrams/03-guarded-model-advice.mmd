@@ -1,0 +1,54 @@
+%% Optional provider path; transport exercised with fixtures, no live inference verified.
+%%{init: {"theme":"base","look":"classic","themeVariables":{"fontFamily":"Arial, sans-serif","fontSize":"18px","primaryTextColor":"#111111","lineColor":"#425466","background":"transparent","edgeLabelBackground":"transparent","clusterBkg":"transparent"},"flowchart":{"htmlLabels":false,"curve":"basis","nodeSpacing":28,"rankSpacing":38,"padding":12},"themeCSS":"text { font-family:Arial,sans-serif !important; } .cluster-label text { font-size:16px !important; font-weight:600; }"}}%%
+flowchart TB
+  question["Question and explicit provider option"]
+
+  subgraph local["Local evidence preparation"]
+    catalog[("Verified observation catalog")]
+    retrieve["Retrieve exact cited observations"]
+    eligible{"Supported observations?"}
+    request["Bounded structured request<br/>Selected facts; no tools"]
+  end
+
+  subgraph provider["Optional OpenAI boundary"]
+    route{"Dry run?"}
+    preview["Show request locally<br/>No credential or network use"]
+    api["Responses API adapter<br/>Fixed HTTPS; one attempt"]
+  end
+
+  subgraph validation["Local response validation"]
+    recheck["Recheck catalog and response<br/>Exact claims and full coverage"]
+    valid{"Verified claims?"}
+    accepted["Locally reconstructed citations<br/>Model status: validated"]
+    fallback["Local observations or abstention<br/>Explicit skipped / fallback / rejected"]
+  end
+
+  question -->|"question and source filter"| retrieve
+  catalog -->|"context-only facts"| retrieve
+  retrieve -->|"local result"| eligible
+  eligible -->|"yes"| request
+  eligible -->|"no; no provider call"| fallback
+  request -->|"bounded JSON"| route
+  route -->|"yes"| preview
+  route -->|"no; credential required"| api
+  api -->|"untrusted output or failure"| recheck
+  recheck -->|"current evidence and exact binding"| valid
+  valid -->|"yes"| accepted
+  valid -->|"no; reason retained"| fallback
+
+  classDef sourceRole fill:#EAF3F8,stroke:#356079,stroke-width:1.5px,color:#111111
+  classDef dataRole fill:#E5F4F2,stroke:#32746E,stroke-width:1.5px,color:#111111
+  classDef analysisRole fill:#EDF0FA,stroke:#42558B,stroke-width:1.5px,color:#111111
+  classDef policyRole fill:#F8F2E4,stroke:#876A2D,stroke-width:1.5px,color:#111111
+  classDef humanRole fill:#EFF6EB,stroke:#4C713E,stroke-width:1.5px,color:#111111
+  classDef evidenceRole fill:#F3F0F8,stroke:#6E5B85,stroke-width:1.5px,color:#111111
+  class question humanRole
+  class request sourceRole
+  class recheck dataRole
+  class retrieve,api analysisRole
+  class eligible,route,valid policyRole
+  class catalog,preview,accepted,fallback evidenceRole
+  style local fill:none,stroke:#32746E,stroke-width:1.5px,color:#111111
+  style provider fill:none,stroke:#42558B,stroke-width:1.5px,color:#111111
+  style validation fill:none,stroke:#876A2D,stroke-width:1.5px,color:#111111
+  linkStyle default stroke:#425466,stroke-width:1.5px
