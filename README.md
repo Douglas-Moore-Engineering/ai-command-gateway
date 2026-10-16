@@ -2,7 +2,7 @@
 
 An offline-first reference system for inspecting industrial datasets, retrieving cited source observations, and independently checking proposed solar/battery commands before a **mock-only** execution interface. An optional OpenAI adapter exercises a model round trip within a locally checked evidence contract.
 
-**Current increment: v0.4, guarded model advice and an Azure batch pilot exercised on the supplied datasets.** Following separate approval for temporary private access, image publication, uploads and testing, the reviewed image is published and all five inputs passed complete Blob readback hash checks. Azure reports successful demo and dataset-analysis executions; private logs and downloaded artifacts are retained. Downloaded demo and dataset artifacts pass all verifier checks; the identity probe passes all nine checks, including the expected input-write denial, and the deliberate configuration failure is confirmed. The temporary operator group and all eleven foundation additions were removed. All 31 post-cleanup configuration checks passed; explicit child and temporary-role absence was verified. Engineering semantics and production acceptance remain open. See the [Azure implementation](docs/azure-implementation.md) and [results](docs/results.md) for evidence and remaining checks.
+**Current state: Azure retirement verified; the subscription is kept.** At **2026-10-16 05:13:03 UTC**, separate read-only ARM checks confirmed that the established subscription ending `f609` remains `Enabled`, with zero active resources, zero resource groups, zero project-principal role assignments and zero management locks. Both existing subscription Owner assignments were preserved. The foundation, Container Apps managed resources and Network Watcher group were deleted, including the cloud image, uploaded dataset copies, job and cloud results. Original local datasets, downloaded evidence and source/GitHub copies remain retained. The [retirement record](governance/azure-retirement-v0.4.json) preserves the verification and provider-recovery limits. The successful v0.4 pilot remains historical evidence, with no domain or production acceptance claim.
 
 ## Contents
 
@@ -23,7 +23,7 @@ The gateway returns **allow, block, or escalate**. An allow means eligibility un
 
 ## Run locally
 
-The existing Windows development environment uses CPython 3.10.11 and its pinned dependencies; these commands reproduce that historical local environment. The deployed Linux image uses vendor-maintained Python 3.13 and the separate [container locks](containers/python-linux-amd64.lock).
+The existing Windows development environment uses CPython 3.10.11 and its pinned dependencies; these commands reproduce that historical local environment. The reviewed pilot Linux image uses vendor-maintained Python 3.13 and the separate [container locks](containers/python-linux-amd64.lock).
 
 ```powershell
 python -m venv .venv
@@ -66,7 +66,7 @@ The model must return the complete selected claim set unchanged or refuse. Local
 
 ## Azure batch implementation
 
-The [Azure implementation guide](docs/azure-implementation.md) covers a manual Container Apps Job backed by private Blob Storage, Premium ACR, a VNet/private DNS, managed identity and Log Analytics. The retained job is configured for `dataset-analysis` against the five inventory-bound Blob inputs; the demo was an execution-only override. The source/image fallback remains `demo`. Each run uploads only declared artifacts and a completion manifest. The Azure job uses no hosted model or equipment connection, and separate manual starts can overlap without sharing an approval ledger.
+The [Azure implementation guide](docs/azure-implementation.md) preserves the completed manual-job pilot and its implementation. The cloud deployment has been retired, including ACR, Blob inputs/results, the job and supporting services. Local execution remains available. The instructions below describe the implementation and historical pilot. Any future cloud redeployment requires a separate target and scope review.
 
 Exercise its local demo path without Azure credentials:
 
@@ -76,9 +76,9 @@ Exercise its local demo path without Azure credentials:
 
 The [foundation template](infra/main.bicep), isolated [job-only wrapper](infra/job-only.bicep), [Dockerfile](Dockerfile) and [deployment helpers](scripts/deploy_azure.ps1) implement staged deployment. The reviewed image was transferred through a temporary private operator VM and published without rebuilding, at digest `sha256:99ae6d8dd7962dfc517a09cce6f46b979af78fd0f5c149bf01e0132b4a2aabad`. The job-only preview showed one create and 33 ignores. Job-stage preflight refuses foundation changes even with `-AllowModify`. [ADR-004](architecture/adr/ADR-004-azure-batch-foundation.md) records the platform decision; [private-access evidence](docs/azure-private-access-plan.md) records the operator path and static-check coverage limits. Production release gates remain closed.
 
-Historically, foundation deployment succeeded and **21/21 read-only control-plane checks passed**, including the then-absent job. The [foundation review](docs/azure-deployment-review.md) preserves that earlier scope. Current operator receipts confirm private DNS for Blob, ACR and Monitor, exact image publication, five-file upload/readback and private execution-log access; separate ARM records confirm the two successful job executions.
+Historically, foundation deployment succeeded and **21/21 read-only control-plane checks passed**, including the then-absent job. The [foundation review](docs/azure-deployment-review.md) preserves that earlier scope. Historical operator receipts confirm private DNS for Blob, ACR and Monitor, exact image publication, five-file upload/readback and private execution-log access; separate ARM records confirm the two successful job executions.
 
-The [regional estimate](docs/azure-cost-estimate.md) is about **$97.49/month** in standing core charges, plus usage. Temporary access was removed under the separately approved [operator plan](docs/azure-private-access-plan.md); actual billed charges remain unmeasured. The current Wolfi/Python 3.13 image passed all 16 [bounded local dataset checks](docs/azure-runtime-checks.md) at 1 CPU and 2 GiB; its unfiltered [Trivy scan](docs/image-security.md) reported zero findings within the recorded scanner/database scope.
+The historical [regional estimate](docs/azure-cost-estimate.md) was about **$97.49/month** in standing core charges plus usage while the foundation existed. Final ARM verification confirmed removal of those resources; the estimate is historical and does not describe a current deployment. Actual billed charges remain unmeasured and billing can arrive after deletion, so no zero-charge claim is made. The reviewed Wolfi/Python 3.13 image passed all 16 [bounded local dataset checks](docs/azure-runtime-checks.md); its unfiltered [Trivy scan](docs/image-security.md) reported zero findings within the recorded scanner/database scope.
 
 ## Implemented behavior
 
@@ -92,7 +92,7 @@ The [regional estimate](docs/azure-cost-estimate.md) is about **$97.49/month** i
 | Audit | Proposal, sources, model/policy versions, state time, actor, decision and mock outcome | Local durable records; not a tamper-proof evidence service |
 | Historical replay | Recorded S1 battery targets reach the unqualified-policy gate | No ground-truth accuracy measurement or invented unit conversion |
 | Optional model integration | Explicit OpenAI Responses call, request preview, exact-claim validation and offline fallback | Simulated-response tests only; no live integration, model-quality or operational acceptance claim |
-| Azure batch pilot | Private foundation and digest-pinned job deployed; exact image and five inputs transferred; demo/dataset executions succeeded with private logs | Nine identity checks, expected failure and downloaded-artifact checks passed; temporary access removed and retained configuration verified; no domain or production acceptance |
+| Historical Azure batch pilot | Exact image and five inputs transferred; demo/dataset executions, nine identity checks, expected failure and artifact checks passed before retirement | Cloud resource retirement verified; local evidence remains; no domain or production acceptance |
 
 ## Architecture and diagrams
 
@@ -110,7 +110,7 @@ The Python CLI composes independent source inspection, cited observation retriev
 
 The v0.2 verification history records 51 tests and 44 subtests, the five-check demo and 20-row qualification replay. The v0.3 increment adds full S1 timestamp analysis, catalog integrity checks and observation/abstention evaluation. The v0.4 increment adds provider request/failure verification and Azure container/IaC/job implementation. See [results](docs/results.md) for recorded verification outcomes and [project status](PROJECT_STATUS.md) for remaining work. Local and simulated-cloud checks are separate from live Azure validation and the proposed AC-01-06 acceptance criteria; customer acceptance and production measurements remain pending.
 
-The current local suite records **590 passed tests plus 44 subtests and one skipped test**; the subsequent focused transfer/log-helper suite passes 46 tests. These are local checks, distinct from the live Azure receipts. Final pilot evidence is recorded in [the pilot record](governance/azure-pilot-v0.4.json). Temporary access is removed and retained configuration is verified. Next, resolve clock relationships, units and equipment semantics, obtain reviewed policy/cases and evaluate provider behavior against approved knowledge. OPEN-01-08 retain their original unresolved conditions. Cloud and production entry remain governed by [release boundaries](governance/release_gates.md).
+The current local suite records **590 passed tests plus 44 subtests and one skipped test**; the subsequent focused transfer/log-helper suite passes 46 tests. These are local checks, distinct from the live Azure receipts. Historical pilot evidence is preserved unchanged in [the pilot record](governance/azure-pilot-v0.4.json). Azure retirement was verified separately; it does not invalidate those recorded results. Subsequent local engineering work can resolve clock relationships, units and equipment semantics, obtain reviewed policy/cases and evaluate provider behavior against approved knowledge. OPEN-01-08 retain their original unresolved conditions. Cloud and production entry remain governed by [release boundaries](governance/release_gates.md).
 
 ## Repository and engineering records
 

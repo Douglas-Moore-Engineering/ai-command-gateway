@@ -1,4 +1,12 @@
-# Project status - 2026-10-15 local / 2026-10-16 UTC / v0.4
+# Project status - 2026-10-16 / v0.4
+
+## Current state: Azure retirement verified
+
+The user requested keeping the Azure subscription and deleting its other resources. Final read-only ARM verification at **2026-10-16 05:13:03 UTC** confirmed that the established subscription ending `f609` remains `Enabled`, with **zero active resources, zero resource groups, zero project-principal role assignments and zero management locks**. Both existing subscription Owner assignments were preserved. The three inventoried groups containing the project foundation, Container Apps managed resources and Network Watcher were deleted. This supersedes the earlier decision to retain the foundation, registry image, uploaded inputs, job and cloud results after temporary-operator cleanup. Evidence is recorded in the [retirement record](governance/azure-retirement-v0.4.json).
+
+The original local datasets, downloaded pilot artifacts and logs, local source and GitHub repository remain retained. Historical governance JSON is unchanged. The prior $97.49/month core standing estimate describes the former deployment, not a current bill. Active resource removal is verified; provider recovery metadata and physical data erasure are separate. Billing may lag and actual charges remain unmeasured. No zero-charge or production-acceptance claim is made.
+
+## Historical completed pilot - 2026-10-16 UTC, before retirement
 
 The separately approved Azure pilot has published the reviewed image, uploaded and fully read back all five inventory-bound inputs, and completed successful demo and dataset-analysis executions in `rg-ai-command-gateway-dev`, East US 2, subscription ending `f609`. Private Blob/registry/Monitor resolution and execution-log access are recorded. Downloaded-artifact checks passed for both runs. The job-identity probe passed all nine checks, and deliberate configuration failure was observed. The temporary operator group and all eleven foundation additions were removed. All 31 post-cleanup configuration checks passed; explicit child and temporary-role absence was verified. The [pilot record](governance/azure-pilot-v0.4.json) binds the source and evidence hashes.
 
@@ -19,4 +27,4 @@ The separately approved Azure pilot has published the reviewed image, uploaded a
 
 On 2026-10-15 the user approved the private foundation and its costs/partial-failure risk. The initial deployment succeeded with the job disabled; its preview showed 39 creates and no modifications or deletions. All 21 read-only configuration checks passed through 20 ARM requests, including private service settings, exact job-identity roles, endpoints, DNS links and the absence of jobs. Those observations remain valid for that earlier snapshot and are preserved in the [deployment review](docs/azure-deployment-review.md); the later separately approved pilot supersedes the no-job boundary. DISC-001 v0.1 remains immutable historical discovery.
 
-The implemented Azure target is finite batch processing with one worker per execution; concurrent manual starts can still overlap. Cloud runtime evidence does not qualify dataset units, establish operating limits or close domain acceptance. [Results](docs/results.md), [standards tailoring](governance/standards-tailoring.md), [release boundaries](governance/release_gates.md) and [handoff](customer/HANDOFF.md) preserve those obligations.
+The implemented Azure target was finite batch processing with one worker per execution; its design allowed concurrent manual starts to overlap. Cloud runtime evidence does not qualify dataset units, establish operating limits or close domain acceptance. [Results](docs/results.md), [standards tailoring](governance/standards-tailoring.md), [release boundaries](governance/release_gates.md) and [handoff](customer/HANDOFF.md) preserve those obligations.

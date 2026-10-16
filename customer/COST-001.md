@@ -1,5 +1,7 @@
 # COST-001 — lifecycle cost planning v0.1
 
+Current disposition: all active Azure resources in subscription ending `f609` were retired at the user's request; subscription retained. The deployment estimates and approvals below are historical. See the full-retirement entry at the end.
+
 Source: DISC-001; USD, 2026-10-14 base date; undiscounted 12-month horizon. USD 30,000 and eight weeks are fictional constraints, not calculated costs, quotes or spending authorization. Actual cost and benefits: not measured.
 
 | Category | Payer/estimate owner | Calculation and gap |
@@ -32,3 +34,7 @@ This real spending approval does not convert the fictional USD 30,000 discovery 
 The user approved: "Approve deployment, testing and scoped cleanup with these costs and risks" against the [reviewed private access plan](../docs/azure-private-access-plan.md). The estimate was approximately $1.55 for four hours plus usage, a proposed $5 allowance rather than an automatic cap, or $282.94/month if retained. Scope included the operator, image publication, all five original uploads, cloud tests and deletion of the operator group plus its eleven enumerated foundation additions. The foundation, image, datasets, job and evidence are retained. A first apply failed, its narrowly reviewed repair succeeded, and the approved workload tests completed. The temporary operator group and all eleven foundation additions were removed. All 31 post-cleanup configuration checks passed; explicit child and temporary-role absence was verified.
 
 This is spending authorization and measured execution evidence, not an actual bill. The $97.49/month core estimate remains standing after temporary cleanup; dataset storage, registry content, job and monitoring usage add variable cost. The planned four-hour operator estimate is not substituted for measured billed duration. DME should reconcile Azure billing after charges settle and update actuals/remaining forecast; OPEN-08 and broader lifecycle affordability remain open. No model inference or benefit/ROI measurement was performed.
+
+## Full Azure resource retirement - 2026-10-16 UTC
+
+The user explicitly instructed: "keep the subscription and delete other resources in azure." Retirement was verified at `2026-10-16T05:13:03.027368+00:00` in the established project subscription ending `f609`: the subscription remains Enabled; all three remaining resource groups and all active resources are absent. The deletion includes the project foundation, its managed Container Apps network and the original Network Watcher. The prior operator cleanup remains complete. The former $97.49/month core estimate and $282.94/month operator estimate are historical planning scenarios, not current standing-resource estimates. Existing accrued charges may post later; actual billing, labor and whole-project affordability remain unmeasured, and OPEN-08 remains open. Local original data and saved evidence remain retained. [Retirement record](../governance/azure-retirement-v0.4.json) binds the deletion and final inventory checks. No zero-bill or immediate provider-wide data-erasure claim is made.

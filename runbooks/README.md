@@ -1,6 +1,8 @@
 # Operating instructions
 
-This v0.4 application runs on demand and exits; there is no network listener or equipment connection. Default CLI commands stay offline. Explicit `advise --provider openai` can make one outbound request when local evidence and a credential are available. The separately approved private Azure pilot has published the reviewed image, uploaded all five inputs and completed its demo, dataset, identity and expected-failure checks. Temporary operator cleanup and retained-configuration checks are complete. Use the [local setup](../README.md#run-locally), [Azure implementation procedure](../docs/azure-implementation.md) and [current results](../docs/results.md). No hosted-model inference or production acceptance was performed for this pilot.
+This v0.4 application runs locally on demand and exits, with no network listener or equipment connection. Default CLI commands stay offline; explicit model-provider selection remains optional. Azure retirement was verified at **2026-10-16 05:13:03 UTC**: the established subscription ending `f609` remains `Enabled`, with zero active resources, zero resource groups, zero project-principal role assignments and zero management locks. Both existing subscription Owner assignments were preserved. The foundation, Container Apps managed resources and Network Watcher groups were deleted, including the cloud image, uploaded datasets, job and Azure results. Final evidence is in the [retirement record](../governance/azure-retirement-v0.4.json).
+
+The original local datasets, downloaded pilot evidence and source/GitHub repository remain retained. Local commands below remain usable. The later Azure-operation section is historical reference; any future redeployment requires a separate target and scope review. Active resource deletion does not establish provider physical erasure or zero final charges. The historical standing-cost estimate is not a current bill, and billing can lag. See [current results](../docs/results.md) for the verification boundaries.
 
 ## Start, stop and inspect
 
@@ -34,7 +36,9 @@ For local recovery, omit `--provider openai` to use deterministic advice. The ga
 
 Actor labels and input state come from the local caller. This process does not authenticate a person, attest telemetry, enforce multiuser policy permissions, or protect evidence from someone who can edit the database. Keep files within appropriate OS permissions; production authority requires a separate design and review.
 
-## Azure job operation and failures
+## Historical Azure job operation and failures - 2026-10-16 UTC, before retirement
+
+The following preserves the completed pilot and its earlier operator cleanup. Its retained-job descriptions and verification command apply to that historical deployment. The pilot verifier expects a job and foundation; full retirement instead requires empty subscription resource/group inventories and confirmation that the subscription remains enabled.
 
 The [Azure guide](../docs/azure-implementation.md) is the concrete private-publication and job procedure. [ADR-004](../architecture/adr/ADR-004-azure-batch-foundation.md) records the foundation decision; [main.bicep](../infra/main.bicep) defines that foundation and [job-only.bicep](../infra/job-only.bicep) isolates job deployment from existing network resources. The approved target is `rg-ai-command-gateway-dev`, East US 2, subscription ending `f609`. The retained job is provisioned with reviewed digest `sha256:99ae6d8dd7962dfc517a09cce6f46b979af78fd0f5c149bf01e0132b4a2aabad`. Do not repeat the new-group bootstrap against a group that now exists; review the correct stage's what-if for any change. Run `.venv/Scripts/python.exe -m ai_command_gateway.azure_job --local-output outputs/azure-local-demo` for the synthetic local path without Azure credentials.
 
@@ -71,4 +75,4 @@ Stop local commands before replacing a database. Restore into a new path and ins
 
 Code/policy rollback uses a reviewed prior version and a separate output directory. A policy content change invalidates existing bindings. Preserve the source inventory and audit evidence of the changed run. Generated outputs and `.venv` can be removed manually after review; do not remove or modify the original supplied data as cleanup.
 
-For a future Azure image rollback, review and redeploy the Job stage with a previously reviewed immutable digest, then check a separate execution. Preserve existing output prefixes and deployment operations. Blob lifecycle and soft-delete settings do not substitute for a tested recovery procedure. No Azure restore, rollback or production recovery capability has been demonstrated by the local implementation.
+The historical Azure rollback procedure assumed an existing foundation. Full retirement removes that prerequisite; any future cloud redeployment requires a separate reviewed target and scope before an image rollback or job start is applicable. Preserve existing output prefixes and deployment operations. Blob lifecycle and soft-delete settings do not substitute for a tested recovery procedure. No Azure restore, rollback or production recovery capability has been demonstrated by the local implementation.

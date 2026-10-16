@@ -1,8 +1,14 @@
 # Changelog
 
+## Azure retirement - 2026-10-16 (verified)
+
+The user requested retaining the established Azure subscription ending `f609` and deleting its other resources. Final read-only ARM verification at **05:13:03 UTC** confirmed the subscription remains `Enabled`, with zero active resources, zero resource groups, zero project-principal role assignments and zero management locks; both existing subscription Owner assignments were preserved. The three inventoried groups were deleted: project foundation, Container Apps managed resources and Network Watcher, including the cloud image, five uploaded inputs, manual job and cloud results. This supersedes the earlier retain-foundation decision after operator cleanup. The [retirement record](governance/azure-retirement-v0.4.json) preserves the verification and provider-recovery limits.
+
+Original local datasets, downloaded evidence, the source repository and GitHub source remain retained. The completed pilot and historical governance snapshots are preserved. The previous standing-cost estimate is historical; deletion does not imply zero final charges, and billed cost remains unmeasured.
+
 ## 0.4.0 - 2026-10-15
 
-### Azure pilot continuation - 2026-10-16 UTC
+### Historical Azure pilot continuation - 2026-10-16 UTC, before retirement
 
 Published the exact reviewed Wolfi/Python 3.13 image to private ACR at `sha256:99ae6d8dd7962dfc517a09cce6f46b979af78fd0f5c149bf01e0132b4a2aabad`, without rebuilding. The recorded unfiltered Trivy scan has zero findings in its scanner/database scope. Created the separately approved temporary private operator path, uploaded all five inventory-bound originals using create-only writes and verified their full Blob readback hashes. The retained job uses `dataset-analysis`; demo remains the source/image fallback and was tested through an execution-only override.
 

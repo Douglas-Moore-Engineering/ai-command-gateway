@@ -1,5 +1,7 @@
 # Reproduce the constrained container check
 
+Current Azure status: cloud resources and registry image copies were retired; the subscription, local image/archive and evidence remain. [Retirement record](../governance/azure-retirement-v0.4.json). The scan and execution results below remain dated historical observations and local reproduction instructions.
+
 The current Wolfi/Python 3.13 image **`sha256:e323bfcba037b00d0ac7ca409b0e8ba271e8a4cff2e492d3808e2157145a099e`** passed **all 16 dataset checks in 95.08 seconds**, with **945,270,784 bytes (about 0.88 GiB)** of peak cgroup memory and no out-of-memory event. All five supplied datasets were processed in the actual Linux image at one CPU, 2 GiB and no swap. This is a local Blob-filesystem simulation under desktop load, not an Azure latency or capacity guarantee.
 
 The exact image also passed **480 regression tests plus 44 subtests in 37.93 seconds**, with pytest and its dependencies mounted read-only, networking disabled and the runtime unchanged. All five synthetic allow/block/escalate/approval/replay checks passed. Azure identity and Blob SDK imports, scientific-library imports, UID 10001 and UTC timezone data passed a separate probe. The [image review](image-security.md) records the zero-finding package scan, exact provenance and its limits.

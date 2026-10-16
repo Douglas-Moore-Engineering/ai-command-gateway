@@ -1,5 +1,15 @@
 # Results and evidence - v0.4
 
+## Current state: Azure retirement verified
+
+The user requested keeping the established subscription ending `f609` while deleting its other Azure resources. Final read-only ARM verification at **2026-10-16 05:13:03 UTC** confirmed the subscription remains `Enabled`, with **zero active resources, zero resource groups, zero project-principal role assignments and zero management locks**. Both existing subscription Owner assignments were preserved. The project foundation, Container Apps managed resources and Network Watcher groups were deleted, including the registry image, uploaded copies of the five datasets, manual job and Azure results. The [retirement record](../governance/azure-retirement-v0.4.json) binds the deletion and final verification evidence.
+
+Original local datasets, downloaded evidence and source/GitHub copies remain retained. The pilot record and all earlier governance snapshots remain unchanged. The earlier $97.49/month estimate describes the foundation while deployed; those active resources are removed. Actual charges remain unmeasured and billing can lag, so this is not a zero-bill claim. Deleted-storage recovery metadata remains separate from the active ARM inventory; provider physical erasure was not verified.
+
+## Historical completed Azure pilot - 2026-10-16 UTC, before retirement
+
+The following results describe the completed pilot before the later full-resource retirement request. References here to a retained job, image, inputs or cloud artifacts describe that historical state.
+
 **The approved private Azure pilot completed its image publication, five-dataset upload and four cloud tests.** The retained manual job in `rg-ai-command-gateway-dev`, East US 2, uses the reviewed image by digest and defaults to `dataset-analysis`. The temporary operator group and all eleven foundation additions were removed. All 31 post-cleanup configuration checks passed; explicit child and temporary-role absence was verified.
 
 The cloud tests ran on 2026-10-16 UTC (2026-10-15 in the client timezone); cleanup and closing checks retain their own UTC timestamps. The [current pilot evidence record](../governance/azure-pilot-v0.4.json) is separate from the preserved foundation and local snapshots below. No hosted model inference or equipment operation was performed.

@@ -1,0 +1,394 @@
+{
+  "schema_version": "1.0.0",
+  "recorded_at_utc": "2026-10-16T05:17:08.988412+00:00",
+  "verified_at_utc": "2026-10-16T05:13:03.027368+00:00",
+  "status": "azure_resources_retired_subscription_retained",
+  "application_version": "0.4.0",
+  "authorization": {
+    "user_request": "keep the subscription and delete other resources in azure.",
+    "interpretation": "Delete all remaining resources in the established project subscription ending f609; retain the subscription, owner access, local originals, evidence and GitHub repository.",
+    "supersedes": "Earlier instruction to retain the foundation, cloud image, uploaded datasets, job and results after temporary-operator cleanup."
+  },
+  "scope": {
+    "subscription_id": "b31e9bd1-6179-4504-819b-f212ed36f609",
+    "subscription_name": "Azure subscription 1",
+    "account": "douglas@dmesystems.global",
+    "other_subscriptions_touched": false,
+    "subscription_cancelled": false,
+    "subscription_owner_access_removed": false,
+    "provider_registration_changed": false
+  },
+  "before": {
+    "resource_group_count": 3,
+    "resource_count": 30,
+    "management_lock_count": 0,
+    "resource_groups": [
+      "NetworkWatcherRG",
+      "rg-ai-command-gateway-dev",
+      "ME_cae-aicg-sn5edmznrgh7s_rg-ai-command-gateway-dev_eastus2"
+    ]
+  },
+  "actions": {
+    "workspace_initial_attempt": {
+      "result": {
+        "subscriptionId": "b31e9bd1-6179-4504-819b-f212ed36f609",
+        "userAuthorization": "keep the subscription and delete other resources in azure.",
+        "action": "Permanently delete exact Log Analytics workspace",
+        "resourceGroup": "rg-ai-command-gateway-dev",
+        "workspaceName": "log-aicg-sn5edmznrgh7s",
+        "startedAtUtc": "2026-10-16T04:26:47.8657352Z",
+        "exitCode": 1,
+        "completedAtUtc": "2026-10-16T04:26:53.9832369Z"
+      },
+      "azure_error_code": "CannotDeleteWorkspaceWhenLinkedToPrivateLinkScopes",
+      "resolution": "Delete only the exact AMPLS scoped workspace association, then retry permanent workspace deletion."
+    },
+    "workspace_permanent_deletion": {
+      "subscriptionId": "b31e9bd1-6179-4504-819b-f212ed36f609",
+      "action": "Delete exact Monitor workspace private-link association, then permanently delete workspace",
+      "scopedResourceId": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/microsoft.insights/privatelinkscopes/ampls-aicg-sn5edmznrgh7s/scopedresources/workspace",
+      "workspaceName": "log-aicg-sn5edmznrgh7s",
+      "startedAtUtc": "2026-10-16T04:27:23.1885748Z",
+      "unlinkExitCode": 0,
+      "unlinkedAtUtc": "2026-10-16T04:27:31.0146648Z",
+      "workspaceDeleteExitCode": 0,
+      "completedAtUtc": "2026-10-16T04:28:09.4239518Z"
+    },
+    "foundation_group_deletion": {
+      "subscriptionId": "b31e9bd1-6179-4504-819b-f212ed36f609",
+      "resourceGroup": "rg-ai-command-gateway-dev",
+      "action": "Delete complete project foundation resource group",
+      "startedAtUtc": "2026-10-16T04:28:24.9087328Z",
+      "exitCode": 0,
+      "completedAtUtc": "2026-10-16T05:12:20.0124410Z"
+    },
+    "environment_deletion_recovery": {
+      "trigger": "Environment persisted in ScheduledForDelete with no deploymentErrors while group deletion was running. Applied the documented associated-VNet deletion and environment-delete retry within the same authorized scope.",
+      "vnet": {
+        "subscriptionId": "b31e9bd1-6179-4504-819b-f212ed36f609",
+        "resourceGroup": "rg-ai-command-gateway-dev",
+        "virtualNetwork": "vnet-aicg-sn5edmznrgh7s",
+        "action": "Microsoft documented recovery for environment persisting in ScheduledForDelete: delete associated VNet",
+        "reference": "https://learn.microsoft.com/en-us/azure/container-apps/troubleshooting#manually-delete-the-vnet-being-used-by-the-azure-container-apps-environment",
+        "startedAtUtc": "2026-10-16T04:46:42.1965811Z",
+        "exitCode": 0,
+        "completedAtUtc": "2026-10-16T04:47:00.4787878Z"
+      },
+      "environment": {
+        "subscriptionId": "b31e9bd1-6179-4504-819b-f212ed36f609",
+        "resourceGroup": "rg-ai-command-gateway-dev",
+        "environment": "cae-aicg-sn5edmznrgh7s",
+        "action": "Retry exact environment deletion after documented VNet recovery",
+        "startedAtUtc": "2026-10-16T04:47:24.2516822Z",
+        "exitCode": 1,
+        "completedAtUtc": "2026-10-16T05:12:14.5869641Z"
+      },
+      "retry_cli_outcome": "The environment retry CLI exited 1 because DNS resolution failed while polling the accepted asynchronous operation. This is not treated as a successful CLI result. The original group-delete CLI subsequently exited 0; separate final ARM GET inventories establish actual absence.",
+      "remaining_security_groups": [
+        {
+          "subscriptionId": "b31e9bd1-6179-4504-819b-f212ed36f609",
+          "resourceGroup": "rg-ai-command-gateway-dev",
+          "networkSecurityGroup": "nsg-aicg-sn5edmznrgh7s-endpoints",
+          "startedAtUtc": "2026-10-16T04:51:12.6119985Z",
+          "exitCode": 0,
+          "completedAtUtc": "2026-10-16T04:51:19.6095999Z"
+        },
+        {
+          "subscriptionId": "b31e9bd1-6179-4504-819b-f212ed36f609",
+          "resourceGroup": "rg-ai-command-gateway-dev",
+          "networkSecurityGroup": "nsg-aicg-sn5edmznrgh7s-environment",
+          "startedAtUtc": "2026-10-16T04:51:20.0583814Z",
+          "exitCode": 0,
+          "completedAtUtc": "2026-10-16T04:51:27.3413767Z"
+        }
+      ]
+    },
+    "remaining_groups": {
+      "subscriptionId": "b31e9bd1-6179-4504-819b-f212ed36f609",
+      "startedAtUtc": "2026-10-16T04:52:16.1688899Z",
+      "networkWatcher": {
+        "subscriptionId": "b31e9bd1-6179-4504-819b-f212ed36f609",
+        "resourceGroup": "NetworkWatcherRG",
+        "action": "Delete original regional Network Watcher and its resource group under expanded retirement instruction",
+        "startedAtUtc": "2026-10-16T04:40:36.1912519Z",
+        "exitCode": 0,
+        "completedAtUtc": "2026-10-16T04:42:00.6377945Z"
+      },
+      "managedGroup": {
+        "name": "ME_cae-aicg-sn5edmznrgh7s_rg-ai-command-gateway-dev_eastus2",
+        "existedBeforeExplicitCheck": false,
+        "action": "Already removed by environment cleanup"
+      },
+      "completedAtUtc": "2026-10-16T04:52:22.4690069Z",
+      "status": "passed"
+    }
+  },
+  "after": {
+    "subscription_state": "Enabled",
+    "resource_group_count": 0,
+    "resource_count": 0,
+    "project_role_assignment_count": 0,
+    "subscription_owner_assignments_preserved": true,
+    "subscription_owner_assignments_preserved_count": 2,
+    "management_lock_count": 0
+  },
+  "retry_polling_observation": {
+    "schema_version": "1.0.0",
+    "recorded_at_utc": "2026-10-16T05:17:04.388572+00:00",
+    "kind": "sanitized_operator_observation",
+    "source": "CLI process output returned by write_stdin for session 8933 during the retirement turn",
+    "command": "az containerapp env delete for cae-aicg-sn5edmznrgh7s in rg-ai-command-gateway-dev, subscription b31e9bd1-6179-4504-819b-f212ed36f609",
+    "phase": "Polling the accepted managedEnvironmentOperationResults operation",
+    "error_class": "NameResolutionError",
+    "host": "management.azure.com",
+    "message_summary": "Failed to resolve management.azure.com; getaddrinfo failed; maximum transport retries exceeded.",
+    "cli_exit_code": 1,
+    "cli_completed_at_utc": "2026-10-16T05:12:14.5869641Z",
+    "handling": "No success inferred from this CLI result. Original resource-group deletion completed exit 0, followed by fresh ARM GET verification.",
+    "privacy": "Signed asynchronous polling query string and full traceback omitted. This is a faithful operator summary, not the original raw stderr file."
+  },
+  "provider_recovery_observations": {
+    "active_resource_inventory_is_separate": true,
+    "deleted_workspace_record_count": 1,
+    "project_workspace_in_recovery_inventory": false,
+    "deleted_storage_account_record_count": 4,
+    "project_storage_in_recovery_inventory": true,
+    "interpretation": "Recovery metadata includes the project storage account and previously deleted resources from earlier work; none appears in active ARM inventory. No recovery or recreation was performed. Physical erasure is not established."
+  },
+  "retained_local_assets": {
+    "recorded_at_utc": "2026-10-16T04:30:07.630753+00:00",
+    "status": "passed",
+    "originals": [
+      {
+        "filename": "logs_dataset.parquet",
+        "size_bytes": 123121,
+        "sha256": "5ea386a66b4ee5c0c5602f3e70e6c118d6d5e208cabf0d99e9c4110b84e4352d",
+        "matches_original_inventory": true
+      },
+      {
+        "filename": "packets_dataset.parquet",
+        "size_bytes": 201835803,
+        "sha256": "5121f480c174f845d243560e8f112ea2ba43dc2922a9f563309cd7c10166ead2",
+        "matches_original_inventory": true
+      },
+      {
+        "filename": "process_dataset.parquet",
+        "size_bytes": 359657,
+        "sha256": "163613e85346c8913e423014e9c8911a3407dab2456cc10819e6ee9dad2ee7d8",
+        "matches_original_inventory": true
+      },
+      {
+        "filename": "n76t439f65-1.zip",
+        "size_bytes": 203108810,
+        "sha256": "f1494903e3c3ff1ea2972af0daa9793f579b2ac444455bdd5035ebee05b8a042",
+        "matches_original_inventory": true
+      },
+      {
+        "filename": "doi-10.34810-data2936.zip",
+        "size_bytes": 904073,
+        "sha256": "e4fcab2139c77dca64eed45b95adc4fa41d96c17e810d22d89d2d55fc5acdf5e",
+        "matches_original_inventory": true
+      }
+    ],
+    "image_archive": {
+      "path": "outputs/azure-pilot-transfer/image.tar",
+      "size_bytes": 161288192,
+      "sha256": "3cf028716ed9b32c2f7d8f86ccc6db2acdd72152164bb788adc6bc5c71a8250a"
+    },
+    "pilot_record_sha256": "f2df463e08dc685544eb3843e9a0ab0bd50974877b6401911f9dc73a29d392a6",
+    "cloud_verification_retained": true
+  },
+  "historical_pilot": {
+    "git_commit": "dc9c79a20215650c5ed84bdfef60c5243ed1fcc5",
+    "record": "governance/azure-pilot-v0.4.json",
+    "sha256": "f2df463e08dc685544eb3843e9a0ab0bd50974877b6401911f9dc73a29d392a6",
+    "unchanged": true,
+    "interpretation": "Historical successful pilot and scoped temporary cleanup; resource-retention statements describe that earlier snapshot."
+  },
+  "limitations": [
+    "Zero active resource groups/resources is a verified ARM inventory result at the recorded time, not a guarantee against later creation.",
+    "Azure provider recovery records and retention are separate from active ARM resources; see recovery observations in verification.json. No immediate provider-wide secure-erasure claim is made.",
+    "The Log Analytics workspace was explicitly permanently deleted after its private-link association was removed.",
+    "Existing accrued usage or delayed charges may still be billed. Actual charges, labor and whole-project affordability remain unmeasured; historical standing-resource estimates no longer describe deployed resources.",
+    "Subscription configuration, owner assignments, provider registrations and historical activity/deployment records were not erased.",
+    "No source-data qualification, production acceptance or formal standards-conformity gate is closed by resource retirement."
+  ],
+  "provider_references": [
+    "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/delete-workspace",
+    "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-recover",
+    "https://learn.microsoft.com/en-us/azure/container-apps/troubleshooting#manually-delete-the-vnet-being-used-by-the-azure-container-apps-environment"
+  ],
+  "raw_evidence_git_policy": "Ignored outputs are retained locally; this versioned record binds their hashes without publishing raw private data.",
+  "evidence_files": [
+    {
+      "path": "outputs/azure-retirement/aca-delete-diagnostic-activity.json",
+      "size_bytes": 4,
+      "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f"
+    },
+    {
+      "path": "outputs/azure-retirement/aca-delete-diagnostic-environment.json",
+      "size_bytes": 2854,
+      "sha256": "03995fa294d4becc994eb75c729c4981edc9c3e9c51ec905eae3651f87bc23a5"
+    },
+    {
+      "path": "outputs/azure-retirement/aca-delete-diagnostic.json",
+      "size_bytes": 1179,
+      "sha256": "283d991278b8260f48f4864ff1e689298338fce84561bbccfb35cddc9dd00c28"
+    },
+    {
+      "path": "outputs/azure-retirement/account-before.json",
+      "size_bytes": 395,
+      "sha256": "182a37dc1ff8cbc37109f1c4382cee2ddbab8f0e0e9482b9de26252be52818d4"
+    },
+    {
+      "path": "outputs/azure-retirement/deleted_storage_accounts-page-1.json",
+      "size_bytes": 1827,
+      "sha256": "ec84240acc1b77e907c7aa1de100a6ae32b214a04593f321b75096eca49cd73c"
+    },
+    {
+      "path": "outputs/azure-retirement/deleted_workspaces-page-1.json",
+      "size_bytes": 1518,
+      "sha256": "2b87beb18016ac1fada6a084acb23492e147dfae569f155c353282dda97562ea"
+    },
+    {
+      "path": "outputs/azure-retirement/dependency-audit.json",
+      "size_bytes": 2966,
+      "sha256": "f5f8daacd27bea351a1369d16dc96a5d13ed777eef6fd5b456b59cdca2ce4eda"
+    },
+    {
+      "path": "outputs/azure-retirement/environment-recovery-delete-result.json",
+      "size_bytes": 385,
+      "sha256": "809410966b8ad301c89e9fbf15a1b3883b6f11e1851b43642481e11079ab343f"
+    },
+    {
+      "path": "outputs/azure-retirement/environment-recovery-delete-start.json",
+      "size_bytes": 308,
+      "sha256": "19ef3270f6d57466353eb1f8ea756a6afb1befc85fcd50ff41321512c2bb445a"
+    },
+    {
+      "path": "outputs/azure-retirement/environment-recovery-poll-observation.json",
+      "size_bytes": 1045,
+      "sha256": "568a73bf77352b8b2af120c72763a2d2c368b5576946b2848a742cdeb288da54"
+    },
+    {
+      "path": "outputs/azure-retirement/foundation-delete-result.json",
+      "size_bytes": 324,
+      "sha256": "09c24e261bcedc7b211a81866cfc28f8cf56fab8ea5d3f16a7dcb4f660eaab11"
+    },
+    {
+      "path": "outputs/azure-retirement/foundation-delete-start.json",
+      "size_bytes": 247,
+      "sha256": "e4d16df43a75dbf154ef268e4a723e66dfdd95c6e4ce22bded1ed4b0f8b24274"
+    },
+    {
+      "path": "outputs/azure-retirement/groups-before.json",
+      "size_bytes": 1747,
+      "sha256": "506b1f24845ac81d5e551f87ed4adc39e6668b3803c248a2ebeadeebb4b55a60"
+    },
+    {
+      "path": "outputs/azure-retirement/groups-page-1.json",
+      "size_bytes": 21,
+      "sha256": "6cc5f0b62a8d505d7c0844c2e90322f4385fe9e6be45addff485c801744aed92"
+    },
+    {
+      "path": "outputs/azure-retirement/job_roles-page-1.json",
+      "size_bytes": 21,
+      "sha256": "6cc5f0b62a8d505d7c0844c2e90322f4385fe9e6be45addff485c801744aed92"
+    },
+    {
+      "path": "outputs/azure-retirement/local-retention-check.json",
+      "size_bytes": 1521,
+      "sha256": "750f9e36356916ab55169140ed09c85b2ed1dd3375b7157ad087cef8226795e6"
+    },
+    {
+      "path": "outputs/azure-retirement/locks-before.json",
+      "size_bytes": 7,
+      "sha256": "50056c08ce479cc2f54c4d6595a4264bdf32bf84f2995d59ff3bd513897ab414"
+    },
+    {
+      "path": "outputs/azure-retirement/locks-page-1.json",
+      "size_bytes": 21,
+      "sha256": "6cc5f0b62a8d505d7c0844c2e90322f4385fe9e6be45addff485c801744aed92"
+    },
+    {
+      "path": "outputs/azure-retirement/network-watcher-delete-result.json",
+      "size_bytes": 367,
+      "sha256": "b7c0906201594bc932a046a6dc956f0aba7ef302b10c2b792e63a1dd96b99754"
+    },
+    {
+      "path": "outputs/azure-retirement/network-watcher-delete-start.json",
+      "size_bytes": 290,
+      "sha256": "cdd63e25a2e2b5f3d38e73481b73a6025c9faa7825c3939ff2f698caed9cf598"
+    },
+    {
+      "path": "outputs/azure-retirement/operator_roles-page-1.json",
+      "size_bytes": 21,
+      "sha256": "6cc5f0b62a8d505d7c0844c2e90322f4385fe9e6be45addff485c801744aed92"
+    },
+    {
+      "path": "outputs/azure-retirement/remaining-groups-delete-result.json",
+      "size_bytes": 1046,
+      "sha256": "80992e62d217779fa99f76d5ae323697a4652eb804cc58fcaf3708cef2cf5d0e"
+    },
+    {
+      "path": "outputs/azure-retirement/resources-before.json",
+      "size_bytes": 28714,
+      "sha256": "0352a4866517b6977c520e4d77e4dc3a7490010d9091caaaf8bac155aed13c27"
+    },
+    {
+      "path": "outputs/azure-retirement/resources-page-1.json",
+      "size_bytes": 21,
+      "sha256": "6cc5f0b62a8d505d7c0844c2e90322f4385fe9e6be45addff485c801744aed92"
+    },
+    {
+      "path": "outputs/azure-retirement/scope_roles-page-1.json",
+      "size_bytes": 1948,
+      "sha256": "dcca163c0c113b01d1d3f54be7f84195a73be4ae0564d1a112b665e5515060c9"
+    },
+    {
+      "path": "outputs/azure-retirement/security-groups-delete-result.json",
+      "size_bytes": 712,
+      "sha256": "8ebb4be16f8a431e3445d54b78f16ea34f9d1cf41a9b11f52587001de27b4bae"
+    },
+    {
+      "path": "outputs/azure-retirement/subscription-page-1.json",
+      "size_bytes": 592,
+      "sha256": "61c56a3699840417e3a94fa08839e59552871b052c0d6518a82905a2d49684bc"
+    },
+    {
+      "path": "outputs/azure-retirement/verification.json",
+      "size_bytes": 16785,
+      "sha256": "c2500befeaf4d9b56114633d86333ffa449b56fc101000c79744fe3683e7ff6c"
+    },
+    {
+      "path": "outputs/azure-retirement/vnet-recovery-delete-result.json",
+      "size_bytes": 597,
+      "sha256": "7006ed3287ea216d2e5284400f6c2cc8e412a3f0532428b4a6bf5d468a31f1ad"
+    },
+    {
+      "path": "outputs/azure-retirement/vnet-recovery-delete-start.json",
+      "size_bytes": 520,
+      "sha256": "d83f4434c2d80720458151efa64ed7cecfdeafab6ad49afee563dfbbdb06522f"
+    },
+    {
+      "path": "outputs/azure-retirement/workspace-delete-result.json",
+      "size_bytes": 461,
+      "sha256": "76407b948b409e6a58a4f17ded7d493acb4ddb3ed1b8bdf17bc29ea8074c585a"
+    },
+    {
+      "path": "outputs/azure-retirement/workspace-delete-start.json",
+      "size_bytes": 384,
+      "sha256": "b29035519459aa29cf81cd96876c2535b1b9d58a839bae9f8476f01f8c33c2f8"
+    },
+    {
+      "path": "outputs/azure-retirement/workspace-permanent-delete-result.json",
+      "size_bytes": 679,
+      "sha256": "ae11fcb3cfd578eaccf8f99037c02a9a2cf99e386e10fe9f52b38167ea9aa355"
+    },
+    {
+      "path": "outputs/azure-retirement/workspace-unlink-result.json",
+      "size_bytes": 587,
+      "sha256": "a1aa5e3e1ef8ca21253e339cc1626aa5d8e40ae4f75fff3eb707c76a0cec0821"
+    }
+  ]
+}

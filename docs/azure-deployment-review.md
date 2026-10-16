@@ -1,5 +1,7 @@
 # Azure foundation deployment review
 
+Azure retirement verified at `2026-10-16T05:13:03.027368+00:00`: subscription ending `f609` remains Enabled, with zero active resource groups and zero active resources. The user explicitly requested "keep the subscription and delete other resources in azure." The foundation, managed Container Apps network group and original Network Watcher are removed, including the Azure image, dataset and result copies. Local originals, downloaded evidence, image archive, source code and GitHub repository remain. [Retirement evidence](../governance/azure-retirement-v0.4.json) supersedes the retained-resource statements below. The prior pilot remains historical evidence; redeployment requires a new scope and spending decision. Accrued charges may arrive later, and provider recovery retention is distinct from active resource existence. All deployment and cost statements below describe the historical review.
+
 This record preserves the original foundation review and estimate. The later approved private operator and workload pilot are recorded in the [private access review](azure-private-access-plan.md) and [current results](results.md).
 
 Prepared 2026-10-15 for the connected **douglas@dmesystems.global** account. The account maps to the current default subscription ending **f609**, in the `douglasdmesystems.onmicrosoft.com` tenant. The user identified this Douglas DME Systems account. Full identifiers and raw read-only results remain under ignored `outputs/azure-discovery/`.

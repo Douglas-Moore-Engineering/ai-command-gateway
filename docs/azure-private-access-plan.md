@@ -1,6 +1,8 @@
 # Temporary private publisher and operator
 
-## Completed pilot and scoped cleanup
+Azure retirement verified at `2026-10-16T05:13:03.027368+00:00`: subscription ending `f609` remains Enabled, with zero active resource groups and zero active resources. The user explicitly requested "keep the subscription and delete other resources in azure." The foundation, managed Container Apps network group and original Network Watcher are removed, including the Azure image, dataset and result copies. Local originals, downloaded evidence, image archive, source code and GitHub repository remain. [Retirement evidence](../governance/azure-retirement-v0.4.json) supersedes the retained-resource statements below. The prior pilot remains historical evidence; redeployment requires a new scope and spending decision. Accrued charges may arrive later, and provider recovery retention is distinct from active resource existence.
+
+## Historical completed pilot and scoped cleanup
 
 The user approved deployment, testing and scoped cleanup with the reviewed costs and risks. The repaired operator deployment succeeded at 2026-10-16T03:03:37.926917+00:00. It published the exact reviewed OCI manifest, uploaded all five originals with full hash readbacks, and enabled the completed demo, dataset, identity and deliberate-failure tests. [Results](results.md) and [the pilot record](../governance/azure-pilot-v0.4.json) bind the observed outcomes to their evidence.
 

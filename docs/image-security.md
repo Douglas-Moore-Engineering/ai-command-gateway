@@ -1,5 +1,7 @@
 # Container image review - 2026-10-15
 
+Current Azure status: cloud resources and registry image copies were retired; the subscription, local image/archive and evidence remain. [Retirement record](../governance/azure-retirement-v0.4.json). The scan and execution results below remain dated historical observations and local reproduction instructions.
+
 The current reviewed local image is **`sha256:e323bfcba037b00d0ac7ca409b0e8ba271e8a4cff2e492d3808e2157145a099e`**, tagged `ai-command-gateway:0.4.0-wolfi`. The unfiltered Trivy scan reports **zero findings across 34 OS and 34 Python packages**. The exact image passed **480 tests plus 44 subtests**, all five synthetic demo checks, and all 16 checks over the five supplied datasets. This record covers local remediation and verification; it does not record registry publication or Azure job execution.
 
 The later approved pilot published these exact bytes to private ACR by the platform digest below and executed them successfully in Azure. [Current cloud results](results.md) and the pilot governance record carry that separate publication/runtime evidence; the captured local scan summary remains unchanged.

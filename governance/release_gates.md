@@ -1,6 +1,6 @@
 # Release and exposure boundaries - v0.4
 
-Current state: local implementation verified and the separately approved private Azure pilot exercised on all five supplied datasets. [Current results](../docs/results.md) record the actual deployment outcome. Discovery and proposed acceptance still require domain review. Formal G0/G1 approval, G2 acceptance, AI-governance authorization and customer release are not claimed.
+Current state: local implementation retained; the separately approved private Azure pilot was exercised on all five supplied datasets and has now been retired. Subscription ending f609 remains Enabled with zero active groups/resources; see [retirement evidence](azure-retirement-v0.4.json). Prior deployment approvals are historical and do not authorize redeployment. [Current results](../docs/results.md) record the actual deployment outcome. Discovery and proposed acceptance still require domain review. Formal G0/G1 approval, G2 acceptance, AI-governance authorization and customer release are not claimed.
 
 The user's 2026-10-15 build request and subsequent instruction to proceed supersede the earlier repository-only stop boundary. This increment includes source inspection, timestamp quality checks, local extractive observation retrieval, synthetic software policies, unqualified historical replay and mock execution. Unresolved limits and data semantics block operational interpretations and real policies, not this authorized local work.
 

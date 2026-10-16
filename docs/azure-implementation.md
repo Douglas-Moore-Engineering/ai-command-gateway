@@ -1,10 +1,20 @@
 # Azure batch implementation
 
+## Current state: Azure retirement verified
+
+The user requested retaining the established subscription ending `f609` and deleting its other Azure resources. Final read-only ARM verification at **2026-10-16 05:13:03 UTC** confirmed the subscription remains `Enabled`, with zero active resources, zero resource groups, zero project-principal role assignments and zero management locks. Both existing subscription Owner assignments were preserved. The project foundation, Container Apps managed resources and Network Watcher groups were deleted, including the cloud image, uploaded inputs, manual job and Azure results. The [retirement record](../governance/azure-retirement-v0.4.json) preserves the final evidence.
+
+The original local datasets, downloaded artifacts/logs and source/GitHub repository remain retained. The historical pilot record is unchanged. The previous $97.49/month standing estimate applied while the foundation existed; active resource removal is verified, actual charges are unmeasured and billing can arrive after deletion. Provider recovery metadata does not establish physical data erasure. Local demo and analysis remain available.
+
+## Historical pilot implementation - 2026-10-16 UTC, before retirement
+
+The following preserves the completed pilot, its evidence and the procedures used before full retirement. Its retained-resource descriptions and deployment/start commands are historical implementation reference, not a direction to recreate or start Azure resources after retirement. The pilot verifier below expects a deployed job and is not an empty-subscription retirement verifier. Future cloud deployment is a separate scope and target review.
+
 The private Azure pilot is deployed in `rg-ai-command-gateway-dev`, East US 2, subscription ending `f609`. The separately approved temporary operator path published the reviewed image and uploaded all five original inputs with complete Blob readback hash verification. ARM records show successful demo and dataset-analysis executions, with private console logs and downloaded artifacts. Downloaded artifacts passed their verifier checks, the job-identity probe passed all nine checks, and deliberate configuration failure was observed. The temporary operator group and all eleven foundation additions were removed. All 31 post-cleanup configuration checks passed; explicit child and temporary-role absence was verified. Final consolidated evidence is in [the pilot record](../governance/azure-pilot-v0.4.json); [results](results.md) records current verification boundaries.
 
 The retained manual Container Apps Job is configured for `dataset-analysis`. The demo was an execution-only override; the source/image fallback remains `demo`. The job has no web endpoint, hosted-model call or equipment connection. It processes finite inputs, uploads declared artifacts and exits. Concurrent manual starts can overlap; separate UUID prefixes do not create a shared approval ledger.
 
-## Current resources and image
+## Historical resources and image
 
 The [foundation template](../infra/main.bicep) defines private networking/DNS, Premium ACR, Blob Storage, a user-assigned managed identity, Container Apps environment and Log Analytics with private Monitor access. [ADR-004](../architecture/adr/ADR-004-azure-batch-foundation.md) records the platform decision. The job identity has input-container read access, output-container write access and image-pull permission; storage keys and model credentials are not used.
 

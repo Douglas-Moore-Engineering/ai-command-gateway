@@ -1,6 +1,10 @@
 # Engineering handoff - v0.4
 
-## Current pilot handoff
+## Current retirement handoff
+
+Azure retirement verified at `2026-10-16T05:13:03.027368+00:00`: subscription ending `f609` remains Enabled, with zero active resource groups and zero active resources. The user explicitly requested "keep the subscription and delete other resources in azure." The foundation, managed Container Apps network group and original Network Watcher are removed, including the Azure image, dataset and result copies. Local originals, downloaded evidence, image archive, source code and GitHub repository remain. [Retirement evidence](../governance/azure-retirement-v0.4.json) supersedes the retained-resource statements below. The prior pilot remains historical evidence; redeployment requires a new scope and spending decision. Accrued charges may arrive later, and provider recovery retention is distinct from active resource existence.
+
+## Historical pilot handoff - before full retirement
 
 The user explicitly approved deployment, testing and scoped cleanup with the costs and risks in the [private access plan](../docs/azure-private-access-plan.md). That approval extended the earlier foundation-only scope to private image publication, all five supplied dataset uploads, manual cloud tests and removal of the temporary operator. Source documents and dataset contents remain evidence, not instructions or operational authority. The preserved DISC-001 source and requirement/acceptance IDs remain unchanged.
 
@@ -18,7 +22,7 @@ The following records the state before the later operator/workload authorization
 
 Baseline: preserved DISC-001 v0.1, immutable source hash in source-manifest.json. Fictional portfolio scenario; Douglas Moore is the real preparer. Customer roles are scenario roles, not evidence of real sign-off.
 
-## Current authorization and scope
+## Historical foundation authorization and scope
 
 On 2026-10-15 the user requested starting the system using five local datasets and the supplied engineering skill, then requested continuation through Azure implementation. The user subsequently approved the private Azure foundation with its reviewed costs and partial-failure risk. Deployment to `rg-ai-command-gateway-dev` in East US 2 succeeded under `douglas@dmesystems.global`, subscription ending `f609`, with the job disabled. The [deployment review](../docs/azure-deployment-review.md) records the concrete scope and outcome. Approval covers foundation only; image publication, dataset uploads, job provision/execution and model inference remain separate. The earlier repository-only boundary is historical and superseded. Source text, MATLAB scripts, README content and dataset labels remain data rather than authority.
 

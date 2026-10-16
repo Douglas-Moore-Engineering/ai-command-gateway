@@ -1,32 +1,33 @@
-%% ARCH-004 v0.3. Bounded pilot verified; temporary operator access retired after cleanup.
-%% Solid paths show retained pilot architecture; dashed paths show retired temporary access.
+%% ARCH-004 v0.4. Historical verified pilot; all deployed Azure resources retired.
+%% Subscription and local code, originals, image and evidence are preserved.
+%% Solid paths show historical runtime; dashed paths show historical transfer/access.
 %% Reviewed platform digest: sha256:99ae6d8dd7962dfc517a09cce6f46b979af78fd0f5c149bf01e0132b4a2aabad
 %%{init: {"theme":"base","look":"classic","themeVariables":{"fontFamily":"Arial, sans-serif","fontSize":"18px","primaryTextColor":"#111111","lineColor":"#425466","background":"transparent","edgeLabelBackground":"transparent","clusterBkg":"transparent"},"flowchart":{"htmlLabels":false,"curve":"basis","nodeSpacing":28,"rankSpacing":38,"padding":12},"themeCSS":"text { font-family:Arial,sans-serif !important; } .cluster-label text { font-size:16px !important; font-weight:600; }"}}%%
 flowchart TB
-  subgraph local["Reviewed pilot release"]
-    image["Reviewed local image<br/>Scan: zero known findings<br/>Platform: 99ae6d8...aabad"]
-    datasets["Five original source datasets<br/>Pinned hashes and sizes"]
-    operator["Authorized pilot operator<br/>Reviewed manual start helper"]
+  subgraph local["Preserved local pilot assets"]
+    image["Preserved local image<br/>Historical scan: zero findings<br/>Platform: 99ae6d8...aabad"]
+    datasets["Five local original datasets<br/>Preserved hashes and sizes"]
+    operator["Historical pilot operations<br/>Code and helper preserved"]
   end
 
-  subgraph access["Retired temporary operator access"]
+  subgraph access["Historical operator access - removed"]
     bastion["Bastion tunnel removed<br/>Pinned SSH/SCP used"]
     vm["Operator VM removed<br/>Former address: 10.43.0.4<br/>No VM public IP"]
     operatorIdentity["Operator identity removed<br/>Four scoped roles removed"]
   end
 
-  subgraph azure["Retained private Azure foundation"]
-    network["Private endpoints and DNS<br/>Two peerings removed<br/>Six operator DNS links removed"]
-    registry[("Private ACR<br/>Exact OCI digest published")]
-    inputs[("Private input Blob container<br/>Five originals verified")]
-    identity["Job managed identity<br/>AcrPull; input Blob Reader<br/>Output Blob Contributor"]
-    job["Manual Container Apps Job<br/>Internal environment<br/>Default: dataset-analysis<br/>One CPU; 2 GiB; no retries"]
+  subgraph azure["Historical Azure pilot - resources retired"]
+    network["Former private endpoints and DNS<br/>Azure network resources removed"]
+    registry[("Former private ACR<br/>Published OCI image removed")]
+    inputs[("Former input Blob container<br/>Verified cloud copies removed")]
+    identity["Former job identity<br/>AcrPull; input Blob Reader<br/>Output Blob Contributor"]
+    job["Former Container Apps Job<br/>Internal environment<br/>Default: dataset-analysis<br/>One CPU; 2 GiB; no retries"]
     verify["Verify all five source identities<br/>Offline analysis; mock authority"]
     publish["Allowlisted run artifacts<br/>Write completion last"]
-    outputs[("Private output Blob container<br/>Verified pilot artifacts")]
-    monitor[("Private Azure Monitor<br/>Log Analytics workspace")]
+    outputs[("Former output Blob container<br/>Cloud artifacts removed")]
+    monitor[("Former Azure Monitor<br/>Workspace removed")]
   end
-  validation["Bounded pilot verified<br/>Artifact hashes and semantics<br/>Identity and failure checks"]
+  validation["Preserved local pilot evidence<br/>Artifact hashes and semantics<br/>Identity and failure checks"]
 
   image -.->|"reviewed archive transferred"| bastion
   datasets -.->|"five originals transferred"| bastion
@@ -44,8 +45,8 @@ flowchart TB
   verify -->|"summaries and bounded evidence"| publish
   publish -->|"unique prefix; no overwrite"| outputs
   job -->|"platform and console diagnostics"| monitor
-  outputs -.->|"verified read via retired operator"| validation
-  monitor -.->|"verified query via retired operator"| validation
+  outputs -.->|"artifacts retrieved before retirement"| validation
+  monitor -.->|"diagnostics retrieved before retirement"| validation
 
   classDef sourceRole fill:#EAF3F8,stroke:#356079,stroke-width:1.5px,color:#111111
   classDef dataRole fill:#E5F4F2,stroke:#32746E,stroke-width:1.5px,color:#111111
@@ -63,7 +64,7 @@ flowchart TB
   class bastion,network securityRole
   style local fill:none,stroke:#356079,stroke-width:1.5px,color:#111111
   style access fill:none,stroke:#4C713E,stroke-width:1.5px,stroke-dasharray:5 5,color:#111111
-  style azure fill:none,stroke:#42558B,stroke-width:1.5px,color:#111111
+  style azure fill:none,stroke:#42558B,stroke-width:1.5px,stroke-dasharray:5 5,color:#111111
   style bastion stroke-dasharray:5 5
   style vm stroke-dasharray:5 5
   style operatorIdentity stroke-dasharray:5 5

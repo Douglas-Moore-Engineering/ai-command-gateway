@@ -1,5 +1,15 @@
 # Azure infrastructure implementation
 
+## Current state: Azure retirement verified
+
+The user requested retaining the established subscription ending `f609` while deleting its other resources. Final read-only ARM verification at **2026-10-16 05:13:03 UTC** confirmed the subscription remains `Enabled`, with zero active resources, zero resource groups, zero project-principal role assignments and zero management locks; both existing subscription Owner assignments were preserved. The project foundation, Container Apps managed resources and Network Watcher group were deleted, including ACR image bytes, uploaded datasets, job and Azure results. Evidence is recorded in the [retirement record](../governance/azure-retirement-v0.4.json). Original local datasets, downloaded evidence and source/GitHub copies remain retained.
+
+The templates and helpers remain available as source. The preserved deployment/start commands are historical reference; a future redeployment requires a separate target and scope review. The pilot verifier expects the former job/foundation and is not a retirement verifier. Historical standing estimates apply to the resources while they existed. Active resource removal is verified, while provider recovery metadata and physical erasure remain separate. Actual billing remains unmeasured and delayed charges can still appear.
+
+## Historical pilot infrastructure - 2026-10-16 UTC, before retirement
+
+The following describes the completed pilot and its earlier temporary-operator cleanup. References to retained resources are that earlier state, superseded by the subsequent full-retirement request.
+
 This resource-group-scoped Bicep implementation packages the existing batch CLI as a **manual Azure Container Apps Job**. The separately approved nonproduction pilot in `rg-ai-command-gateway-dev`, East US 2, subscription ending `f609`, has published the reviewed image, uploaded and fully read back all five inputs, and completed demo, dataset, identity and expected-failure checks. The retained job is configured for `dataset-analysis`; temporary operator cleanup and retained-configuration checks are complete. The [infrastructure plan](../.azure/infrastructure-plan.json), [workload insights](../.azure/insights.json), [static-check dispositions](security-exceptions.md) and [current results](../docs/results.md) preserve scope and evidence. The original Network Watcher in another group was retained.
 
 Use the [Azure implementation guide](../docs/azure-implementation.md) for the staged operator workflow and scripts. The [example parameters](main.parameters.example.json) default to foundation-only provisioning; they contain no subscription, location choice, image or credential.

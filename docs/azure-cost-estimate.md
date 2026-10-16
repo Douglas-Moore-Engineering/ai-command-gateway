@@ -1,5 +1,7 @@
 # Azure pilot cost estimate
 
+Azure retirement verified at `2026-10-16T05:13:03.027368+00:00`: subscription ending `f609` remains Enabled, with zero active resource groups and zero active resources. The user explicitly requested "keep the subscription and delete other resources in azure." The foundation, managed Container Apps network group and original Network Watcher are removed, including the Azure image, dataset and result copies. Local originals, downloaded evidence, image archive, source code and GitHub repository remain. [Retirement evidence](../governance/azure-retirement-v0.4.json) supersedes the retained-resource statements below. The prior pilot remains historical evidence; redeployment requires a new scope and spending decision. Accrued charges may arrive later, and provider recovery retention is distinct from active resource existence. All deployment and cost statements below describe the historical review.
+
 This record preserves the original foundation review and estimate. The later approved private operator and workload pilot are recorded in the [private access review](azure-private-access-plan.md) and [current results](results.md).
 
 **The prepared infrastructure is approximately USD 98/month before meaningful workload activity; the illustrative base workload is about USD 102/month.** This is a partial cloud-service estimate for the current [Bicep implementation](../infra/main.bicep), not an all-in operating budget. A private builder and the operator's private-network access are still unpriced and could materially increase the total.
