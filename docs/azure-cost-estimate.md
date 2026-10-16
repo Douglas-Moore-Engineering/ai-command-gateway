@@ -1,5 +1,7 @@
 # Azure pilot cost estimate
 
+This record preserves the original foundation review and estimate. The later approved private operator and workload pilot are recorded in the [private access review](azure-private-access-plan.md) and [current results](results.md).
+
 **The prepared infrastructure is approximately USD 98/month before meaningful workload activity; the illustrative base workload is about USD 102/month.** This is a partial cloud-service estimate for the current [Bicep implementation](../infra/main.bicep), not an all-in operating budget. A private builder and the operator's private-network access are still unpriced and could materially increase the total.
 
 Prepared **2026-10-15, America/New_York**, using public Microsoft retail prices retrieved at **20:00–20:03 EDT** (2026-10-16 00:00–00:03 UTC). The estimate initially used East US 2 as a candidate. The user subsequently approved that target and approximately $98/month of core standing costs plus usage, the unpriced private access path and partial-deployment risks. The private foundation is now deployed in `rg-ai-command-gateway-dev` under the connected Douglas DME Systems subscription ending f609. No job was provisioned or started. This approval is not a subscription spending cap; actual billing and agreement discounts remain unmeasured. See [the deployment review](azure-deployment-review.md).

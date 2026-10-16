@@ -1,5 +1,32 @@
 # Results and evidence - v0.4
 
+**The approved private Azure pilot completed its image publication, five-dataset upload and four cloud tests.** The retained manual job in `rg-ai-command-gateway-dev`, East US 2, uses the reviewed image by digest and defaults to `dataset-analysis`. The temporary operator group and all eleven foundation additions were removed. All 31 post-cleanup configuration checks passed; explicit child and temporary-role absence was verified.
+
+The cloud tests ran on 2026-10-16 UTC (2026-10-15 in the client timezone); cleanup and closing checks retain their own UTC timestamps. The [current pilot evidence record](../governance/azure-pilot-v0.4.json) is separate from the preserved foundation and local snapshots below. No hosted model inference or equipment operation was performed.
+
+| Check | Observed result | Meaning and limit |
+| --- | --- | --- |
+| Reviewed image | **Published by immutable digest; zero captured scan findings** | `sha256:99ae6d8dd7962dfc517a09cce6f46b979af78fd0f5c149bf01e0132b4a2aabad`; Wolfi vendor Python 3.13; point-in-time scan, no vulnerability-freedom claim |
+| Cleanup and retained configuration | **11 additions removed; 31/31 final checks passed** | Operator group absent, temporary principal has zero role assignments; foundation, image, inputs, manual job and results retained |
+| Original inputs | **5/5 full SHA-256 readbacks passed** | Create-only upload of the five inventory-bound originals through private Blob endpoints; storage immutability is not configured |
+| Demo execution | **Succeeded; artifacts verified** | Execution `lefuw26`, runner `5b5cf03b-1c1d-48a5-b8bd-60df78c922a1`; two artifacts and completion manifest, 5/5 synthetic checks |
+| Dataset execution | **Succeeded; artifacts verified** | Execution `uzke2ju`, runner `2fe6e591-4be0-4553-9630-4c2feb27e3a6`; seven artifacts, 154 facts, 12/12 local advice cases and 20/20 qualification escalations |
+| Job identity | **9/9 checks passed** | Execution `vo1uj55`; private Blob/ACR DNS, five metadata/one-byte reads, input create denied with HTTP 403 `AuthorizationPermissionMismatch`, output create/read; persisted report read back |
+| Failure behavior | **Expected failure observed** | Execution `76kvm8l` failed with safe console error `configuration_invalid`; per-execution override, no stored-template change |
+| Local verification | **590 tests + 44 subtests passed; 1 skipped** | Windows baseline; skipped unprivileged symlink case. Later focused helper revisions: 46 transfer, 28 configuration-verifier and 61 start-contract checks passed |
+| Actual reviewed container | **480 tests + 44 subtests; 16/16 dataset checks passed** | Linux runtime at 1 CPU/2 GiB; five-dataset local run 95.08 seconds, peak 945,270,784 bytes; network disabled and mock-only |
+| Infrastructure | **Compiled; isolated job preview 1 Create/33 Ignore** | Job-stage apply changed no foundation resources. Whole-infra Checkov: 39 passed, 0 failed, 4 skipped, 1 parser error; job-focused scans contain zero applicable checks |
+
+The job successfully pulled the exact reviewed registry image and used its managed identity against private storage. Demo and dataset private console logs link ARM executions to runner IDs and downloaded manifests. The identity probe's persisted JSON report and constant output were read back; its console query returned no rows, so no captured console report is claimed for that probe. Its report timestamp falls within the observed execution interval, and the execution template contains the reviewed probe source.
+
+The first operator apply failed on invalid platform-service-tag Allow rules; the repaired deployment succeeded. The original full-foundation job preview was rejected because it proposed foundation changes; only the isolated [job wrapper](../infra/job-only.bicep) was applied. Both histories remain in the [private access review](azure-private-access-plan.md). [Image security](image-security.md) and [runtime checks](azure-runtime-checks.md) retain the rejected Debian image and earlier local results as historical evidence.
+
+This closes bounded infrastructure and software verification. Source units/clocks, authoritative controls policy, independent domain cases, authenticated operational authority, live model evaluation, recovery/SLO qualification and production acceptance remain open. The [standards tailoring record](../governance/standards-tailoring.md) maps these controls and gaps without claiming formal conformity or independent assessment. Core standing cost remains an estimate of approximately $97.49/month plus usage; actual billed charges have not been measured.
+
+## Historical foundation-only snapshot
+
+This section records the state before the separately approved private operator and workload pilot. Its no-job, pending-publication and original-image statements are historical; the current state is above.
+
 **The approved private Azure foundation is deployed in `rg-ai-command-gateway-dev`, East US 2**, using the connected `douglas@dmesystems.global` subscription ending f609. The subscription deployment `aicg-foundation` and nested `aicg-bootstrap` succeeded. All **21/21 read-only control-plane checks passed**. The job remains unprovisioned; no image, supplied dataset or model request was sent to Azure.
 
 Recorded on 2026-10-15 in the client timezone. The [Azure readiness record](../governance/azure-readiness-v0.4.json) preserves approval, target, deployment outputs, image identity, source/report hashes and verification limits. Original v0.2-v0.4 local records and static infrastructure snapshots remain unchanged.

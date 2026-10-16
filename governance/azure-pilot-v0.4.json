@@ -1,0 +1,1815 @@
+{
+  "schema_version": "1.0.0",
+  "recorded_at_utc": "2026-10-16T04:11:56.545659+00:00",
+  "status": "bounded_private_pilot_verified_and_temporary_access_removed",
+  "application_version": "0.4.0",
+  "scope": "Approved private Azure publication, original-source upload, finite manual software tests and scoped operator cleanup; mock-only",
+  "authorization": {
+    "recordedAtUtc": "2026-10-16T02:48:57.533042+00:00",
+    "userResponse": "Approve deployment, testing and scoped cleanup with these costs and risks",
+    "scope": "Temporary operator deployment in East US 2 subscription ending f609, reviewed image publication, five-source upload, cloud tests and deletion of only the disposable operator group plus eleven enumerated additions to the foundation. Retain foundation, image, datasets, job and results. Approximate $1.55/four hours plus usage, proposed $5 allowance not a cap, $282.94/month if retained and partial-deployment/cleanup risks acknowledged."
+  },
+  "target": {
+    "subscription_id": "b31e9bd1-6179-4504-819b-f212ed36f609",
+    "region": "eastus2",
+    "retained_resource_group": "rg-ai-command-gateway-dev",
+    "removed_operator_resource_group": "rg-ai-command-gateway-operator"
+  },
+  "configuration_history": {
+    "baseline_git_commit": "7973b418704e010331818e0e16ee6e4c2cfedb77",
+    "original_operator_apply": "Failed: SecurityRuleInvalidAccessType; two invalid Allow rules removed before repair",
+    "repaired_operator_apply": "aicg-operator-repair Succeeded",
+    "repaired_operator_template_sha256": "b949b49ca5671773c4b6a83bb1f0ec8e978d496e5d6ba8ff411c099bd0dbb3d8",
+    "full_foundation_job_preview": "Rejected without apply; proposed foundation modifications",
+    "applied_job_template": "infra/job-only.bicep; 1 Create and 33 Ignore; no Modify/Delete",
+    "compiled_job_sha256": "b96398f0fa3cdd71afc51a2f2f537ae9610785e551f6510c65a0078a0ee64018",
+    "actual_execution_start_helper_sha256": "4f25ddb062651ad6d2d7549a9f150106104ed8bf7b6e3f674fc625e7002bbdc9",
+    "later_start_helper": "Additional explicit type guard; 61 offline mocked checks; no extra Azure execution inferred",
+    "stored_job_mode": "dataset-analysis",
+    "stored_job_template_unchanged_by_test_overrides": true
+  },
+  "image": {
+    "publication": {
+      "status": "passed",
+      "registry_reference": "craicgsn5edmznrgh7s.azurecr.io/ai-command-gateway@sha256:99ae6d8dd7962dfc517a09cce6f46b979af78fd0f5c149bf01e0132b4a2aabad",
+      "registry_digest": "sha256:99ae6d8dd7962dfc517a09cce6f46b979af78fd0f5c149bf01e0132b4a2aabad",
+      "crane_version": "0.22.1",
+      "crane_sha256": "8e75c326adb43b053cfd78b9b987663f8f4fe4557f4d3915905643f25c730992",
+      "image_identity_sha256": "49fade3d4ff5536f5980f067bbdfb1acf669e718f05adab5893369d03eb872ed",
+      "local_image": {
+        "platform_manifest_digest": "sha256:99ae6d8dd7962dfc517a09cce6f46b979af78fd0f5c149bf01e0132b4a2aabad",
+        "configuration_digest": "sha256:8962dafbaf9b7555be34d1c9f503c31a55f4f868d4ea71d0dab6a575e8c697f0",
+        "layer_count": 24,
+        "referenced_bytes": 161256746
+      },
+      "rebuilt": false,
+      "mutable_tag_written": false,
+      "client_id": "3eb688bc-2d29-4776-8775-24b0410fd2eb",
+      "recorded_at_utc": "2026-10-16T03:11:52.877271+00:00",
+      "operator_script_sha256": "a552917881689526c142f030e971aa424ece848cfa0c0e28811ffd5a46a731b4",
+      "private_dns": [
+        {
+          "hostname": "staicgsn5edmznrgh7s.blob.core.windows.net",
+          "addresses": [
+            "10.42.2.17"
+          ]
+        },
+        {
+          "hostname": "craicgsn5edmznrgh7s.azurecr.io",
+          "addresses": [
+            "10.42.2.16"
+          ]
+        },
+        {
+          "hostname": "craicgsn5edmznrgh7s.eastus2.data.azurecr.io",
+          "addresses": [
+            "10.42.2.15"
+          ]
+        },
+        {
+          "hostname": "api.loganalytics.io",
+          "addresses": [
+            "10.42.2.7"
+          ]
+        }
+      ]
+    },
+    "scan_results": {
+      "package_advisory_occurrences": 0,
+      "severity_occurrences": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0,
+        "UNKNOWN": 0
+      },
+      "targets": [
+        {
+          "type": "wolfi",
+          "packages": 34,
+          "findings": 0
+        },
+        {
+          "type": "python-pkg",
+          "packages": 34,
+          "findings": 0
+        }
+      ],
+      "sbom_components": 69
+    },
+    "scan_database": {
+      "Version": 2,
+      "NextUpdate": "2026-10-16T19:09:25.631493777Z",
+      "UpdatedAt": "2026-10-15T19:09:25.631494278Z",
+      "DownloadedAt": "2026-10-16T00:03:59.4841453Z",
+      "repository": "ghcr.io/aquasecurity/trivy-db:2",
+      "files": [
+        {
+          "Name": "metadata.json",
+          "Length": 151,
+          "SHA256": "ae28e10c6fc78f4e96251695541dc107c3a7e8dff6973c2f73c5f021ba067530"
+        },
+        {
+          "Name": "trivy.db",
+          "Length": 1628803072,
+          "SHA256": "32c6ed2327c56930f4814c2f243bcdbf54fe4b6b42d85533e53d0a02ebe36e4d"
+        }
+      ],
+      "oci_manifest_digest_captured": false
+    },
+    "runtime": {
+      "python": "3.13.16 (heads/3.13-dirty:c35ca4cb6e2, Oct  9 2026, 12:42:04) [GCC 16.2.0]",
+      "vendor_package": "python-3.13-base=3.13.16_git20261009-r0",
+      "openssl": "OpenSSL 4.0.3 29 Sep 2026",
+      "uid": 10001,
+      "os_packages": 34,
+      "python_wheels_sha256_enforced": true,
+      "os_package_versions_pinned": true,
+      "apk_signatures_checked_by_package_manager": true,
+      "base_cosign_signature_verified": false,
+      "os_and_python_package_metadata_retained": true,
+      "installed_pip_importable": false,
+      "vendor_bootstrap_wheel_retained": true,
+      "sdk_and_scientific_imports_passed": true
+    },
+    "scan_scope": "All severities/unfixed included; zero captured findings; no suppressions or vulnerability-freedom claim",
+    "local_scan_record_remains_historical": true
+  },
+  "inputs": {
+    "status": "passed",
+    "inventory_sha256": "3f26f0c1a3fd57ef5c58e4f63f535321fe2da504ba797de8bd0e1d6db31dbdde",
+    "inputs": [
+      {
+        "filename": "logs_dataset.parquet",
+        "size_bytes": 123121,
+        "sha256": "5ea386a66b4ee5c0c5602f3e70e6c118d6d5e208cabf0d99e9c4110b84e4352d",
+        "operation": "created",
+        "full_readback_verified": true
+      },
+      {
+        "filename": "packets_dataset.parquet",
+        "size_bytes": 201835803,
+        "sha256": "5121f480c174f845d243560e8f112ea2ba43dc2922a9f563309cd7c10166ead2",
+        "operation": "created",
+        "full_readback_verified": true
+      },
+      {
+        "filename": "process_dataset.parquet",
+        "size_bytes": 359657,
+        "sha256": "163613e85346c8913e423014e9c8911a3407dab2456cc10819e6ee9dad2ee7d8",
+        "operation": "created",
+        "full_readback_verified": true
+      },
+      {
+        "filename": "n76t439f65-1.zip",
+        "size_bytes": 203108810,
+        "sha256": "f1494903e3c3ff1ea2972af0daa9793f579b2ac444455bdd5035ebee05b8a042",
+        "operation": "created",
+        "full_readback_verified": true
+      },
+      {
+        "filename": "doi-10.34810-data2936.zip",
+        "size_bytes": 904073,
+        "sha256": "e4fcab2139c77dca64eed45b95adc4fa41d96c17e810d22d89d2d55fc5acdf5e",
+        "operation": "created",
+        "full_readback_verified": true
+      }
+    ],
+    "client_id": "3eb688bc-2d29-4776-8775-24b0410fd2eb",
+    "recorded_at_utc": "2026-10-16T03:13:39.290722+00:00",
+    "operator_script_sha256": "a552917881689526c142f030e971aa424ece848cfa0c0e28811ffd5a46a731b4",
+    "private_dns": [
+      {
+        "hostname": "staicgsn5edmznrgh7s.blob.core.windows.net",
+        "addresses": [
+          "10.42.2.17"
+        ]
+      },
+      {
+        "hostname": "craicgsn5edmznrgh7s.azurecr.io",
+        "addresses": [
+          "10.42.2.16"
+        ]
+      },
+      {
+        "hostname": "craicgsn5edmznrgh7s.eastus2.data.azurecr.io",
+        "addresses": [
+          "10.42.2.15"
+        ]
+      },
+      {
+        "hostname": "api.loganalytics.io",
+        "addresses": [
+          "10.42.2.7"
+        ]
+      }
+    ]
+  },
+  "cloud_verification": {
+    "status": "passed",
+    "image": "craicgsn5edmznrgh7s.azurecr.io/ai-command-gateway@sha256:99ae6d8dd7962dfc517a09cce6f46b979af78fd0f5c149bf01e0132b4a2aabad",
+    "executions": [
+      {
+        "mode": "demo",
+        "execution_name": "job-aicg-sn5edmznrgh7s-lefuw26",
+        "status": "Succeeded",
+        "start_time": "2026-10-16T03:20:04+00:00",
+        "end_time": "2026-10-16T03:20:43+00:00",
+        "evidence_directory": "outputs/azure-pilot-execution/df13a729-1d62-4523-a0cc-3432b143e562",
+        "run_id": "5b5cf03b-1c1d-48a5-b8bd-60df78c922a1",
+        "artifact_verification_passed": true,
+        "console_bound_to_manifest": true
+      },
+      {
+        "mode": "dataset-analysis",
+        "execution_name": "job-aicg-sn5edmznrgh7s-uzke2ju",
+        "status": "Succeeded",
+        "start_time": "2026-10-16T03:23:10+00:00",
+        "end_time": "2026-10-16T03:24:04+00:00",
+        "evidence_directory": "outputs/azure-pilot-execution/48f62606-50c8-4aee-8026-7fadcc1a193f",
+        "run_id": "2fe6e591-4be0-4553-9630-4c2feb27e3a6",
+        "artifact_verification_passed": true,
+        "console_bound_to_manifest": true
+      },
+      {
+        "mode": "identity-probe",
+        "execution_name": "job-aicg-sn5edmznrgh7s-vo1uj55",
+        "status": "Succeeded",
+        "start_time": "2026-10-16T03:29:46+00:00",
+        "end_time": "2026-10-16T03:30:20+00:00",
+        "evidence_directory": "outputs/azure-pilot-execution/3384f84c-8290-4e33-a04c-b7ededdd07e9",
+        "probe_id": "63679af6-8866-43e2-9cc5-f062699b0a48",
+        "checks_passed": 9,
+        "report_sha256": "fd17421a8efa6fc4a2e445af2ca0f14584b69a28dbb3cd4f0b3023acb4dadca0",
+        "console_report_captured": false
+      },
+      {
+        "mode": "configuration-failure",
+        "execution_name": "job-aicg-sn5edmznrgh7s-76kvm8l",
+        "status": "Failed",
+        "start_time": "2026-10-16T03:32:18+00:00",
+        "end_time": null,
+        "evidence_directory": "outputs/azure-pilot-execution/877c2585-9f05-42cc-a99d-95a9af9df52f",
+        "expected_failure_verified": true,
+        "error_code": "configuration_invalid"
+      }
+    ],
+    "limitations": [
+      "One bounded pilot; no availability, recovery or domain acceptance claim",
+      "Identity report bound through template, identity, unique output and execution interval; console report not captured",
+      "Failed execution ARM response omits endTime; no duration inferred"
+    ]
+  },
+  "control_plane": {
+    "operator_present": {
+      "checks_passed": 31,
+      "arm_get_requests": 25
+    },
+    "after_cleanup": {
+      "checks_passed": 31,
+      "arm_get_requests": 24,
+      "checks": [
+        {
+          "name": "bootstrap_deployment_succeeded",
+          "passed": true,
+          "observed": "Succeeded"
+        },
+        {
+          "name": "bootstrap_outputs_match_inventory",
+          "passed": true,
+          "observed": {
+            "workspace": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.OperationalInsights/workspaces/log-aicg-sn5edmznrgh7s",
+            "environment": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.App/managedEnvironments/cae-aicg-sn5edmznrgh7s",
+            "registry": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.ContainerRegistry/registries/craicgsn5edmznrgh7s",
+            "vnet": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/virtualNetworks/vnet-aicg-sn5edmznrgh7s",
+            "storage": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Storage/storageAccounts/staicgsn5edmznrgh7s",
+            "identity": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-aicg-sn5edmznrgh7s"
+          }
+        },
+        {
+          "name": "storage_private_tls_zrs",
+          "passed": true,
+          "observed": {
+            "publicNetworkAccess": "Disabled",
+            "allowBlobPublicAccess": false,
+            "minimumTlsVersion": "TLS1_2",
+            "allowSharedKeyAccess": false,
+            "sku": "Standard_ZRS"
+          }
+        },
+        {
+          "name": "registry_private_no_local_auth",
+          "passed": true,
+          "observed": {
+            "publicNetworkAccess": "Disabled",
+            "adminUserEnabled": false,
+            "sku": "Premium",
+            "anonymousPullEnabled": false
+          }
+        },
+        {
+          "name": "environment_internal_consumption_profile",
+          "passed": true,
+          "observed": {
+            "publicNetworkAccess": "Disabled",
+            "workloadProfiles": [
+              {
+                "name": "Consumption",
+                "workloadProfileType": "Consumption"
+              }
+            ],
+            "subnet": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/virtualNetworks/vnet-aicg-sn5edmznrgh7s/subnets/snet-environment",
+            "internal": true
+          }
+        },
+        {
+          "name": "managed_identity_three_exact_scoped_roles",
+          "passed": true,
+          "observed": {
+            "count": 3,
+            "first_twenty": [
+              {
+                "scope": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourcegroups/rg-ai-command-gateway-dev/providers/Microsoft.ContainerRegistry/registries/craicgsn5edmznrgh7s",
+                "role_definition_id": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/providers/Microsoft.Authorization/roleDefinitions/7f951dda-4ed3-4680-a7ca-43fe172d538d",
+                "principal_id": "c474fd95-753c-4043-a126-191a4c2f9ff0"
+              },
+              {
+                "scope": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourcegroups/rg-ai-command-gateway-dev/providers/Microsoft.Storage/storageAccounts/staicgsn5edmznrgh7s/blobServices/default/containers/inputs",
+                "role_definition_id": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/providers/Microsoft.Authorization/roleDefinitions/2a2b9908-6ea1-4ae2-8e65-a410df84e7d1",
+                "principal_id": "c474fd95-753c-4043-a126-191a4c2f9ff0"
+              },
+              {
+                "scope": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourcegroups/rg-ai-command-gateway-dev/providers/Microsoft.Storage/storageAccounts/staicgsn5edmznrgh7s/blobServices/default/containers/outputs",
+                "role_definition_id": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/providers/Microsoft.Authorization/roleDefinitions/ba92f5b4-2d11-453d-a403-e96b0029c9fe",
+                "principal_id": "c474fd95-753c-4043-a126-191a4c2f9ff0"
+              }
+            ]
+          }
+        },
+        {
+          "name": "private_endpoint_approved:pep-aicg-sn5edmznrgh7s-monitor",
+          "passed": true,
+          "observed": {
+            "targets": [
+              "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/microsoft.insights/privateLinkScopes/ampls-aicg-sn5edmznrgh7s"
+            ],
+            "connectionStatuses": [
+              "Approved"
+            ],
+            "provisioningState": "Succeeded"
+          }
+        },
+        {
+          "name": "private_endpoint_approved:pep-aicg-sn5edmznrgh7s-registry",
+          "passed": true,
+          "observed": {
+            "targets": [
+              "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.ContainerRegistry/registries/craicgsn5edmznrgh7s"
+            ],
+            "connectionStatuses": [
+              "Approved"
+            ],
+            "provisioningState": "Succeeded"
+          }
+        },
+        {
+          "name": "private_endpoint_approved:pep-aicg-sn5edmznrgh7s-blob",
+          "passed": true,
+          "observed": {
+            "targets": [
+              "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Storage/storageAccounts/staicgsn5edmznrgh7s"
+            ],
+            "connectionStatuses": [
+              "Approved"
+            ],
+            "provisioningState": "Succeeded"
+          }
+        },
+        {
+          "name": "three_expected_private_endpoints",
+          "passed": true,
+          "observed": [
+            "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/microsoft.insights/privateLinkScopes/ampls-aicg-sn5edmznrgh7s",
+            "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.ContainerRegistry/registries/craicgsn5edmznrgh7s",
+            "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Storage/storageAccounts/staicgsn5edmznrgh7s"
+          ]
+        },
+        {
+          "name": "six_expected_private_dns_zones",
+          "passed": true,
+          "observed": [
+            "privatelink.monitor.azure.com",
+            "privatelink.blob.core.windows.net",
+            "privatelink.azurecr.io",
+            "privatelink.ods.opinsights.azure.com",
+            "privatelink.oms.opinsights.azure.com",
+            "privatelink.agentsvc.azure-automation.net"
+          ]
+        },
+        {
+          "name": "private_dns_vnet_link:privatelink.monitor.azure.com",
+          "passed": true,
+          "observed": {
+            "count": 1,
+            "first_twenty": [
+              {
+                "registrationEnabled": false,
+                "vnet": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/virtualNetworks/vnet-aicg-sn5edmznrgh7s",
+                "name": "link-aicg-sn5edmznrgh7s",
+                "provisioningState": "Succeeded"
+              }
+            ]
+          }
+        },
+        {
+          "name": "private_dns_vnet_link:privatelink.blob.core.windows.net",
+          "passed": true,
+          "observed": {
+            "count": 1,
+            "first_twenty": [
+              {
+                "registrationEnabled": false,
+                "vnet": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/virtualNetworks/vnet-aicg-sn5edmznrgh7s",
+                "name": "link-aicg-sn5edmznrgh7s",
+                "provisioningState": "Succeeded"
+              }
+            ]
+          }
+        },
+        {
+          "name": "private_dns_vnet_link:privatelink.azurecr.io",
+          "passed": true,
+          "observed": {
+            "count": 1,
+            "first_twenty": [
+              {
+                "registrationEnabled": false,
+                "vnet": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/virtualNetworks/vnet-aicg-sn5edmznrgh7s",
+                "name": "link-aicg-sn5edmznrgh7s",
+                "provisioningState": "Succeeded"
+              }
+            ]
+          }
+        },
+        {
+          "name": "private_dns_vnet_link:privatelink.ods.opinsights.azure.com",
+          "passed": true,
+          "observed": {
+            "count": 1,
+            "first_twenty": [
+              {
+                "registrationEnabled": false,
+                "vnet": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/virtualNetworks/vnet-aicg-sn5edmznrgh7s",
+                "name": "link-aicg-sn5edmznrgh7s",
+                "provisioningState": "Succeeded"
+              }
+            ]
+          }
+        },
+        {
+          "name": "private_dns_vnet_link:privatelink.oms.opinsights.azure.com",
+          "passed": true,
+          "observed": {
+            "count": 1,
+            "first_twenty": [
+              {
+                "registrationEnabled": false,
+                "vnet": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/virtualNetworks/vnet-aicg-sn5edmznrgh7s",
+                "name": "link-aicg-sn5edmznrgh7s",
+                "provisioningState": "Succeeded"
+              }
+            ]
+          }
+        },
+        {
+          "name": "private_dns_vnet_link:privatelink.agentsvc.azure-automation.net",
+          "passed": true,
+          "observed": {
+            "count": 1,
+            "first_twenty": [
+              {
+                "registrationEnabled": false,
+                "vnet": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/virtualNetworks/vnet-aicg-sn5edmznrgh7s",
+                "name": "link-aicg-sn5edmznrgh7s",
+                "provisioningState": "Succeeded"
+              }
+            ]
+          }
+        },
+        {
+          "name": "exact_private_dns_link_count",
+          "passed": true,
+          "observed": {
+            "expected": 6,
+            "actual": 6
+          }
+        },
+        {
+          "name": "monitor_workspace_private_no_local_auth",
+          "passed": true,
+          "observed": {
+            "disableLocalAuth": true,
+            "publicNetworkAccessForQuery": "Disabled",
+            "publicNetworkAccessForIngestion": "Disabled"
+          }
+        },
+        {
+          "name": "monitor_scope_private_only",
+          "passed": true,
+          "observed": {
+            "ingestionAccessMode": "PrivateOnly",
+            "exclusions_schema_valid": true,
+            "queryAccessMode": "PrivateOnly",
+            "exclusions_count": 0
+          }
+        },
+        {
+          "name": "monitor_scope_links_workspace",
+          "passed": true,
+          "observed": [
+            "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourcegroups/rg-ai-command-gateway-dev/providers/microsoft.operationalinsights/workspaces/log-aicg-sn5edmznrgh7s"
+          ]
+        },
+        {
+          "name": "one_expected_pilot_job",
+          "passed": true,
+          "observed": {
+            "count": 1,
+            "expected_id": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.App/jobs/job-aicg-sn5edmznrgh7s"
+          }
+        },
+        {
+          "name": "job_environment_and_identity",
+          "passed": true,
+          "observed": {
+            "identity_count": 1,
+            "environment_id": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.App/managedEnvironments/cae-aicg-sn5edmznrgh7s",
+            "identity_type": "UserAssigned",
+            "workload_profile": "Consumption",
+            "provisioning_state": "Succeeded"
+          }
+        },
+        {
+          "name": "job_manual_bounded_execution",
+          "passed": true,
+          "observed": {
+            "completion_count": 1,
+            "retries": 0,
+            "timeout": 1800,
+            "parallelism": 1,
+            "trigger": "Manual"
+          }
+        },
+        {
+          "name": "job_registry_identity_without_secrets",
+          "passed": true,
+          "observed": {
+            "no_registry_credentials": true,
+            "registry_count": 1,
+            "identity_setting_count": 1,
+            "secret_count": 0
+          }
+        },
+        {
+          "name": "job_one_gateway_container",
+          "passed": true,
+          "observed": {
+            "init_count": 0,
+            "volume_count": 0,
+            "count": 1
+          }
+        },
+        {
+          "name": "job_reviewed_image_digest",
+          "passed": true,
+          "observed": {
+            "matches": true,
+            "expected_digest": "sha256:99ae6d8dd7962dfc517a09cce6f46b979af78fd0f5c149bf01e0132b4a2aabad"
+          }
+        },
+        {
+          "name": "job_command_and_resources",
+          "passed": true,
+          "observed": {
+            "memory": "2Gi",
+            "command_matches": true,
+            "cpu": 1,
+            "argument_count": 0
+          }
+        },
+        {
+          "name": "job_six_exact_environment_values",
+          "passed": true,
+          "observed": {
+            "expected_mode": "dataset-analysis",
+            "values_match": true,
+            "count": 6
+          }
+        },
+        {
+          "name": "foundation_has_no_operator_peering",
+          "passed": true,
+          "observed": {
+            "count": 0
+          }
+        },
+        {
+          "name": "temporary_operator_group_removed",
+          "passed": true,
+          "observed": {
+            "expected_absent": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-operator"
+          }
+        }
+      ],
+      "arm_read_diagnostics": [
+        {
+          "step": "private_endpoint",
+          "attempt": 1,
+          "exit_code": 1,
+          "code": "transient_transport",
+          "retry": true
+        }
+      ]
+    }
+  },
+  "cleanup": {
+    "schemaVersion": "1.0",
+    "startedAtUtc": "2026-10-16T03:40:04.2250985Z",
+    "subscriptionId": "b31e9bd1-6179-4504-819b-f212ed36f609",
+    "operatorResourceGroup": "rg-ai-command-gateway-operator",
+    "deleteRequested": true,
+    "status": "deleted",
+    "checkedFoundationIds": [
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/virtualNetworks/vnet-aicg-sn5edmznrgh7s/virtualNetworkPeerings/to-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/privateDnsZones/privatelink.azurecr.io/virtualNetworkLinks/link-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net/virtualNetworkLinks/link-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/privateDnsZones/privatelink.monitor.azure.com/virtualNetworkLinks/link-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/privateDnsZones/privatelink.oms.opinsights.azure.com/virtualNetworkLinks/link-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/privateDnsZones/privatelink.ods.opinsights.azure.com/virtualNetworkLinks/link-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/privateDnsZones/privatelink.agentsvc.azure-automation.net/virtualNetworkLinks/link-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.ContainerRegistry/registries/craicgsn5edmznrgh7s/providers/Microsoft.Authorization/roleAssignments/df710df2-53f7-5387-a766-6d2dbcd9def4",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Storage/storageAccounts/staicgsn5edmznrgh7s/blobServices/default/containers/inputs/providers/Microsoft.Authorization/roleAssignments/bb1f2a9c-9f8a-5e64-a3fd-04973464d836",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Storage/storageAccounts/staicgsn5edmznrgh7s/blobServices/default/containers/outputs/providers/Microsoft.Authorization/roleAssignments/4d9bc1de-c9aa-5c68-80bf-266e84251f87",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.OperationalInsights/workspaces/log-aicg-sn5edmznrgh7s/providers/Microsoft.Authorization/roleAssignments/bf72e770-d088-516b-bdc2-f4395324ecef"
+    ],
+    "deletedFoundationIds": [
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/virtualNetworks/vnet-aicg-sn5edmznrgh7s/virtualNetworkPeerings/to-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/privateDnsZones/privatelink.azurecr.io/virtualNetworkLinks/link-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net/virtualNetworkLinks/link-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/privateDnsZones/privatelink.monitor.azure.com/virtualNetworkLinks/link-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/privateDnsZones/privatelink.oms.opinsights.azure.com/virtualNetworkLinks/link-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/privateDnsZones/privatelink.ods.opinsights.azure.com/virtualNetworkLinks/link-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/privateDnsZones/privatelink.agentsvc.azure-automation.net/virtualNetworkLinks/link-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.ContainerRegistry/registries/craicgsn5edmznrgh7s/providers/Microsoft.Authorization/roleAssignments/df710df2-53f7-5387-a766-6d2dbcd9def4",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Storage/storageAccounts/staicgsn5edmznrgh7s/blobServices/default/containers/inputs/providers/Microsoft.Authorization/roleAssignments/bb1f2a9c-9f8a-5e64-a3fd-04973464d836",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Storage/storageAccounts/staicgsn5edmznrgh7s/blobServices/default/containers/outputs/providers/Microsoft.Authorization/roleAssignments/4d9bc1de-c9aa-5c68-80bf-266e84251f87",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.OperationalInsights/workspaces/log-aicg-sn5edmznrgh7s/providers/Microsoft.Authorization/roleAssignments/bf72e770-d088-516b-bdc2-f4395324ecef"
+    ],
+    "operatorGroupDeleted": true,
+    "checkedOperatorResourceIds": [
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-operator/providers/Microsoft.Network/networkSecurityGroups/nsg-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-operator/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-operator/providers/Microsoft.Network/networkSecurityGroups/nsg-aicg-operator-bastion",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-operator/providers/Microsoft.Network/publicIPAddresses/pip-aicg-operator-bastion",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-operator/providers/Microsoft.Network/virtualNetworks/vnet-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-operator/providers/Microsoft.Network/networkInterfaces/nic-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-operator/providers/Microsoft.Network/bastionHosts/bas-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-operator/providers/Microsoft.Compute/virtualMachines/vm-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/RG-AI-COMMAND-GATEWAY-OPERATOR/providers/Microsoft.Compute/disks/osdisk-aicg-operator"
+    ],
+    "finalOperatorResourceIds": [
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-operator/providers/Microsoft.Network/networkSecurityGroups/nsg-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-operator/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-operator/providers/Microsoft.Network/networkSecurityGroups/nsg-aicg-operator-bastion",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-operator/providers/Microsoft.Network/publicIPAddresses/pip-aicg-operator-bastion",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-operator/providers/Microsoft.Network/virtualNetworks/vnet-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-operator/providers/Microsoft.Network/networkInterfaces/nic-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-operator/providers/Microsoft.Network/bastionHosts/bas-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-operator/providers/Microsoft.Compute/virtualMachines/vm-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/RG-AI-COMMAND-GATEWAY-OPERATOR/providers/Microsoft.Compute/disks/osdisk-aicg-operator"
+    ],
+    "completedAtUtc": "2026-10-16T04:01:02.3014045Z"
+  },
+  "explicit_absence_verification": {
+    "schema_version": "1.0.0",
+    "recorded_at_utc": "2026-10-16T04:09:22.934759+00:00",
+    "status": "passed",
+    "subscription_id": "b31e9bd1-6179-4504-819b-f212ed36f609",
+    "operator_principal_id": "b916f8be-8165-4768-b1ed-20d1a0e3f7da",
+    "scope": "ARM resource and role-assignment absence only",
+    "resource_changes_performed": false,
+    "secrets_requested": false,
+    "checks": [
+      {
+        "resource_id": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/virtualNetworks/vnet-aicg-sn5edmznrgh7s/virtualNetworkPeerings/to-aicg-operator",
+        "method": "GET",
+        "confirmed_absent": true,
+        "response_code": "NotFound",
+        "cli_exit_code": 1
+      },
+      {
+        "resource_id": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/privateDnsZones/privatelink.azurecr.io/virtualNetworkLinks/link-aicg-operator",
+        "method": "GET",
+        "confirmed_absent": true,
+        "response_code": "ResourceNotFound",
+        "cli_exit_code": 1
+      },
+      {
+        "resource_id": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net/virtualNetworkLinks/link-aicg-operator",
+        "method": "GET",
+        "confirmed_absent": true,
+        "response_code": "ResourceNotFound",
+        "cli_exit_code": 1
+      },
+      {
+        "resource_id": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/privateDnsZones/privatelink.monitor.azure.com/virtualNetworkLinks/link-aicg-operator",
+        "method": "GET",
+        "confirmed_absent": true,
+        "response_code": "ResourceNotFound",
+        "cli_exit_code": 1
+      },
+      {
+        "resource_id": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/privateDnsZones/privatelink.oms.opinsights.azure.com/virtualNetworkLinks/link-aicg-operator",
+        "method": "GET",
+        "confirmed_absent": true,
+        "response_code": "ResourceNotFound",
+        "cli_exit_code": 1
+      },
+      {
+        "resource_id": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/privateDnsZones/privatelink.ods.opinsights.azure.com/virtualNetworkLinks/link-aicg-operator",
+        "method": "GET",
+        "confirmed_absent": true,
+        "response_code": "ResourceNotFound",
+        "cli_exit_code": 1
+      },
+      {
+        "resource_id": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/privateDnsZones/privatelink.agentsvc.azure-automation.net/virtualNetworkLinks/link-aicg-operator",
+        "method": "GET",
+        "confirmed_absent": true,
+        "response_code": "ResourceNotFound",
+        "cli_exit_code": 1
+      },
+      {
+        "resource_id": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.ContainerRegistry/registries/craicgsn5edmznrgh7s/providers/Microsoft.Authorization/roleAssignments/df710df2-53f7-5387-a766-6d2dbcd9def4",
+        "method": "GET",
+        "confirmed_absent": true,
+        "response_code": "RoleAssignmentNotFound",
+        "cli_exit_code": 1
+      },
+      {
+        "resource_id": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Storage/storageAccounts/staicgsn5edmznrgh7s/blobServices/default/containers/inputs/providers/Microsoft.Authorization/roleAssignments/bb1f2a9c-9f8a-5e64-a3fd-04973464d836",
+        "method": "GET",
+        "confirmed_absent": true,
+        "response_code": "RoleAssignmentNotFound",
+        "cli_exit_code": 1
+      },
+      {
+        "resource_id": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Storage/storageAccounts/staicgsn5edmznrgh7s/blobServices/default/containers/outputs/providers/Microsoft.Authorization/roleAssignments/4d9bc1de-c9aa-5c68-80bf-266e84251f87",
+        "method": "GET",
+        "confirmed_absent": true,
+        "response_code": "RoleAssignmentNotFound",
+        "cli_exit_code": 1
+      },
+      {
+        "resource_id": "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.OperationalInsights/workspaces/log-aicg-sn5edmznrgh7s/providers/Microsoft.Authorization/roleAssignments/bf72e770-d088-516b-bdc2-f4395324ecef",
+        "method": "GET",
+        "confirmed_absent": true,
+        "response_code": "RoleAssignmentNotFound",
+        "cli_exit_code": 1
+      }
+    ],
+    "get_attempts": 12,
+    "retry_diagnostics": [],
+    "principal_role_count": 0,
+    "prior_rejections_preserved": [
+      "absence-initial-format-rejected.json",
+      "absence-role-code-rejected.json"
+    ],
+    "oneshot_source_sha256": "22a1c0dfd762d787b1fa491b7315c152cf8ce76c8e74d9f8eb2e4b069f1e544e",
+    "oneshot_source": "verify_absence_once.py",
+    "source_cleanup_summary_sha256": "ce5b3d1b876b2c277b4ad7ba78eca3d77aa3722f818b0d25e4747052a027dceb",
+    "checked_resource_ids": [
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/virtualNetworks/vnet-aicg-sn5edmznrgh7s/virtualNetworkPeerings/to-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/privateDnsZones/privatelink.azurecr.io/virtualNetworkLinks/link-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net/virtualNetworkLinks/link-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/privateDnsZones/privatelink.monitor.azure.com/virtualNetworkLinks/link-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/privateDnsZones/privatelink.oms.opinsights.azure.com/virtualNetworkLinks/link-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/privateDnsZones/privatelink.ods.opinsights.azure.com/virtualNetworkLinks/link-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Network/privateDnsZones/privatelink.agentsvc.azure-automation.net/virtualNetworkLinks/link-aicg-operator",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.ContainerRegistry/registries/craicgsn5edmznrgh7s/providers/Microsoft.Authorization/roleAssignments/df710df2-53f7-5387-a766-6d2dbcd9def4",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Storage/storageAccounts/staicgsn5edmznrgh7s/blobServices/default/containers/inputs/providers/Microsoft.Authorization/roleAssignments/bb1f2a9c-9f8a-5e64-a3fd-04973464d836",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.Storage/storageAccounts/staicgsn5edmznrgh7s/blobServices/default/containers/outputs/providers/Microsoft.Authorization/roleAssignments/4d9bc1de-c9aa-5c68-80bf-266e84251f87",
+      "/subscriptions/b31e9bd1-6179-4504-819b-f212ed36f609/resourceGroups/rg-ai-command-gateway-dev/providers/Microsoft.OperationalInsights/workspaces/log-aicg-sn5edmznrgh7s/providers/Microsoft.Authorization/roleAssignments/bf72e770-d088-516b-bdc2-f4395324ecef"
+    ],
+    "absent_resource_count": 11,
+    "completed_at_utc": "2026-10-16T04:10:14.151955+00:00"
+  },
+  "local_access_cleanup": {
+    "recorded_at_utc": "2026-10-16T04:02:01.8612391Z",
+    "port_50022_listening": false,
+    "private_key_removed": true,
+    "tunnel_state": "stopped",
+    "status": "passed",
+    "tunnel_pid": 19576
+  },
+  "local_verification": {
+    "full_suite": {
+      "passed": 590,
+      "skipped": 1,
+      "subtests_passed": 44,
+      "runtime": "retained Windows CPython3.10.11 baseline"
+    },
+    "exact_image": {
+      "passed": true,
+      "tests": 480,
+      "subtests": 44,
+      "duration_seconds": 37.93,
+      "image_id": "sha256:e323bfcba037b00d0ac7ca409b0e8ba271e8a4cff2e492d3808e2157145a099e",
+      "pytest_version": "9.1.1",
+      "execution": "Exact final image with pytest and dependencies mounted read-only; no runtime mutation and no network; source/tests mounted read-only",
+      "junit": "outputs/image-remediation/pytest-exact-image.xml",
+      "junit_sha256": "3a8b0aa12b66a12fa08e2d505a588e9fedc5261af4aa55e73cdbb63dabc53cfc",
+      "log_sha256": "409f31a9a42def25fae99baa0b25ad66b7c7bf2d6d6baf8d78b0a5faa973e3e6"
+    },
+    "constrained_dataset": {
+      "run_id": "a09434e8-3685-43c4-8870-8ebc715bc930",
+      "checks_passed": 16,
+      "source_count": 5,
+      "all_checks_passed": true,
+      "resource_summary": {
+        "scope": "Linux image resource-bounded dataset job with filesystem Blob simulation; no Azure service calls",
+        "application_version": "0.4.0",
+        "uid": 10001,
+        "exit_code": 0,
+        "duration_seconds": 95.08,
+        "cgroup_limits": {
+          "memory.max": "2147483648",
+          "memory.swap.max": "0",
+          "cpu.max": "100000 100000"
+        },
+        "cgroup_peak_memory_bytes": 945270784,
+        "cgroup_memory_events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+        "process_max_rss_bytes": 979636224,
+        "network": "none",
+        "root_filesystem": "read-only",
+        "input_mounts": "five individual files, read-only",
+        "all_checks_passed": true
+      },
+      "azure_service_validation_performed": false
+    },
+    "subsequent_focused_tests": {
+      "transfer_log_helper": 46,
+      "control_plane_verifier": 28,
+      "start_contract_checks": 61
+    },
+    "deployment_contract_checks": 46,
+    "cleanup_mock_tests": 18,
+    "identity_probe_tests": 21,
+    "output_verifier_tests": {
+      "passed": 27,
+      "skipped": 1
+    },
+    "oci_extractor_tests": 14
+  },
+  "static_assurance": {
+    "bicep_compilation": "passed",
+    "whole_infra_checkov": {
+      "passed": 39,
+      "failed": 0,
+      "skipped": 4,
+      "parsing_errors": 1
+    },
+    "unparsed_file": "infra/operator-foundation-links.bicep",
+    "focused_job_checks": 0,
+    "limits": "Parser skipped operator links; focused job parsing is not a security-check pass. Live controls tested separately."
+  },
+  "standards_assurance": {
+    "tailoring": "governance/standards-tailoring.md",
+    "requirements": "requirements/traceability.csv",
+    "formal_conformity": false,
+    "independent_domain_acceptance": false,
+    "production_release": false
+  },
+  "cost": {
+    "governed_model": "customer/COST-001.md",
+    "core_estimate_usd_month": 97.49,
+    "approved_operator_four_hour_estimate_usd": 1.55,
+    "proposed_allowance_usd": 5,
+    "automatic_cap": false,
+    "actual_bill_measured": false,
+    "temporary_operator_removed": true,
+    "foundation_and_usage_charges_continue": true
+  },
+  "limitations": [
+    "No hosted model inference or equipment operation performed",
+    "Source semantics, controls policy, independent expected cases and authenticated user approval roles remain open",
+    "No production availability, recovery, performance, customer acceptance or formal standards conformity claim",
+    "Image scan is point-in-time; base Cosign and tool Sigstore attestations were not verified",
+    "One identity probe has persisted report evidence but no captured console report",
+    "No broad Blob-prefix enumeration or production storage immutability claim",
+    "Manual start concurrency checks are not atomic across operators",
+    "Raw execution evidence is retained locally in ignored outputs; original dataset files, generated credentials and raw logs are not committed",
+    "Git publication is represented by the containing commit and observed remote HEAD; remote CI/protections unverified"
+  ],
+  "historical_records": {
+    "governance/local-verification-v0.2.json": {
+      "path": "governance/local-verification-v0.2.json",
+      "size_bytes": 5722,
+      "sha256": "3728988ec99ec8a514d06fa701092aac07e5962808455e89679d1d9ec05c80ff"
+    },
+    "governance/local-verification-v0.3.json": {
+      "path": "governance/local-verification-v0.3.json",
+      "size_bytes": 17017,
+      "sha256": "3b7f54dfe5ec6f4a713a9cb2a608064ed2f23e4a51eebefce81cedbaaaa2a941"
+    },
+    "governance/local-verification-v0.4.json": {
+      "path": "governance/local-verification-v0.4.json",
+      "size_bytes": 45351,
+      "sha256": "d5a9adc20abb0154788b1cec9be4577451a253738fd2dc0f5d2510e8047a89c9"
+    },
+    "governance/azure-readiness-v0.4.json": {
+      "path": "governance/azure-readiness-v0.4.json",
+      "size_bytes": 38722,
+      "sha256": "f09a5c4e899b92596f5c54472f00e7d85a3e5f3b4c118de870e38242a60d9fd1"
+    },
+    "customer/DISC-001-v0.1.docx": {
+      "path": "customer/DISC-001-v0.1.docx",
+      "size_bytes": 45755,
+      "sha256": "f436afc7905c663a5c77c3ae8ebd72d2940795ce8412030f1bb75232d38ea3f3"
+    },
+    "customer/source-manifest.json": {
+      "path": "customer/source-manifest.json",
+      "size_bytes": 311,
+      "sha256": "146e519f2722aa163823ea8dbd7760099fced09a11de753bd24d0302dc4592ed"
+    }
+  },
+  "source_bindings": [
+    {
+      "path": ".azure/operator-plan.json",
+      "size_bytes": 12815,
+      "sha256": "ebe52af002a7be8fab275f16d6f5da2f8cf05f8547401dc85cc1e7cfa972973e"
+    },
+    {
+      "path": ".dockerignore",
+      "size_bytes": 622,
+      "sha256": "bc69fa3b5cf84cf7518ad6ce030aac08245ed1f6047aa88c0053cbd9e5cbb68a"
+    },
+    {
+      "path": "Dockerfile",
+      "size_bytes": 2330,
+      "sha256": "cb895f7084d9ae43f0bb04edc94c98c9ddbb2c926d7d6d60af2419e900bc96fd"
+    },
+    {
+      "path": "containers/python-linux-amd64.lock",
+      "size_bytes": 2305,
+      "sha256": "228c877963f09a2c9bae58965e7965b490f8068e95351a308c4dd7ff499a4934"
+    },
+    {
+      "path": "containers/wolfi-packages.lock",
+      "size_bytes": 863,
+      "sha256": "98bd755cf961b1e385c9507b9c7b694c7f4f1d13cce7ec3848e7aa8576509747"
+    },
+    {
+      "path": "data/contracts/advice.schema.json",
+      "size_bytes": 3696,
+      "sha256": "861f95dc29277d9d8ab657b1d477b632bfe67598deabad97c60add8945c80afa"
+    },
+    {
+      "path": "data/contracts/command-request.schema.json",
+      "size_bytes": 2065,
+      "sha256": "404defb181ed6632576b9fb4b5bac272dd549306ef2e989f52c16744e8dd8468"
+    },
+    {
+      "path": "data/contracts/evidence-catalog.schema.json",
+      "size_bytes": 4159,
+      "sha256": "41769ed4e0dc3f3d21f58eee8a5b81f78dbcea676f35b2333d15d9546ef34c6a"
+    },
+    {
+      "path": "data/contracts/model-advice.schema.json",
+      "size_bytes": 5708,
+      "sha256": "4cbc12815e36b59fe0530fe0ad4204c6cf39deda2a633919c37ba767f4a17904"
+    },
+    {
+      "path": "data/contracts/qualification.schema.json",
+      "size_bytes": 6765,
+      "sha256": "4e0c19ad04babd20348e66b1beb0e8739dfcacf778089b704a10b397c6a9f8e1"
+    },
+    {
+      "path": "data/contracts/source-profile.schema.json",
+      "size_bytes": 6065,
+      "sha256": "69c4a53fc23b0a229d53625793471e405ad74f62f2ce6b95e0c9fa73e603ea41"
+    },
+    {
+      "path": "data/evaluation/advice-cases-v1.json",
+      "size_bytes": 3059,
+      "sha256": "bdd480fa923d5b50a5f0e8f693a8f2ed7937bbcca8479c0875e95644b120b68d"
+    },
+    {
+      "path": "data/lineage/source-inventory.json",
+      "size_bytes": 2198,
+      "sha256": "3f26f0c1a3fd57ef5c58e4f63f535321fe2da504ba797de8bd0e1d6db31dbdde"
+    },
+    {
+      "path": "infra/README.md",
+      "size_bytes": 12724,
+      "sha256": "6a6d009a06f8b308dfbc1c98e0154afa7682050451472f8952e1e85a6a618d1d"
+    },
+    {
+      "path": "infra/job-only.bicep",
+      "size_bytes": 2081,
+      "sha256": "0a4bed243af9028d1fdd3b98686f50989f20eec3b9f72535e29b7f0ffce73729"
+    },
+    {
+      "path": "infra/main.bicep",
+      "size_bytes": 5248,
+      "sha256": "0cf30ed140bfae216d1e4921e349d21cd7c0068c3642581778918ab4c02e34dd"
+    },
+    {
+      "path": "infra/main.parameters.example.json",
+      "size_bytes": 572,
+      "sha256": "49ea72d80568e78a627ea66adc523d4d34bb9efe8c379d07def8c70413636f4e"
+    },
+    {
+      "path": "infra/modules/environment.bicep",
+      "size_bytes": 1557,
+      "sha256": "30cd199db514bbf93e4e5fa5ef68be670aa20a77773c19452c4fcbeead3aa14f"
+    },
+    {
+      "path": "infra/modules/job.bicep",
+      "size_bytes": 2201,
+      "sha256": "88de96d1a26cac7b309a8fdf86742fa846057dbb1270691ebdcb6c937d5241ff"
+    },
+    {
+      "path": "infra/modules/monitoring.bicep",
+      "size_bytes": 2173,
+      "sha256": "1f736cb0ff5dd40e52a0bcd22ea04b8776f312a1aeecd9a8dea22c70bbf8bf6f"
+    },
+    {
+      "path": "infra/modules/network.bicep",
+      "size_bytes": 2973,
+      "sha256": "e899852ff2de17a7ebf5e928e5d6c8b902b02f2a43aecc3c52ccf8044fe4d537"
+    },
+    {
+      "path": "infra/modules/registry.bicep",
+      "size_bytes": 3140,
+      "sha256": "61cfcb8304229dad5682fb02f60052e3bdc279a60f482cb10b8ec853f1e6d5e9"
+    },
+    {
+      "path": "infra/modules/storage.bicep",
+      "size_bytes": 5351,
+      "sha256": "bb6729452dd057d586ec7f1c4f37f032233f9b8fa54beeebad776200ac11e810"
+    },
+    {
+      "path": "infra/operator-foundation-links.bicep",
+      "size_bytes": 3862,
+      "sha256": "74a3168fea4e51065928de4070dc426d6d5edaee412ca55c7e711e06ece2f262"
+    },
+    {
+      "path": "infra/operator-subscription.bicep",
+      "size_bytes": 1543,
+      "sha256": "e0f68cb39e789e1ead91f40aca73d21a1c0a8816f777e358d0f831b081dc9cd8"
+    },
+    {
+      "path": "infra/operator.bicep",
+      "size_bytes": 9155,
+      "sha256": "2c2e500c3665b5bfb5579b7c2111e89df19f043753fcc1bc728c34bcf9097e78"
+    },
+    {
+      "path": "infra/security-exceptions.md",
+      "size_bytes": 3420,
+      "sha256": "111f1b7387450cb22a5aac13b23cab12cc1354cbd71955a9e37f166ac07d2175"
+    },
+    {
+      "path": "infra/subscription-readme.md",
+      "size_bytes": 4332,
+      "sha256": "978895d137769142710ab42b39182676b8f780ddef86d3a5d6f58524c8c26cd7"
+    },
+    {
+      "path": "infra/subscription.bicep",
+      "size_bytes": 3417,
+      "sha256": "562fcbc61158c545262e23ec0b9bfabc174899133a37ec3005e1aaab82ca04fb"
+    },
+    {
+      "path": "infra/validation.json",
+      "size_bytes": 2938,
+      "sha256": "cad9b0f6bdc12f4682219db47af63b1281003d10b3e815f7e9ec30572a8cdda1"
+    },
+    {
+      "path": "infra/validation.md",
+      "size_bytes": 3038,
+      "sha256": "d99668a52dad76dfed5cf74bbca4ba839a81f936e0b683a713ea567d661738b0"
+    },
+    {
+      "path": "scripts/azure_operator_transfer.py",
+      "size_bytes": 28123,
+      "sha256": "722d10896de2154a94302ddb61932d37fc8bd92f321bb2b286f371bfdece61ab"
+    },
+    {
+      "path": "scripts/azure_preflight.ps1",
+      "size_bytes": 11280,
+      "sha256": "a76e89a5419eb7b53426b244bb6414f0352a3d186dc73d3df3f6e70ef7a8c469"
+    },
+    {
+      "path": "scripts/check_repository.py",
+      "size_bytes": 3228,
+      "sha256": "fc4b03add60bc1f2ce65540063f137f71d4e3089610d68a4c41fd51212b60bda"
+    },
+    {
+      "path": "scripts/deploy_azure.ps1",
+      "size_bytes": 3593,
+      "sha256": "90ce95b3cd369d4d0d73b1456bbef26ab90de1fe3cd828882bf4e0144371f97d"
+    },
+    {
+      "path": "scripts/extract_reviewed_oci.py",
+      "size_bytes": 13272,
+      "sha256": "e65084ba43cbecd8a449911e0aa38773dba610ce4c9741fbf65ee4a1e1175a45"
+    },
+    {
+      "path": "scripts/probe_azure_job_identity.py",
+      "size_bytes": 10202,
+      "sha256": "2f9143c2cd6222f9cdee88fa1b67aa2b32302c38687add1c5eb70de3ffdd32ef"
+    },
+    {
+      "path": "scripts/remove_azure_operator.ps1",
+      "size_bytes": 8865,
+      "sha256": "a236246f7f911be6b31af2671007e81212b7abff1fd08830a881e2a24a34d95f"
+    },
+    {
+      "path": "scripts/start_azure_pilot_test.ps1",
+      "size_bytes": 19083,
+      "sha256": "f2b78d86c614fd97a51d894519a0a7e7a09db18f960a6289090f480f8ac08bfd"
+    },
+    {
+      "path": "scripts/test_azure_container.ps1",
+      "size_bytes": 6565,
+      "sha256": "c1c539aecc0b4b5e802903cc4a8b35c2b9ebf3c67d167a327b823997d607f588"
+    },
+    {
+      "path": "scripts/test_azure_pilot_start.ps1",
+      "size_bytes": 27213,
+      "sha256": "5b63da41e1525571851fdef2aea11a5bfb364c3a9e39e99ee37837c48bc7fbed"
+    },
+    {
+      "path": "scripts/test_azure_scripts.ps1",
+      "size_bytes": 17039,
+      "sha256": "0300d4e5a76369b85ecc2e2b455e84f588c981105aea9a095f8f2efdfd703539"
+    },
+    {
+      "path": "scripts/verify_azure_container.py",
+      "size_bytes": 2325,
+      "sha256": "5f443b0f4af3ac6c828782a1771afc825c38b5c760c8302d09528d48d9fa54a1"
+    },
+    {
+      "path": "scripts/verify_azure_foundation.ps1",
+      "size_bytes": 16694,
+      "sha256": "71e5210f3dbe88a595c16b088ff693aed617def349129f3efbc516b68b229afa"
+    },
+    {
+      "path": "scripts/verify_azure_local.py",
+      "size_bytes": 16066,
+      "sha256": "0eaee37f2b776db86ea120ae68a7f313983958bd3114ef96e7b1bcf6954b7fb2"
+    },
+    {
+      "path": "scripts/verify_azure_outputs.py",
+      "size_bytes": 16478,
+      "sha256": "67588364c6534fb240396b2a398c2a6bae651a490203e0f656b1f1a5b5943504"
+    },
+    {
+      "path": "scripts/verify_azure_pilot.ps1",
+      "size_bytes": 31052,
+      "sha256": "f3ac0375578cbab3dca51cbb31b2790d4d0d08213f45628791e798c6f9f9b188"
+    },
+    {
+      "path": "scripts/verify_local.py",
+      "size_bytes": 8604,
+      "sha256": "cc0a85d2feac0d0fcf650c55a8ea4d3925a060f315a38394c88640a5265c6c62"
+    },
+    {
+      "path": "src/ai_command_gateway/__init__.py",
+      "size_bytes": 98,
+      "sha256": "e990610ff2a3ad2e9cc3ccbed64b4e4ffc56942984219f7d5f622fa8882521fb"
+    },
+    {
+      "path": "src/ai_command_gateway/__main__.py",
+      "size_bytes": 48,
+      "sha256": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d"
+    },
+    {
+      "path": "src/ai_command_gateway/advice_evaluation.py",
+      "size_bytes": 9632,
+      "sha256": "2117ee88381a0945d30009aca002ede5f8cf899beb5626ba7b19a34ba1b995c0"
+    },
+    {
+      "path": "src/ai_command_gateway/advisor.py",
+      "size_bytes": 13440,
+      "sha256": "a53cb85f9ac50db83a8ab51bd6985e22cf137547ad0523b2539803c90db01afc"
+    },
+    {
+      "path": "src/ai_command_gateway/azure_job.py",
+      "size_bytes": 19608,
+      "sha256": "745fc779d7d58dad8d1a782c69b0ae602bd2d7469d38ce36c907d758cb9f7134"
+    },
+    {
+      "path": "src/ai_command_gateway/cli.py",
+      "size_bytes": 11509,
+      "sha256": "1f0df40392bd18cf9546e503bc7d44af1e0128a17990f419a23bc843cf845d26"
+    },
+    {
+      "path": "src/ai_command_gateway/datasets.py",
+      "size_bytes": 19104,
+      "sha256": "12b0445a66e1ac17ce89c4c1af9bf49843b872ab2d2a3885f946e2eff181398f"
+    },
+    {
+      "path": "src/ai_command_gateway/evidence.py",
+      "size_bytes": 25271,
+      "sha256": "056931e423405b84947d0b5eda3388260e97d6d229e11d6877b38ca680ce6f37"
+    },
+    {
+      "path": "src/ai_command_gateway/gateway.py",
+      "size_bytes": 21784,
+      "sha256": "91192bce015e96b2fc8b96801951a146d4452b3fa7184a3a74e98ca39e190930"
+    },
+    {
+      "path": "src/ai_command_gateway/model_advisor.py",
+      "size_bytes": 11496,
+      "sha256": "5679bc4aae4b6bda14b9c038fed412b8e6304749cb91015a3c9acb7f41be2681"
+    },
+    {
+      "path": "src/ai_command_gateway/openai_transport.py",
+      "size_bytes": 10098,
+      "sha256": "4cd069777dbc62e1b49bc35f6ae80e11f3b060b8c1bd5c38807da31ee98a815d"
+    },
+    {
+      "path": "src/ai_command_gateway/qualification.py",
+      "size_bytes": 17899,
+      "sha256": "36a667076f80b4172d00ceafc9947535ea8280d0fe11d93b545fc87b266e7d5f"
+    },
+    {
+      "path": "src/ai_command_gateway/replay.py",
+      "size_bytes": 5175,
+      "sha256": "9349184e74b656e4b7b2b93989628a51b25323f6fc5ee182f255727aa2f29c2c"
+    },
+    {
+      "path": "tests/fixtures/evidence-source-profile.json",
+      "size_bytes": 30718,
+      "sha256": "f448b590686983fd7c280056fa01e67a0ef0ce3e16476b9246a2857a568676c1"
+    },
+    {
+      "path": "tests/test_advice_evaluation.py",
+      "size_bytes": 9746,
+      "sha256": "559e1636a4bf119f4674364d567ffa4dd1d713d3439193ea57bc47af2a476cd9"
+    },
+    {
+      "path": "tests/test_advisor.py",
+      "size_bytes": 12906,
+      "sha256": "0e15887d412969213b1275001a310e0f09569dbb27d151e082f93a5da2a72301"
+    },
+    {
+      "path": "tests/test_azure_job.py",
+      "size_bytes": 20931,
+      "sha256": "97a3815d1568a15521e9ea19325a1a2fcf4c2134f2242c11e8fdf92e689eb3be"
+    },
+    {
+      "path": "tests/test_azure_job_identity_probe.py",
+      "size_bytes": 9232,
+      "sha256": "36ca9ed7aff6663ec576b060d68d7330cf8bab56cfdddddbfb4e7b4fe6570a01"
+    },
+    {
+      "path": "tests/test_azure_operator_cleanup.py",
+      "size_bytes": 12101,
+      "sha256": "b9cc8ba50e64e9918ca8706366729611695a93c9e4201a6fef27a6f66f5fa7d5"
+    },
+    {
+      "path": "tests/test_azure_operator_transfer.py",
+      "size_bytes": 22523,
+      "sha256": "6f0933cd9ea4d11e87734cbcde85a21564ea769f940db86fe8fe5a484766dc98"
+    },
+    {
+      "path": "tests/test_azure_outputs.py",
+      "size_bytes": 10525,
+      "sha256": "712d45e9dba67e325ca8d352c97bc7f6609b0716f95bf4070a701656d9df07c0"
+    },
+    {
+      "path": "tests/test_azure_pilot_verification.py",
+      "size_bytes": 23169,
+      "sha256": "95a39f8a08350925c439b0c00b975d199e0a8f05951013eb62e8ab4794c853c0"
+    },
+    {
+      "path": "tests/test_cli.py",
+      "size_bytes": 6488,
+      "sha256": "21ed9af720d7080e0841e34d924d5a216f65764db0dbf507772506e540b6661e"
+    },
+    {
+      "path": "tests/test_cli_advice.py",
+      "size_bytes": 4991,
+      "sha256": "1b27553423fe1020482385188d07dcadf488ca92ab497cb83d53ee2311443cf2"
+    },
+    {
+      "path": "tests/test_cli_model_advice.py",
+      "size_bytes": 6019,
+      "sha256": "72aff3ceac5d2831cfa67231629242bc0acf7850004ed4a52ea2d1a01cec8883"
+    },
+    {
+      "path": "tests/test_datasets.py",
+      "size_bytes": 8566,
+      "sha256": "5debaf65c9bb14a4fe49730cb2180fa55070e1f806f8628e4d5e2b1b4df05664"
+    },
+    {
+      "path": "tests/test_evidence.py",
+      "size_bytes": 9681,
+      "sha256": "02c4a6b30c4a28ea0df9a73251dff85d79c7588c5be808fb0aea0bb416d91b51"
+    },
+    {
+      "path": "tests/test_gateway.py",
+      "size_bytes": 13541,
+      "sha256": "7dda484e8a042edd4a9c94fd5e8030f5e0333296dadea99162a659295e479b73"
+    },
+    {
+      "path": "tests/test_model_advisor.py",
+      "size_bytes": 16915,
+      "sha256": "52c3d3093dd262d3d911a42209310ae2b648f969bb59503e16515d27858986e9"
+    },
+    {
+      "path": "tests/test_openai_transport.py",
+      "size_bytes": 12801,
+      "sha256": "c67d8871c4b98a9f6a261964c32b83acef98e2f9644f6ed6caf694cba40a1572"
+    },
+    {
+      "path": "tests/test_qualification.py",
+      "size_bytes": 10284,
+      "sha256": "9d20e2e57588f147a551a4d0fb1752f3f6d37ed32e188afed27c7f873a7eec6f"
+    },
+    {
+      "path": "tests/test_reviewed_oci_extraction.py",
+      "size_bytes": 7968,
+      "sha256": "d45ccbe98616ad7b7dcc694d94effc3cdd18a312de8303ec041d640434f14278"
+    }
+  ],
+  "raw_evidence_bindings": [
+    {
+      "path": "outputs/azure-container-resources-reviewed/a09434e8-3685-43c4-8870-8ebc715bc930/resource-summary.json",
+      "size_bytes": 634,
+      "sha256": "2d19cbcd1ccc34bf519e77110839a2a3ae9c073e7e29acbba31a0ae07892b33f"
+    },
+    {
+      "path": "outputs/azure-container-resources-reviewed/a09434e8-3685-43c4-8870-8ebc715bc930/run-summary.json",
+      "size_bytes": 6828,
+      "sha256": "f1343c982ecd573da7c02147ae481d01d6e0fa0f2106853d12ebc6f72bae7628"
+    },
+    {
+      "path": "outputs/azure-image-scan-wolfi-final/scan-summary.json",
+      "size_bytes": 16350,
+      "sha256": "335e5878891f551933b2cf61a569791c42b1ce3388a57a27595932bab55d346f"
+    },
+    {
+      "path": "outputs/azure-job-only-validation/checkov-full.json",
+      "size_bytes": 232128,
+      "sha256": "a5c577ba5c0e9c566445c3ca7e4ae448068e8e4ece4ca8b367c76cee001a1101"
+    },
+    {
+      "path": "outputs/azure-job-only-validation/checkov-job-module.json",
+      "size_bytes": 149,
+      "sha256": "2af777e400129e9067170e9428a81a0020e9116830ac47462a969ef131d3b012"
+    },
+    {
+      "path": "outputs/azure-job-only-validation/checkov-job-only.json",
+      "size_bytes": 149,
+      "sha256": "2af777e400129e9067170e9428a81a0020e9116830ac47462a969ef131d3b012"
+    },
+    {
+      "path": "outputs/azure-job-only-validation/parser-diagnostic.json",
+      "size_bytes": 519,
+      "sha256": "da50b5c00388e1eb62daab4ea030025140dc51d3b9c8675945c56fa41ab28f89"
+    },
+    {
+      "path": "outputs/azure-operator-cleanup-precheck/summary.json",
+      "size_bytes": 5325,
+      "sha256": "7208bed9c2275b7b63f578e6b2d0455bb1eb79fe47f5f1acc32dfe2f5016d73a"
+    },
+    {
+      "path": "outputs/azure-operator-cleanup/absence-initial-format-rejected.json",
+      "size_bytes": 3718,
+      "sha256": "c9af420dd785b8dab366bf6e838380ab0763248532e37eeba029b9b39fbe38d4"
+    },
+    {
+      "path": "outputs/azure-operator-cleanup/absence-role-code-rejected.json",
+      "size_bytes": 6467,
+      "sha256": "55aa44624e0e8c68e2df981a70aa4f0c8cd1d49170248c5df1ebdcd22aa2fc6f"
+    },
+    {
+      "path": "outputs/azure-operator-cleanup/absence-verification.json",
+      "size_bytes": 7975,
+      "sha256": "bac1c2255d4668344242f3f44a3a9d4f198977789254da8fd9530de3a0d8f8e2"
+    },
+    {
+      "path": "outputs/azure-operator-cleanup/local-access-cleanup.json",
+      "size_bytes": 223,
+      "sha256": "3028ffbcf264ae7669498c671294496738b2c35aaa84d39105b531b46b8f6d02"
+    },
+    {
+      "path": "outputs/azure-operator-cleanup/summary.json",
+      "size_bytes": 10229,
+      "sha256": "ce5b3d1b876b2c277b4ad7ba78eca3d77aa3722f818b0d25e4747052a027dceb"
+    },
+    {
+      "path": "outputs/azure-operator-cleanup/verify_absence_once.py",
+      "size_bytes": 6854,
+      "sha256": "22a1c0dfd762d787b1fa491b7315c152cf8ce76c8e74d9f8eb2e4b069f1e544e"
+    },
+    {
+      "path": "outputs/azure-operator-deployment/private-dns-preflight.json",
+      "size_bytes": 1624,
+      "sha256": "d443e8c8fc45f37df34d13b573df84a8edd36eed237016b6968c4130705c416d"
+    },
+    {
+      "path": "outputs/azure-operator-deployment/repair-deployment.json",
+      "size_bytes": 32640,
+      "sha256": "004366199bda0b237dec34d5f85215cbc5f607501f48415a3e88f9189f6a868e"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/3384f84c-8290-4e33-a04c-b7ededdd07e9/execution-observed.json",
+      "size_bytes": 15521,
+      "sha256": "a30126c0785a8d5e674095c1b0024aa7a505a43604da1ebfa4fb065a8c069f5c"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/3384f84c-8290-4e33-a04c-b7ededdd07e9/execution-request.json",
+      "size_bytes": 16156,
+      "sha256": "0e15277d8813cd5252afa059c0faae63c91e43a63a03ff8c971840ce4c33c478"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/3384f84c-8290-4e33-a04c-b7ededdd07e9/executions-before.json",
+      "size_bytes": 787,
+      "sha256": "eeb1e2700fe72d338e6e602d517cc78af27bde27a7e27a91f36318f47a908c55"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/3384f84c-8290-4e33-a04c-b7ededdd07e9/executions-pre-start.json",
+      "size_bytes": 787,
+      "sha256": "eeb1e2700fe72d338e6e602d517cc78af27bde27a7e27a91f36318f47a908c55"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/3384f84c-8290-4e33-a04c-b7ededdd07e9/identity-output/identity-probe.json",
+      "size_bytes": 2793,
+      "sha256": "fd17421a8efa6fc4a2e445af2ca0f14584b69a28dbb3cd4f0b3023acb4dadca0"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/3384f84c-8290-4e33-a04c-b7ededdd07e9/identity-output/write-read.txt",
+      "size_bytes": 68,
+      "sha256": "e6af27be28a0369e29d4e43dc2e5ed235b1f55af08c48f7d68833d2354bba625"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/3384f84c-8290-4e33-a04c-b7ededdd07e9/private-logs-complete.json",
+      "size_bytes": 3375,
+      "sha256": "aa491dc7e128de52dccdf7ba6cfbd5516bb3d1b6c304ee1f3cdd4b63ac005f25"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/3384f84c-8290-4e33-a04c-b7ededdd07e9/private-logs-final.json",
+      "size_bytes": 3375,
+      "sha256": "8f686e2ed6b117bdd101fade3277ffcda6c545fee213d89b7361902965a7b013"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/3384f84c-8290-4e33-a04c-b7ededdd07e9/private-logs-observed.json",
+      "size_bytes": 3375,
+      "sha256": "6c08bf66b1cab2c207a2c8741322181c79b473905072aa09869affdd0e45da08"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/3384f84c-8290-4e33-a04c-b7ededdd07e9/private-logs.json",
+      "size_bytes": 3375,
+      "sha256": "08fce98e49d87dee579d21bfbeba83173ad595a8c582f7c100d9fcb17209762a"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/3384f84c-8290-4e33-a04c-b7ededdd07e9/report-readback.json",
+      "size_bytes": 3274,
+      "sha256": "a3e909f846acf60ec333d09f4b5b8d073c7f1f8a491b2b06cd49dd7fa749c354"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/3384f84c-8290-4e33-a04c-b7ededdd07e9/start-response.json",
+      "size_bytes": 279,
+      "sha256": "72110ed0317aac96d3f7477d219adbe5654826adfc2f49e161e1de3f0b9ca5e0"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/3384f84c-8290-4e33-a04c-b7ededdd07e9/summary.json",
+      "size_bytes": 1596,
+      "sha256": "4bb9868029ac6781ac126db2d4d1e9b79f022f2b6d6cedbc866d9561ce340161"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/3384f84c-8290-4e33-a04c-b7ededdd07e9/template-before.json",
+      "size_bytes": 2437,
+      "sha256": "017a2ae4c85d6c72bf4a5993eee163749915b93d273f273cea1665e71f1680dc"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/3384f84c-8290-4e33-a04c-b7ededdd07e9/template-execution.json",
+      "size_bytes": 16209,
+      "sha256": "3484b891d4d4a8805a9d81af8ecb17cd96637dfd1da6726c5ae09284249b95f5"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/48f62606-50c8-4aee-8026-7fadcc1a193f/artifact-verification.json",
+      "size_bytes": 5479,
+      "sha256": "00ed3259f922b40d644df87ddcb16823879e3df2f8b163895a7ce875ed98f2fa"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/48f62606-50c8-4aee-8026-7fadcc1a193f/dataset-output/advice-evaluation/advice-evaluation.json",
+      "size_bytes": 22756,
+      "sha256": "4d94359fcbb0aade06e87951c19305b228dd52f5302241a238e0b11cfcd890d6"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/48f62606-50c8-4aee-8026-7fadcc1a193f/dataset-output/advice/evidence-catalog.json",
+      "size_bytes": 125612,
+      "sha256": "4abbda060e1b0062076c2fd81f72e7455b2d31a6ff76e0eaa2ad5c731d09e4cd"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/48f62606-50c8-4aee-8026-7fadcc1a193f/dataset-output/advice/evidence-manifest.json",
+      "size_bytes": 554,
+      "sha256": "0424f09afc2008baed9f18b9c02fc7b900be9497f21d06d779fed0c7d7e4cf40"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/48f62606-50c8-4aee-8026-7fadcc1a193f/dataset-output/advice/evidence-profile.json",
+      "size_bytes": 12525,
+      "sha256": "1595747cbcbec4bcdbda27eebb36d22dc25db9c86ae905d7180a95c23694e9ac"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/48f62606-50c8-4aee-8026-7fadcc1a193f/dataset-output/completion.json",
+      "size_bytes": 3660,
+      "sha256": "13edfd0a045a30237fc1c7762707d386c38353454e072797398c9980dc5b9223"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/48f62606-50c8-4aee-8026-7fadcc1a193f/dataset-output/profiles/profile-summary.json",
+      "size_bytes": 1625,
+      "sha256": "23ed85af9b6d048e1ae1b61c1e39fa10b81a00626fa4286848d3ee8221be1a30"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/48f62606-50c8-4aee-8026-7fadcc1a193f/dataset-output/qualification/source-qualification.json",
+      "size_bytes": 67999,
+      "sha256": "16ea5f62d603283dabc5c21ce646c2d19de853b59013f98f3ac00f5717e47cf5"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/48f62606-50c8-4aee-8026-7fadcc1a193f/dataset-output/replay/replay-summary.json",
+      "size_bytes": 644,
+      "sha256": "35a656e339cd8c2177e01f51f9327c133b4878d5bc8f552e887e7f9df7dd9fe8"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/48f62606-50c8-4aee-8026-7fadcc1a193f/download-receipt.json",
+      "size_bytes": 2376,
+      "sha256": "0c1a8cd879cbeba85f79fd0b83320c605642d032eec0b5e7ac813accf3064ceb"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/48f62606-50c8-4aee-8026-7fadcc1a193f/execution-observed.json",
+      "size_bytes": 1870,
+      "sha256": "7373e0402c854fb1b1836e8688863abdb2b88af2edfe56fba0fcbe669ffc093b"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/48f62606-50c8-4aee-8026-7fadcc1a193f/execution-request.json",
+      "size_bytes": 2384,
+      "sha256": "d19a90a2b67ce173faa589a41ac39624124854bb7cb133832f6ed37373a40a98"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/48f62606-50c8-4aee-8026-7fadcc1a193f/executions-before.json",
+      "size_bytes": 412,
+      "sha256": "9ac56a94423cc94e0849a59a5172eb6960947d483f41a1a416ec015af1b10e8c"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/48f62606-50c8-4aee-8026-7fadcc1a193f/executions-pre-start.json",
+      "size_bytes": 412,
+      "sha256": "9ac56a94423cc94e0849a59a5172eb6960947d483f41a1a416ec015af1b10e8c"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/48f62606-50c8-4aee-8026-7fadcc1a193f/private-logs.json",
+      "size_bytes": 3929,
+      "sha256": "72dd3817e862eeef8899dc5cc7f9e5ab05aad52208d3495f31ab62e5004fc033"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/48f62606-50c8-4aee-8026-7fadcc1a193f/start-response.json",
+      "size_bytes": 279,
+      "sha256": "5948763d00302ca6fbd60302b5a7a4f29ced75cdd07e6d089a1ddde64b79582b"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/48f62606-50c8-4aee-8026-7fadcc1a193f/summary.json",
+      "size_bytes": 1536,
+      "sha256": "747feed0dd31673ad487898b6d60d9ef1e123afa586f8edbef892e58b4e35df2"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/48f62606-50c8-4aee-8026-7fadcc1a193f/template-before.json",
+      "size_bytes": 2437,
+      "sha256": "017a2ae4c85d6c72bf4a5993eee163749915b93d273f273cea1665e71f1680dc"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/48f62606-50c8-4aee-8026-7fadcc1a193f/template-execution.json",
+      "size_bytes": 2437,
+      "sha256": "017a2ae4c85d6c72bf4a5993eee163749915b93d273f273cea1665e71f1680dc"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/877c2585-9f05-42cc-a99d-95a9af9df52f/execution-observed.json",
+      "size_bytes": 1830,
+      "sha256": "40a868976106fa9486ad4f8b076ecdcb92716cfdc4527bbf65d540a5c8a97ad0"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/877c2585-9f05-42cc-a99d-95a9af9df52f/execution-request.json",
+      "size_bytes": 2392,
+      "sha256": "c9100d6cbd3cb9638dec65d354f4603c033147c5a03b70b6c62535261b0d75e0"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/877c2585-9f05-42cc-a99d-95a9af9df52f/executions-before.json",
+      "size_bytes": 1162,
+      "sha256": "37a21f02cf6d338c3bae97469a18e46828ba3f0b1d9d57cf5d72c4c7a727ce0f"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/877c2585-9f05-42cc-a99d-95a9af9df52f/executions-pre-start.json",
+      "size_bytes": 1162,
+      "sha256": "37a21f02cf6d338c3bae97469a18e46828ba3f0b1d9d57cf5d72c4c7a727ce0f"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/877c2585-9f05-42cc-a99d-95a9af9df52f/private-logs.json",
+      "size_bytes": 3710,
+      "sha256": "25807438aac89f475d2ed8fbaa9495b92715c506cdbd7a7d5f86247901304bd4"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/877c2585-9f05-42cc-a99d-95a9af9df52f/start-response.json",
+      "size_bytes": 279,
+      "sha256": "f3ed373b1325e89645f5f279bc2388391b7515cba05fedd9546815c2106253d0"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/877c2585-9f05-42cc-a99d-95a9af9df52f/summary.json",
+      "size_bytes": 1544,
+      "sha256": "41c3ae404748d56ac7fd5d3cf733d94ec077f9ea6f430ec346ef72571fd7e333"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/877c2585-9f05-42cc-a99d-95a9af9df52f/template-before.json",
+      "size_bytes": 2437,
+      "sha256": "017a2ae4c85d6c72bf4a5993eee163749915b93d273f273cea1665e71f1680dc"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/877c2585-9f05-42cc-a99d-95a9af9df52f/template-execution.json",
+      "size_bytes": 2445,
+      "sha256": "49abde54fa660603958efbea049387e842c76b3874e3acb9777e85b4de77f137"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/df13a729-1d62-4523-a0cc-3432b143e562/artifact-verification.json",
+      "size_bytes": 4557,
+      "sha256": "52c36b25f7f6763820475a7fbb28ae3b2b141b9986f1fb6c4f886885835ba591"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/df13a729-1d62-4523-a0cc-3432b143e562/demo-output/completion.json",
+      "size_bytes": 2767,
+      "sha256": "0cb1638447c66dff5939291c20c6e198b3b0265cbb23112e5a8f5c1de086291f"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/df13a729-1d62-4523-a0cc-3432b143e562/demo-output/demo/audit.sqlite3",
+      "size_bytes": 36864,
+      "sha256": "9f74ed3624e7dddbee33b45c6a48179101fece232ff2a112c9d8475083317f5e"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/df13a729-1d62-4523-a0cc-3432b143e562/demo-output/demo/demo-report.json",
+      "size_bytes": 3839,
+      "sha256": "1479f3c27db2ccadc0e8b6d2a341a7b3ae123869e9a427073f4c69774ee718ca"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/df13a729-1d62-4523-a0cc-3432b143e562/download-receipt.json",
+      "size_bytes": 1454,
+      "sha256": "86e4dbf366c99b8d3f470607189486188c0136b05c53b8caf3b72beca20a67a7"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/df13a729-1d62-4523-a0cc-3432b143e562/execution-observed.json",
+      "size_bytes": 3718,
+      "sha256": "bfaeb4a0dd7824b2cbc170feb6dcec21a7d0dd6883c4ca867db30177c0c7331a"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/df13a729-1d62-4523-a0cc-3432b143e562/execution-request.json",
+      "size_bytes": 2372,
+      "sha256": "25b345e91ec8975295f3cfb4a6fc92b248ee71cebec65c4ffb1de8fa067f41ae"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/df13a729-1d62-4523-a0cc-3432b143e562/executions-before.json",
+      "size_bytes": 40,
+      "sha256": "3b34f408cd69d61ebaf67549462df8d7bd7acfc007bfbba01c54849b53948f79"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/df13a729-1d62-4523-a0cc-3432b143e562/executions-pre-start.json",
+      "size_bytes": 40,
+      "sha256": "3b34f408cd69d61ebaf67549462df8d7bd7acfc007bfbba01c54849b53948f79"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/df13a729-1d62-4523-a0cc-3432b143e562/private-logs-explicit-cl.json",
+      "size_bytes": 133,
+      "sha256": "5293bba954280d0fcd6f4d3f5748b83d444a13bbcb950f44cd0cf333b694f1b4"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/df13a729-1d62-4523-a0cc-3432b143e562/private-logs-explicit.json",
+      "size_bytes": 3917,
+      "sha256": "99976bfa531b1f0a903095d57f589e89d5c28de363228c8de5637eb5949bfc99"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/df13a729-1d62-4523-a0cc-3432b143e562/private-logs.json",
+      "size_bytes": 302,
+      "sha256": "12f16c49284731a42366215e6285cfcab7b6ea98c910ced4f9e773ecfb3ea703"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/df13a729-1d62-4523-a0cc-3432b143e562/start-response.json",
+      "size_bytes": 279,
+      "sha256": "a50a5920b37f2574dfbce52ed09cd55f45b8a7255110533a15131433af88365e"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/df13a729-1d62-4523-a0cc-3432b143e562/summary.json",
+      "size_bytes": 1524,
+      "sha256": "c989befa91ce31f21d48be71a261366b7f6a13f9059cbe55894ca4d280b1e877"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/df13a729-1d62-4523-a0cc-3432b143e562/template-before.json",
+      "size_bytes": 2437,
+      "sha256": "017a2ae4c85d6c72bf4a5993eee163749915b93d273f273cea1665e71f1680dc"
+    },
+    {
+      "path": "outputs/azure-pilot-execution/df13a729-1d62-4523-a0cc-3432b143e562/template-execution.json",
+      "size_bytes": 2425,
+      "sha256": "14e15833021f86c287f55642aaae01a19601ea8b23cccecbcd539531b517c51f"
+    },
+    {
+      "path": "outputs/azure-pilot-local-validation/pytest.xml",
+      "size_bytes": 90799,
+      "sha256": "a01c5c052399b528e53d78924c2264642d579867f01feae669114cef739656e2"
+    },
+    {
+      "path": "outputs/azure-pilot-start-tests/6351df3f-48e5-4c34-abee-1fcbd395778c/summary.json",
+      "size_bytes": 10983,
+      "sha256": "2722fa5c487f7bce4c83d648a9f1689321c4ccbe6a9a7aa22c535124f79b3a61"
+    },
+    {
+      "path": "outputs/azure-pilot-transfer/cloud-test-verification.json",
+      "size_bytes": 2392,
+      "sha256": "06ceffaea786486ce26d438bb31318a6d6f3f97fd2c029fb0761dccdc0c39a15"
+    },
+    {
+      "path": "outputs/azure-pilot-transfer/extraction-remote-verification.json",
+      "size_bytes": 1442,
+      "sha256": "b47ac88e330165c42db3661e6f7c30820853f5c06697f75daee7b5227fe1623f"
+    },
+    {
+      "path": "outputs/azure-pilot-transfer/image-identity.json",
+      "size_bytes": 13779,
+      "sha256": "49fade3d4ff5536f5980f067bbdfb1acf669e718f05adab5893369d03eb872ed"
+    },
+    {
+      "path": "outputs/azure-pilot-transfer/input-upload.json",
+      "size_bytes": 4180,
+      "sha256": "c7b2837838ecaa1649e5be9736cc4b683b16b27d6ab186ad05d36eb417ba4e57"
+    },
+    {
+      "path": "outputs/azure-pilot-transfer/read_identity_probe.py",
+      "size_bytes": 2038,
+      "sha256": "0271c929eead6ee105bea8b73aea36084939700f8b24f94de4d583f6b9572407"
+    },
+    {
+      "path": "outputs/azure-pilot-transfer/registry-publication.json",
+      "size_bytes": 3144,
+      "sha256": "6b77507137130b13668277124f1ea1bb240a7ddc588cb351ae948e07304da1ae"
+    },
+    {
+      "path": "outputs/azure-pilot-transfer/verify_pilot_evidence.py",
+      "size_bytes": 5073,
+      "sha256": "72c0bfcf068c48ff95a3c296913c70d05a8c688a58950e8561736f10bead15ee"
+    },
+    {
+      "path": "outputs/azure-pilot-verification-final/summary.json",
+      "size_bytes": 25347,
+      "sha256": "d8e5239dd6ba5210c28ce3e9aefafdc7af143a610989d640c2c953cfd7ea1948"
+    },
+    {
+      "path": "outputs/azure-pilot-verification-operator/summary.json",
+      "size_bytes": 28990,
+      "sha256": "49071335c1e4aecb25954f7d033675c64e4c3a2afc352fa90e16ea73f9b013c4"
+    },
+    {
+      "path": "outputs/azure-private-access-review/operator-repair.json",
+      "size_bytes": 34117,
+      "sha256": "b949b49ca5671773c4b6a83bb1f0ec8e978d496e5d6ba8ff411c099bd0dbb3d8"
+    },
+    {
+      "path": "outputs/azure-private-access-review/repair-what-if.json",
+      "size_bytes": 190444,
+      "sha256": "6378a4c2019a967e3b0d604cdb97777a1dc4fdd8f302bf7517338078a1a509a8"
+    },
+    {
+      "path": "outputs/azure-script-verification/summary.json",
+      "size_bytes": 8087,
+      "sha256": "7dffb666e87ae69a2ec9284f558335aacdb59cf5ee0ead2ff0be3b9e7f535960"
+    },
+    {
+      "path": "outputs/azure/job.deployment.json",
+      "size_bytes": 9395,
+      "sha256": "4b4f26e47ae7879865f3460b7a5155d09be9c2fcb1abc20f20855a68a8b6fbab"
+    },
+    {
+      "path": "outputs/azure/job.full-foundation-rejected.what-if.json",
+      "size_bytes": 312963,
+      "sha256": "2b02716b74bc326e6d6d2621d2a3fb9515472f43fa4efa5c93f9cbebf4682a8b"
+    },
+    {
+      "path": "outputs/azure/job.what-if.json",
+      "size_bytes": 100552,
+      "sha256": "19cb8e3540f32181a0a83a33962f0c50ef99ae0ac17eb6ffa12ad7c7217eca63"
+    },
+    {
+      "path": "outputs/image-remediation/pytest-exact-image.xml",
+      "size_bytes": 74316,
+      "sha256": "3a8b0aa12b66a12fa08e2d505a588e9fedc5261af4aa55e73cdbb63dabc53cfc"
+    }
+  ]
+}

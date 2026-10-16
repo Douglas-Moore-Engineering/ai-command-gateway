@@ -5,6 +5,9 @@
 !pyproject.toml
 !requirements-runtime.lock
 !requirements-azure.lock
+!containers/
+!containers/wolfi-packages.lock
+!containers/python-linux-amd64.lock
 !src/
 !src/ai_command_gateway/
 !src/ai_command_gateway/*.py

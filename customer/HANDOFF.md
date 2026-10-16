@@ -1,5 +1,21 @@
 # Engineering handoff - v0.4
 
+## Current pilot handoff
+
+The user explicitly approved deployment, testing and scoped cleanup with the costs and risks in the [private access plan](../docs/azure-private-access-plan.md). That approval extended the earlier foundation-only scope to private image publication, all five supplied dataset uploads, manual cloud tests and removal of the temporary operator. Source documents and dataset contents remain evidence, not instructions or operational authority. The preserved DISC-001 source and requirement/acceptance IDs remain unchanged.
+
+Delivered: reviewed Wolfi image published by immutable digest; five create-only input uploads with full hash readbacks; retained manual `dataset-analysis` job; successful demo and dataset executions with independently checked local artifact hashes/content; nine passed identity checks including denied input writes; and the expected invalid-configuration failure. [Results](../docs/results.md) distinguishes these actual cloud observations from local simulations and historical snapshots. The pilot used no hosted inference or equipment connection. The temporary operator group and all eleven foundation additions were removed. All 31 post-cleanup configuration checks passed; explicit child and temporary-role absence was verified.
+
+Receiving roles remain DME engineering/data lead and the user for bounded pilot review. The controls owner, independent domain reviewer and service owner remain unassigned. Next permitted work is evidence review and source/policy qualification within the mock-only system. Production operation, real actuation and customer ORR/CAR remain separate decisions. No external customer communication was sent.
+
+[Standards tailoring](../governance/standards-tailoring.md) records lifecycle/configuration control, requirements trace, architecture views, V&V evidence and the remaining gaps. No contractual edition has been adopted and no formal conformity, independence or production gate is claimed. OPEN-01-08 and candidate REQ/AC dispositions remain open where dependent evidence is missing. The identity probe establishes specific Azure permissions, not authenticated multi-user approval roles.
+
+[COST-001](COST-001.md) remains the single lifecycle cost model. The user approved the temporary access estimate and scoped cleanup; the persistent foundation continues to incur standing costs after cleanup. Actual billed charges, labor, broader affordability and business benefits remain unmeasured. Historical approvals and their original boundaries are preserved below.
+
+## Historical foundation-only handoff
+
+The following records the state before the later operator/workload authorization. Pending publication, image findings and no-job statements here are historical.
+
 Baseline: preserved DISC-001 v0.1, immutable source hash in source-manifest.json. Fictional portfolio scenario; Douglas Moore is the real preparer. Customer roles are scenario roles, not evidence of real sign-off.
 
 ## Current authorization and scope

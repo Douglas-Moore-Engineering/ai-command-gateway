@@ -1,5 +1,7 @@
 # Azure foundation deployment review
 
+This record preserves the original foundation review and estimate. The later approved private operator and workload pilot are recorded in the [private access review](azure-private-access-plan.md) and [current results](results.md).
+
 Prepared 2026-10-15 for the connected **douglas@dmesystems.global** account. The account maps to the current default subscription ending **f609**, in the `douglasdmesystems.onmicrosoft.com` tenant. The user identified this Douglas DME Systems account. Full identifiers and raw read-only results remain under ignored `outputs/azure-discovery/`.
 
 ## Approved action and outcome

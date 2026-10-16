@@ -214,48 +214,65 @@ flowchart TB
 
 Color roles: blue/request data, teal/validation, indigo/retrieval and model adapter, gold/decision checks, green/user input, purple/evidence and responses. [Editable source](../diagrams/03-guarded-model-advice.mmd), [SVG](../diagrams/03-guarded-model-advice.svg), [PNG](../diagrams/03-guarded-model-advice.png). The provider receives no tools or execution endpoint. Application checks do not isolate the process from a user who controls its code or environment.
 
-## Azure batch foundation
+<a id="azure-batch-foundation"></a>
 
-ARCH-004 v0.2, 2026-10-15. Approved private foundation scope with the prepared workload marked separately. The job is not provisioned; image publication and dataset uploads remain pending. Once separately enabled, the manual job defaults to the synthetic demo; dataset mode downloads and verifies all five source objects. [Current results](../results.md) record actual foundation deployment and configuration checks. Azure Blob and registry data paths use private endpoints; the job has no inference or equipment path. The VNet has no dedicated egress firewall. This view shows selected runtime relationships; [the implementation guide](../azure-implementation.md) and [Bicep](../../infra/README.md) cover the complete resource configuration.
+## Private Azure pilot
+
+ARCH-004 v0.3, 2026-10-16 UTC. Purpose: show the verified bounded pilot and distinguish retained Azure services from its disposable access path. The private foundation and manual job are deployed in `rg-ai-command-gateway-dev`. The exact OCI image is published and all five original input objects passed complete readback SHA-256 verification. The separate `rg-ai-command-gateway-operator` group provided a VM at `10.43.0.4`, without a VM public IP, reached through Bastion and host-key-pinned SSH/SCP. Cleanup completed on 2026-10-16 at 04:01:02 UTC: the operator resource group and all 11 explicitly tracked foundation-side temporary resources were confirmed removed. The private foundation, job, published image, five inputs and pilot artifacts are retained.
+
+The reviewed platform manifest is `sha256:99ae6d8dd7962dfc517a09cce6f46b979af78fd0f5c149bf01e0132b4a2aabad`. [Image evidence](../image-security.md) records the exact local image, scan database and compatibility checks. Publication preserved the reviewed OCI manifest. The deployed job defaults to `dataset-analysis`; synthetic demo, identity probe and expected configuration-failure tests used reviewed execution overrides through the [start helper](../../scripts/start_azure_pilot_test.ps1), without changing that deployed template.
+
+All four pilot modes were verified against ARM execution records and private artifacts or diagnostics. The synthetic demo passed five cases. Dataset analysis produced 154 facts and passed 12 advice cases and 20 qualification escalations. The identity probe passed nine checks, including a denied input write with `403 AuthorizationPermissionMismatch` and no unexpected input object. Its console row was unavailable; its persisted report was verified by hash and execution time. The configuration-failure execution failed as expected with the bounded `configuration_invalid` diagnostic. [Current results](../results.md) record the evidence and its limits. These are bounded engineering checks; production acceptance and the remaining qualification and assurance gates stay open.
 
 ```mermaid
-%% Approved foundation scope. Dashed paths and the prepared workload remain pending.
+%% ARCH-004 v0.3. Bounded pilot verified; temporary operator access retired after cleanup.
+%% Solid paths show retained pilot architecture; dashed paths show retired temporary access.
+%% Reviewed platform digest: sha256:99ae6d8dd7962dfc517a09cce6f46b979af78fd0f5c149bf01e0132b4a2aabad
 %%{init: {"theme":"base","look":"classic","themeVariables":{"fontFamily":"Arial, sans-serif","fontSize":"18px","primaryTextColor":"#111111","lineColor":"#425466","background":"transparent","edgeLabelBackground":"transparent","clusterBkg":"transparent"},"flowchart":{"htmlLabels":false,"curve":"basis","nodeSpacing":28,"rankSpacing":38,"padding":12},"themeCSS":"text { font-family:Arial,sans-serif !important; } .cluster-label text { font-size:16px !important; font-weight:600; }"}}%%
 flowchart TB
-  subgraph preparation["Build and deployment preparation"]
-    source["Reviewed runtime and pinned dependencies"]
-    image["Local non-root image<br/>Promotion unresolved"]
-    review["Explicit target and cost review<br/>Compile; scan; Azure what-if"]
+  subgraph local["Reviewed pilot release"]
+    image["Reviewed local image<br/>Scan: zero known findings<br/>Platform: 99ae6d8...aabad"]
+    datasets["Five original source datasets<br/>Pinned hashes and sizes"]
+    operator["Authorized pilot operator<br/>Reviewed manual start helper"]
   end
 
-  subgraph azure["Approved Azure foundation"]
-    registry[("Private container registry<br/>Publication pending")]
-    inputs[("Private input Blob container<br/>Dataset upload pending")]
-    outputs[("Private output Blob container<br/>Runtime artifacts pending")]
-    monitor[("Private Azure Monitor scope<br/>Log Analytics workspace")]
-    identity["User-assigned managed identity<br/>Scoped role assignments"]
-    subgraph vnet["VNet and private endpoint DNS"]
-      environment["Internal Container Apps environment"]
-      subgraph future["Prepared workload - not provisioned"]
-      job["Manual Container Apps Job<br/>Demo or dataset analysis"]
-      verify["Verify input identities<br/>Run offline analysis"]
-      publish["Allowlisted artifacts only<br/>Write completion last"]
-      end
-    end
+  subgraph access["Retired temporary operator access"]
+    bastion["Bastion tunnel removed<br/>Pinned SSH/SCP used"]
+    vm["Operator VM removed<br/>Former address: 10.43.0.4<br/>No VM public IP"]
+    operatorIdentity["Operator identity removed<br/>Four scoped roles removed"]
   end
-  operator["Authorized deployment and job operator"]
 
-  source -->|"local image build"| image
-  image -.->|"reviewed push from connected builder"| registry
-  review -->|"approved foundation apply"| azure
-  operator -.->|"privileged manual start"| job
-  identity -.->|"AcrPull; input read; output write"| job
-  registry -.->|"private image pull"| job
-  job -.->|"selected mode"| verify
-  inputs -.->|"managed identity over private endpoint"| verify
-  verify -.->|"summary evidence; mock authority only"| publish
-  publish -.->|"unique run prefix; no overwrite"| outputs
-  job -.->|"platform and console diagnostics"| monitor
+  subgraph azure["Retained private Azure foundation"]
+    network["Private endpoints and DNS<br/>Two peerings removed<br/>Six operator DNS links removed"]
+    registry[("Private ACR<br/>Exact OCI digest published")]
+    inputs[("Private input Blob container<br/>Five originals verified")]
+    identity["Job managed identity<br/>AcrPull; input Blob Reader<br/>Output Blob Contributor"]
+    job["Manual Container Apps Job<br/>Internal environment<br/>Default: dataset-analysis<br/>One CPU; 2 GiB; no retries"]
+    verify["Verify all five source identities<br/>Offline analysis; mock authority"]
+    publish["Allowlisted run artifacts<br/>Write completion last"]
+    outputs[("Private output Blob container<br/>Verified pilot artifacts")]
+    monitor[("Private Azure Monitor<br/>Log Analytics workspace")]
+  end
+  validation["Bounded pilot verified<br/>Artifact hashes and semantics<br/>Identity and failure checks"]
+
+  image -.->|"reviewed archive transferred"| bastion
+  datasets -.->|"five originals transferred"| bastion
+  operator -.->|"retired authenticated tunnel"| bastion
+  bastion -.->|"VM host key verified"| vm
+  operatorIdentity -.->|"former ACR push; input write; output/log read"| vm
+  vm -.->|"temporary 10.43.0.0/24 route removed"| network
+  network -.->|"reviewed OCI publication"| registry
+  network -.->|"hash-pinned uploads; no overwrite"| inputs
+  operator -->|"manual start; fixed test overrides"| job
+  identity -->|"verified scoped runtime access"| job
+  registry -->|"private pull by immutable digest"| job
+  job -->|"default dataset-analysis mode"| verify
+  inputs -->|"private read; verify hashes and sizes"| verify
+  verify -->|"summaries and bounded evidence"| publish
+  publish -->|"unique prefix; no overwrite"| outputs
+  job -->|"platform and console diagnostics"| monitor
+  outputs -.->|"verified read via retired operator"| validation
+  monitor -.->|"verified query via retired operator"| validation
 
   classDef sourceRole fill:#EAF3F8,stroke:#356079,stroke-width:1.5px,color:#111111
   classDef dataRole fill:#E5F4F2,stroke:#32746E,stroke-width:1.5px,color:#111111
@@ -263,18 +280,27 @@ flowchart TB
   classDef policyRole fill:#F8F2E4,stroke:#876A2D,stroke-width:1.5px,color:#111111
   classDef humanRole fill:#EFF6EB,stroke:#4C713E,stroke-width:1.5px,color:#111111
   classDef evidenceRole fill:#F3F0F8,stroke:#6E5B85,stroke-width:1.5px,color:#111111
-  class source,image,registry,inputs sourceRole
+  classDef securityRole fill:#FBEFED,stroke:#9B534C,stroke-width:1.5px,color:#111111
+  class image,datasets,registry,inputs sourceRole
   class verify dataRole
-  class environment,job analysisRole
-  class identity,review policyRole
-  class operator humanRole
-  class publish,outputs,monitor evidenceRole
-  style preparation fill:none,stroke:#356079,stroke-width:1.5px,color:#111111
+  class job analysisRole
+  class identity,operatorIdentity policyRole
+  class operator,vm humanRole
+  class publish,outputs,monitor,validation evidenceRole
+  class bastion,network securityRole
+  style local fill:none,stroke:#356079,stroke-width:1.5px,color:#111111
+  style access fill:none,stroke:#4C713E,stroke-width:1.5px,stroke-dasharray:5 5,color:#111111
   style azure fill:none,stroke:#42558B,stroke-width:1.5px,color:#111111
-  style vnet fill:none,stroke:#32746E,stroke-width:1.5px,color:#111111
-  style future fill:none,stroke:#42558B,stroke-width:1.5px,stroke-dasharray:5 5,color:#111111
-  environment -.->|"future host"| job
+  style bastion stroke-dasharray:5 5
+  style vm stroke-dasharray:5 5
+  style operatorIdentity stroke-dasharray:5 5
   linkStyle default stroke:#425466,stroke-width:1.5px
 ```
 
-Color roles: blue/source and image, teal/validation, indigo/job, gold/identity and gates, green/operator, purple/evidence. [Editable source](../diagrams/04-azure-job.mmd), [SVG](../diagrams/04-azure-job.svg), [PNG](../diagrams/04-azure-job.png). Dashed connections describe pending publication and workload behavior. Private connectivity, image pull, identity data permissions and live diagnostics require runtime validation. Job-start permission is privileged and can permit template overrides.
+**Color legend:** Blue - source datasets and image; Teal - input and analysis checks; Indigo - finite job runtime; Gold - identity and authorization; Green - authorized operations; Purple - artifacts and diagnostics; Rose - private access controls. [Editable source](../diagrams/04-azure-job.mmd), [SVG](../diagrams/04-azure-job.svg), [PNG](../diagrams/04-azure-job.png). Solid paths show the retained pilot architecture. Dashed paths show the completed temporary publication and verification path, now retired.
+
+The operator and job used distinct managed identities. The pilot operator used four scoped assignments: AcrPush on the registry, Storage Blob Data Contributor on the input container, Storage Blob Data Reader on the output container, and Log Analytics Reader on the workspace. Reciprocal VNet peering and six additional private DNS links connected the operator VNet (`10.43.0.0/24`) with foundation services (`10.42.0.0/16`). Cleanup confirmed removal of the operator resource group, both peering links, those six DNS links and four role assignments. The retained foundation keeps its own private endpoints and DNS links. The [private access plan](../azure-private-access-plan.md) and [operator Bicep](../../infra/operator-subscription.bicep) define that disposable scope.
+
+The job has no model-inference or equipment interface. Its identity has AcrPull on the registry, Storage Blob Data Reader on the input container, and Storage Blob Data Contributor on the output container. The contributor role also permits read and delete; application checks restrict this runner to allowlisted, create-only output artifacts. Source identity checks precede offline analysis and completion is written last under a unique run prefix. Output artifacts and private logs were retrieved through the temporary operator for verification. The foundation VNet has no dedicated egress firewall.
+
+Job-start permission is privileged and can permit template overrides; the reviewed helper accepts only the four fixed pilot modes. The last helper refinement tightened the type check for Azure's optional ephemeral-storage field. It passed 61 offline mocked checks after the cloud runs and was not rerun in Azure; the cloud execution records retain the earlier helper hash.

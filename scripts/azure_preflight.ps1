@@ -38,10 +38,10 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 $workspaceRoot = Split-Path -Parent $PSScriptRoot
-$templatePath = Join-Path $workspaceRoot 'infra/main.bicep'
+$templatePath = Join-Path $workspaceRoot $(if ($Stage -eq 'Job') { 'infra/job-only.bicep' } else { 'infra/main.bicep' })
 $outputRoot = Join-Path $workspaceRoot 'outputs/azure'
 $stageName = $Stage.ToLowerInvariant()
-$compiledPath = Join-Path $outputRoot 'main.json'
+$compiledPath = Join-Path $outputRoot $(if ($Stage -eq 'Job') { 'job-only.json' } else { 'main.json' })
 $parametersPath = Join-Path $outputRoot ($stageName + '.parameters.json')
 $whatIfPath = Join-Path $outputRoot ($stageName + '.what-if.json')
 
@@ -138,14 +138,16 @@ if ($compileOutput) { Write-Host ($compileOutput -join [Environment]::NewLine) }
 $parameterValues = [ordered]@{
     location = @{ value = $Location }
     workloadName = @{ value = $WorkloadName }
-    provisionJob = @{ value = ($Stage -eq 'Job') }
     imageDigest = @{ value = $ImageDigest }
     jobMode = @{ value = $JobMode }
-    artifactRetentionDays = @{ value = $ArtifactRetentionDays }
-    logRetentionDays = @{ value = $LogRetentionDays }
-    vnetAddressPrefix = @{ value = $VnetAddressPrefix }
-    environmentSubnetPrefix = @{ value = $EnvironmentSubnetPrefix }
-    privateEndpointSubnetPrefix = @{ value = $PrivateEndpointSubnetPrefix }
+}
+if ($Stage -eq 'Bootstrap') {
+    $parameterValues.provisionJob = @{ value = $false }
+    $parameterValues.artifactRetentionDays = @{ value = $ArtifactRetentionDays }
+    $parameterValues.logRetentionDays = @{ value = $LogRetentionDays }
+    $parameterValues.vnetAddressPrefix = @{ value = $VnetAddressPrefix }
+    $parameterValues.environmentSubnetPrefix = @{ value = $EnvironmentSubnetPrefix }
+    $parameterValues.privateEndpointSubnetPrefix = @{ value = $PrivateEndpointSubnetPrefix }
 }
 $parameterDocument = [ordered]@{
     '$schema' = 'https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#'
@@ -185,6 +187,12 @@ if ($Online) {
         if ($change.changeType -notin @('Create', 'NoChange', 'Ignore', 'Modify')) {
             throw 'What-if includes deletion, an unsupported result or an unknown change type. Deployment is blocked.'
         }
+        if ($Stage -eq 'Job' -and $change.changeType -in @('Create', 'Modify')) {
+            $jobPathPattern = '^/subscriptions/' + [regex]::Escape($SubscriptionId) + '/resourceGroups/' + [regex]::Escape($ResourceGroup) + '/providers/Microsoft[.]App/jobs/job-aicg-[a-z0-9]{13}$'
+            if ($change.resourceId -notmatch $jobPathPattern) {
+                throw 'Job-stage what-if includes a resource change outside the manual job. Foundation modifications are never allowed in this stage.'
+            }
+        }
         if ($change.changeType -eq 'Modify' -and -not $AllowModify) {
             throw 'What-if includes existing-resource modifications. Review the saved result, then explicitly use -AllowModify if intended.'
         }
@@ -201,6 +209,7 @@ if ($Online) {
     environmentSubnetPrefix = $EnvironmentSubnetPrefix
     privateEndpointSubnetPrefix = $PrivateEndpointSubnetPrefix
     templatePath = $compiledPath
+    sourceTemplatePath = $templatePath
     parametersPath = $parametersPath
     onlineChecksPassed = [bool] $Online
     modificationsExplicitlyAllowed = [bool] $AllowModify

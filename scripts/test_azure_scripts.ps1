@@ -64,9 +64,10 @@ $preflightScript = Join-Path $stagedScripts 'azure_preflight.ps1'
 $deployScript = Join-Path $stagedScripts 'deploy_azure.ps1'
 
 function Reset-Fixture {
-    param([string[]] $ChangeTypes = @('Create'), [string] $Status = 'Succeeded', [int] $ExitCode = 0)
+    param([string[]] $ChangeTypes = @('Create'), [string] $Status = 'Succeeded', [int] $ExitCode = 0,
+          [string] $ResourceId = '/simulated/resource')
     [System.IO.File]::WriteAllText($callLog, '', $utf8)
-    $changes = @($ChangeTypes | ForEach-Object { @{ changeType = $_; resourceId = '/simulated/resource' } })
+    $changes = @($ChangeTypes | ForEach-Object { @{ changeType = $_; resourceId = $ResourceId } })
     $fixture = @{ status = $Status; changes = $changes }
     [System.IO.File]::WriteAllText($fixturePath, ($fixture | ConvertTo-Json -Depth 8), $utf8)
     $env:AICG_TEST_EXIT = [string] $ExitCode
@@ -112,6 +113,49 @@ try {
         Assert-Condition ($parameters.vnetAddressPrefix.value -eq '10.42.0.0/16') 'Default VNet prefix changed.'
         Assert-Condition ($parameters.environmentSubnetPrefix.value -eq '10.42.0.0/23') 'Default environment prefix changed.'
         Assert-Condition ($parameters.privateEndpointSubnetPrefix.value -eq '10.42.2.0/24') 'Default endpoint prefix changed.'
+        Assert-Condition ($result.sourceTemplatePath.EndsWith('main.bicep')) 'Bootstrap no longer selects the foundation template.'
+        Assert-Condition ($parameters.provisionJob.value -eq $false) 'Bootstrap unexpectedly provisions a job.'
+    }
+    $jobArguments = @{ Stage = 'Job'; ImageDigest = ('sha256:' + ('a' * 64)); JobMode = 'dataset-analysis' }
+    $jobResourceId = '/subscriptions/00000000-0000-0000-0000-000000000001/resourceGroups/test-aicg/providers/Microsoft.App/jobs/job-aicg-123456789abcd'
+    Run-Check 'Job compiles only the manual job while foundation resources remain references' {
+        Reset-Fixture
+        $result = & $preflightScript @common @jobArguments
+        Assert-Condition ($result.sourceTemplatePath.EndsWith('job-only.bicep') -and $result.templatePath.EndsWith('job-only.json')) 'Job stage selected the foundation template.'
+        $parameters = (Get-Content -LiteralPath $result.parametersPath -Raw | ConvertFrom-Json).parameters
+        $parameterNames = @($parameters.PSObject.Properties.Name | Sort-Object)
+        Assert-Condition (($parameterNames -join ',') -eq 'imageDigest,jobMode,location,workloadName') 'Job stage forwarded a foundation parameter.'
+        Assert-Condition ($parameters.imageDigest.value -eq $jobArguments.ImageDigest -and $parameters.jobMode.value -eq 'dataset-analysis') 'Job inputs were not preserved.'
+        $compiled = Get-Content -LiteralPath $result.templatePath -Raw | ConvertFrom-Json
+        Assert-Condition (@($compiled.resources).Count -eq 1 -and $compiled.resources[0].type -eq 'Microsoft.Resources/deployments') 'Job wrapper contains additional top-level resources.'
+        $childResources = @($compiled.resources[0].properties.template.resources)
+        Assert-Condition ($childResources.Count -eq 1 -and $childResources[0].type -eq 'Microsoft.App/jobs') 'Job wrapper contains managed foundation resources.'
+        $bootstrap = Get-Content -LiteralPath (Join-Path (Split-Path -Parent $result.templatePath) 'main.json') -Raw | ConvertFrom-Json
+        Assert-Condition ($compiled.variables.suffix -eq $bootstrap.variables.suffix -and $compiled.variables.nameStem -eq $bootstrap.variables.nameStem) 'Job naming seed differs from foundation.'
+        Assert-Condition (($compiled.variables.tags | ConvertTo-Json -Compress) -eq ($bootstrap.variables.tags | ConvertTo-Json -Compress)) 'Job tags differ from foundation.'
+        Assert-Condition ([System.IO.File]::ReadAllText($callLog).Length -eq 0) 'Offline Job compilation invoked Azure.'
+    }
+    Run-Check 'Job apply uses only its wrapper after a job-only preview' {
+        Reset-Fixture -ChangeTypes @('Create', 'Ignore') -ResourceId $jobResourceId
+        & $deployScript @common @jobArguments -Online -Deploy | Out-Null
+        $calls = [System.IO.File]::ReadAllText($callLog)
+        Assert-Condition ($calls.Contains('deployment group create') -and $calls.Contains('job-only.json')) 'Job deployment did not use its wrapper.'
+        Assert-Condition (-not $calls.Contains('main.json')) 'Job deployment used the foundation template.'
+    }
+    foreach ($kind in @('Create', 'Modify')) {
+        Run-Check ('Job stage blocks foundation ' + $kind + ' even with AllowModify') {
+            Reset-Fixture -ChangeTypes @($kind) -ResourceId '/subscriptions/00000000-0000-0000-0000-000000000001/resourceGroups/test-aicg/providers/Microsoft.Network/virtualNetworks/foundation'
+            Expect-Failure { & $deployScript @common @jobArguments -Online -Deploy -AllowModify }
+        }
+    }
+    Run-Check 'Job stage blocks changes to a job in another resource group' {
+        Reset-Fixture -ChangeTypes @('Create') -ResourceId ($jobResourceId.Replace('/test-aicg/', '/other-group/'))
+        Expect-Failure { & $deployScript @common @jobArguments -Online -Deploy -AllowModify }
+    }
+    Run-Check 'Job stage allows an explicitly reviewed modification of the job only' {
+        Reset-Fixture -ChangeTypes @('Modify') -ResourceId $jobResourceId
+        & $deployScript @common @jobArguments -Online -Deploy -AllowModify | Out-Null
+        Assert-Condition ([System.IO.File]::ReadAllText($callLog).Contains('deployment group create')) 'Explicit job-only modification was not applied by the simulated CLI.'
     }
     Run-Check 'custom network prefixes pass through deployment review into Bicep parameters' {
         Reset-Fixture
