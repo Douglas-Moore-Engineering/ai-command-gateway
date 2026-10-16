@@ -6,6 +6,10 @@ The user requested keeping the Azure subscription and deleting its other resourc
 
 The original local datasets, downloaded pilot artifacts and logs, local source and GitHub repository remain retained. Historical governance JSON is unchanged. The prior $97.49/month core standing estimate describes the former deployment, not a current bill. Active resource removal is verified; provider recovery metadata and physical data erasure are separate. Billing may lag and actual charges remain unmeasured. No zero-charge or production-acceptance claim is made.
 
+## Repository maintenance — 2026-10-16
+
+README navigation and current lifecycle/governance summaries now distinguish the retired pilot from open domain and production conditions. An offline workflow covers Linux/Python 3.12 and Windows/Python 3.10, requires PowerShell on CI, and runs the full suite, repository checks, mock demo, fixture retrieval evaluation and provider dry-run. [Dated local verification](governance/repository-maintenance-2026-10-16.json) records the actual environment and skips. Local results are not a remote CI pass. The private-repository ruleset endpoint reports a plan restriction and the connected integration has no administration capability; branch protections/required-check enforcement are not configured. Azure remains disconnected.
+
 ## Historical completed pilot - 2026-10-16 UTC, before retirement
 
 The separately approved Azure pilot has published the reviewed image, uploaded and fully read back all five inventory-bound inputs, and completed successful demo and dataset-analysis executions in `rg-ai-command-gateway-dev`, East US 2, subscription ending `f609`. Private Blob/registry/Monitor resolution and execution-log access are recorded. Downloaded-artifact checks passed for both runs. The job-identity probe passed all nine checks, and deliberate configuration failure was observed. The temporary operator group and all eleven foundation additions were removed. All 31 post-cleanup configuration checks passed; explicit child and temporary-role absence was verified. The [pilot record](governance/azure-pilot-v0.4.json) binds the source and evidence hashes.

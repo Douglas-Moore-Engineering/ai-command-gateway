@@ -1,4 +1,21 @@
-# Lifecycle checklist — v0.2
+# Lifecycle checklist — current status, 2026-10-16
+
+Fictional engagement; DISC-001 v0.1 remains the discovery baseline. This current overlay supersedes the historical status paragraphs below. The maintainer's bounded sandbox and maintenance instructions do not constitute customer acceptance or independent assurance.
+
+| Work | Current state | Evidence and remaining boundary |
+| --- | --- | --- |
+| Local implementation and reference demo | Implemented; maintenance verification recorded separately | [Current checks](repository-maintenance-2026-10-16.json); [results](../docs/results.md); synthetic/mock scope only |
+| Hosting, security and engineering review | Bounded Azure foundation and private pilot completed historically | [Pilot record](azure-pilot-v0.4.json); no production readiness or acceptance inferred |
+| Cloud retirement | Recorded ARM verification completed 2026-10-16 05:13:03 UTC; subscription retained Enabled | [Retirement record](azure-retirement-v0.4.json); zero active resources/groups at recorded check, billing/recovery limits retained |
+| Repository maintenance | Documentation reconciliation and offline CI added | [Workflow](../.github/workflows/offline-verification.yml); [verification](repository-maintenance-2026-10-16.json); remote execution is separate from local results |
+| Domain qualification and customer lifecycle | Open | [OPEN-01–08](../customer/open-items.csv), [handoff](../customer/HANDOFF.md); no fabricated phase sign-off |
+| Operational readiness, customer acceptance and production release | Not approved | [Release gates](release_gates.md), [AI governance](AI_GOVERNANCE_PLAN.md); no live actuation or model connection authorized by maintenance |
+
+The retired sandbox is not a completed customer-service retirement or disposal of all retained evidence. Local source files and historical records remain retained under the recorded scope. No lifecycle checker PASS, control-coverage PASS, AIG gate PASS or independent assessment is claimed. The earlier foundation-only restrictions below describe their historical point in time; subsequent pilot authorization and outcomes are preserved in the pilot record and handoff.
+
+## Historical v0.2 baseline and follow-ons
+
+# Historical lifecycle checklist — v0.2
 
 Fictional engagement. Authorized: local offline application foundation as of the 2026-10-15 build request. Active baseline: DISC-001 v0.1. Date: 2026-10-15. [Handoff](../customer/HANDOFF.md) defines current authorization and remaining exposure boundaries.
 
