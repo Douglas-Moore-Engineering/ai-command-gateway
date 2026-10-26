@@ -12,7 +12,7 @@ The original local datasets, downloaded pilot artifacts and logs, local source a
 
 ## Repository maintenance — 2026-10-16
 
-README navigation and current lifecycle/governance summaries now distinguish the retired pilot from open domain and production conditions. An offline workflow covers Linux/Python 3.12 and Windows/Python 3.10, requires PowerShell on CI, and runs the full suite, repository checks, mock demo, fixture retrieval evaluation and provider dry-run. [Dated local verification](governance/repository-maintenance-2026-10-16.json) records the actual environment and skips. Local results are not a remote CI pass. The private-repository ruleset endpoint reports a plan restriction and the connected integration has no administration capability; branch protections/required-check enforcement are not configured. Azure remains disconnected.
+README navigation and current lifecycle/governance summaries now distinguish the retired pilot from open domain and production conditions. An offline workflow covers Linux/Python 3.12 and Windows/Python 3.10, requires PowerShell on CI, and runs the full suite, repository checks, mock demo, fixture retrieval evaluation and provider dry-run. [Dated local verification](governance/repository-maintenance-2026-10-16.json) records the actual environment and skips. Local results are not a remote CI pass. The repository is now public. The earlier private-repository ruleset restriction was recorded before publication; current branch protection and required-check enforcement require direct verification because the connected integration cannot read branch-protection settings. Azure remains disconnected.
 
 ## Historical completed pilot - 2026-10-16 UTC, before retirement
 
